@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Kartik Thapar. All rights reserved.
 //
 
-#import "KTPhotosGridViewController.h"
+#import "KTPhotos.h"
 
 @interface KTPhotosGridSampleViewController : KTPhotosGridViewController
 
