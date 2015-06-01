@@ -17,6 +17,7 @@
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
 		C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */; };
+		C6E61F281B1CAABD0030F136 /* KTPhotosGridSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E61F271B1CAABD0030F136 /* KTPhotosGridSampleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
 		C6B5A75A1B1C9C7F00B68375 /* KTPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KTPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B5A7731B1C9C7F00B68375 /* KTPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KTPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6E61F261B1CAABD0030F136 /* KTPhotosGridSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosGridSampleViewController.h; sourceTree = "<group>"; };
+		C6E61F271B1CAABD0030F136 /* KTPhotosGridSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosGridSampleViewController.m; sourceTree = "<group>"; };
 		F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KTPhotosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,6 +146,8 @@
 			children = (
 				C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */,
 				C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */,
+				C6E61F261B1CAABD0030F136 /* KTPhotosGridSampleViewController.h */,
+				C6E61F271B1CAABD0030F136 /* KTPhotosGridSampleViewController.m */,
 				C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */,
 				C66D5A0F1B1C9CF8002C94F5 /* Info.plist */,
 				C66D5A101B1C9CF8002C94F5 /* main.m */,
@@ -237,6 +242,7 @@
 		C6B5A7521B1C9C7F00B68375 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = KT;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Kartik Thapar";
 				TargetAttributes = {
@@ -328,6 +334,7 @@
 				C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */,
 				C62EBA041B1CA048001059CC /* KTPhotosCollectionView.m in Sources */,
 				C62EBA071B1CA09F001059CC /* KTPhotosCollectionViewCell.m in Sources */,
+				C6E61F281B1CAABD0030F136 /* KTPhotosGridSampleViewController.m in Sources */,
 				C62EBA001B1C9F61001059CC /* KTPhotosGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

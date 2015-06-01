@@ -13,6 +13,8 @@
 #import "KTPhotosGridViewController.h"
 #import "KTPhotosCollectionViewCell.h"
 
+#import "KTPhotosGridSampleViewController.h"
+
 @interface KTPhotosGridViewController ()
 
 - (void)kt_configurePhotosViewController;
@@ -40,24 +42,30 @@
 
 #pragma mark - Tests
 
-- (void)testKTMessagesViewControllerInit
+- (void)testKTPhotosGridViewControllerInit
 {
     KTPhotosGridViewController *vc = [KTPhotosGridViewController photosViewController];
     [vc view];
-    
     XCTAssertNotNil(vc, @"View controller should not be nil");
     XCTAssertNotNil(vc.view, @"View should not be nil");
     XCTAssertNotNil(vc.collectionView, @"Collection view should not be nil");
-    
     XCTAssertEqual(vc.automaticallyAdjustsScrollViewInsets, YES, @"Property should be equal to default value");
-    
     XCTAssert([vc.photoCellIdentifier isEqualToString:[KTPhotosCollectionViewCell cellReuseIdentifier]], @"Property should be equal to the default value");
+}
+
+- (void)testKTPhotosGridViewControllerSubclassInit
+{
+    KTPhotosGridSampleViewController *sampleVC = [KTPhotosGridSampleViewController photosViewController];
+    [sampleVC view];
+    XCTAssertNotNil(sampleVC, @"View controller should not be nil");
+    XCTAssertTrue([sampleVC isKindOfClass:[KTPhotosGridSampleViewController class]], @"View controller should be kind of class: %@", [KTPhotosGridSampleViewController class]);
+    XCTAssertNotNil(sampleVC.view, @"View should not be nil");
+    XCTAssertNotNil(sampleVC.collectionView, @"Collection view should not be nil");
 }
 
 - (void)testViewConfiguration
 {
     KTPhotosGridViewController *vc = [KTPhotosGridViewController photosViewController];
-    
     id mockVC = [OCMockObject partialMockForObject:vc];
     [[mockVC expect] kt_configurePhotosViewController];
     [vc view];
