@@ -12,6 +12,7 @@
 		C62EBA041B1CA048001059CC /* KTPhotosCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EBA031B1CA048001059CC /* KTPhotosCollectionView.m */; };
 		C62EBA071B1CA09F001059CC /* KTPhotosCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EBA061B1CA09F001059CC /* KTPhotosCollectionViewCell.m */; };
 		C62EBA0A1B1CA156001059CC /* KTPhotosGridViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EBA091B1CA156001059CC /* KTPhotosGridViewControllerTests.m */; };
+		C62EBA0E1B1CA21D001059CC /* XCTestCase+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EBA0D1B1CA21D001059CC /* XCTestCase+Additions.m */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
@@ -39,6 +40,8 @@
 		C62EBA051B1CA09F001059CC /* KTPhotosCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewCell.h; sourceTree = "<group>"; };
 		C62EBA061B1CA09F001059CC /* KTPhotosCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosCollectionViewCell.m; sourceTree = "<group>"; };
 		C62EBA091B1CA156001059CC /* KTPhotosGridViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosGridViewControllerTests.m; sourceTree = "<group>"; };
+		C62EBA0C1B1CA21D001059CC /* XCTestCase+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+Additions.h"; sourceTree = "<group>"; };
+		C62EBA0D1B1CA21D001059CC /* XCTestCase+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+Additions.m"; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -126,6 +129,15 @@
 			path = ControllerTests;
 			sourceTree = "<group>";
 		};
+		C62EBA0B1B1CA20D001059CC /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C62EBA0C1B1CA21D001059CC /* XCTestCase+Additions.h */,
+				C62EBA0D1B1CA21D001059CC /* XCTestCase+Additions.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +153,7 @@
 		C66D5A151B1C9D68002C94F5 /* KTPhotosTests */ = {
 			isa = PBXGroup;
 			children = (
+				C62EBA0B1B1CA20D001059CC /* Utility */,
 				C62EBA081B1CA133001059CC /* ControllerTests */,
 				C66D5A161B1C9D68002C94F5 /* Info.plist */,
 				C66D5A181B1C9DDC002C94F5 /* TestAppDelegate.h */,
@@ -323,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C62EBA0E1B1CA21D001059CC /* XCTestCase+Additions.m in Sources */,
 				C62EBA0A1B1CA156001059CC /* KTPhotosGridViewControllerTests.m in Sources */,
 				C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */,
 			);
