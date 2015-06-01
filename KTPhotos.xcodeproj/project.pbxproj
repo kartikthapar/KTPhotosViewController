@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0764A51656EC3522BCC64916 /* libPods-KTPhotosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
@@ -25,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45813867E94FF7E4C9C18DF0 /* Pods-KTPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
+		A82B9B228461E8FE06EC4D2E /* Pods-KTPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
 		C6B5A75A1B1C9C7F00B68375 /* KTPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KTPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B5A7731B1C9C7F00B68375 /* KTPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KTPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KTPhotosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,12 +53,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0764A51656EC3522BCC64916 /* libPods-KTPhotosTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF80743F173E35D664C16019 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A82B9B228461E8FE06EC4D2E /* Pods-KTPhotosTests.debug.xcconfig */,
+				45813867E94FF7E4C9C18DF0 /* Pods-KTPhotosTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +97,8 @@
 				C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */,
 				C66D5A151B1C9D68002C94F5 /* KTPhotosTests */,
 				C6B5A75B1B1C9C7F00B68375 /* Products */,
+				BF80743F173E35D664C16019 /* Pods */,
+				D5CACE8F52A8A69F1A821397 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +109,14 @@
 				C6B5A7731B1C9C7F00B68375 /* KTPhotosTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D5CACE8F52A8A69F1A821397 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6B5A7801B1C9C7F00B68375 /* Build configuration list for PBXNativeTarget "KTPhotosTests" */;
 			buildPhases = (
+				0C9CA0FF1BBCF9CB19C8AC76 /* Check Pods Manifest.lock */,
 				C6B5A76F1B1C9C7F00B68375 /* Sources */,
 				C6B5A7701B1C9C7F00B68375 /* Frameworks */,
 				C6B5A7711B1C9C7F00B68375 /* Resources */,
+				298BF913527B7B70BC22BFA3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,6 +214,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C9CA0FF1BBCF9CB19C8AC76 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		298BF913527B7B70BC22BFA3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C6B5A7561B1C9C7F00B68375 /* Sources */ = {
@@ -322,6 +381,7 @@
 		};
 		C6B5A7811B1C9C7F00B68375 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A82B9B228461E8FE06EC4D2E /* Pods-KTPhotosTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -341,6 +401,7 @@
 		};
 		C6B5A7821B1C9C7F00B68375 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45813867E94FF7E4C9C18DF0 /* Pods-KTPhotosTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
