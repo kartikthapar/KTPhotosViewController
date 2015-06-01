@@ -11,6 +11,7 @@
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
 		C66D5A171B1C9D68002C94F5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A161B1C9D68002C94F5 /* Info.plist */; };
+		C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,8 @@
 		C66D5A0F1B1C9CF8002C94F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C66D5A101B1C9CF8002C94F5 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C66D5A161B1C9D68002C94F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C66D5A181B1C9DDC002C94F5 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
+		C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
 		C6B5A75A1B1C9C7F00B68375 /* KTPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KTPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B5A7731B1C9C7F00B68375 /* KTPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KTPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				C66D5A161B1C9D68002C94F5 /* Info.plist */,
+				C66D5A181B1C9DDC002C94F5 /* TestAppDelegate.h */,
+				C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */,
 			);
 			path = KTPhotosTests;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
