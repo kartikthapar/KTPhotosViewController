@@ -1,0 +1,18 @@
+//
+//  KTPhotosCollectionViewCell.h
+//  KTPhotos
+//
+//  Created by Kartik Thapar on 6/1/15.
+//  Copyright (c) 2015 Kartik Thapar. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface KTPhotosCollectionViewCell : UICollectionViewCell
+
+/**
+ * @abstract Returns the default string used to identify a reusable cell for photo items.
+ */
++ (NSString *)cellReuseIdentifier;
+
+@end

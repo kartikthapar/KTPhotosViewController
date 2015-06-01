@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0764A51656EC3522BCC64916 /* libPods-KTPhotosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */; };
+		C62EBA001B1C9F61001059CC /* KTPhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EB9FF1B1C9F61001059CC /* KTPhotosGridViewController.m */; };
+		C62EBA041B1CA048001059CC /* KTPhotosCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EBA031B1CA048001059CC /* KTPhotosCollectionView.m */; };
+		C62EBA071B1CA09F001059CC /* KTPhotosCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C62EBA061B1CA09F001059CC /* KTPhotosCollectionViewCell.m */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
-		C66D5A171B1C9D68002C94F5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A161B1C9D68002C94F5 /* Info.plist */; };
 		C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,13 @@
 /* Begin PBXFileReference section */
 		45813867E94FF7E4C9C18DF0 /* Pods-KTPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
 		A82B9B228461E8FE06EC4D2E /* Pods-KTPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C62EB9FE1B1C9F61001059CC /* KTPhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosGridViewController.h; sourceTree = "<group>"; };
+		C62EB9FF1B1C9F61001059CC /* KTPhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosGridViewController.m; sourceTree = "<group>"; };
+		C62EBA011B1CA024001059CC /* KTPhotosCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewDataSource.h; sourceTree = "<group>"; };
+		C62EBA021B1CA048001059CC /* KTPhotosCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionView.h; sourceTree = "<group>"; };
+		C62EBA031B1CA048001059CC /* KTPhotosCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosCollectionView.m; sourceTree = "<group>"; };
+		C62EBA051B1CA09F001059CC /* KTPhotosCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewCell.h; sourceTree = "<group>"; };
+		C62EBA061B1CA09F001059CC /* KTPhotosCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosCollectionViewCell.m; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -69,6 +78,44 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C62EB9FA1B1C9EE7001059CC /* KTPhotosViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C62EB9FB1B1C9F4E001059CC /* Controllers */,
+				C62EB9FC1B1C9F4E001059CC /* Model */,
+				C62EB9FD1B1C9F4E001059CC /* Views */,
+			);
+			path = KTPhotosViewController;
+			sourceTree = "<group>";
+		};
+		C62EB9FB1B1C9F4E001059CC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C62EB9FE1B1C9F61001059CC /* KTPhotosGridViewController.h */,
+				C62EB9FF1B1C9F61001059CC /* KTPhotosGridViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C62EB9FC1B1C9F4E001059CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C62EBA011B1CA024001059CC /* KTPhotosCollectionViewDataSource.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C62EB9FD1B1C9F4E001059CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C62EBA021B1CA048001059CC /* KTPhotosCollectionView.h */,
+				C62EBA031B1CA048001059CC /* KTPhotosCollectionView.m */,
+				C62EBA051B1CA09F001059CC /* KTPhotosCollectionViewCell.h */,
+				C62EBA061B1CA09F001059CC /* KTPhotosCollectionViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +141,7 @@
 		C6B5A7511B1C9C7F00B68375 = {
 			isa = PBXGroup;
 			children = (
+				C62EB9FA1B1C9EE7001059CC /* KTPhotosViewController */,
 				C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */,
 				C66D5A151B1C9D68002C94F5 /* KTPhotosTests */,
 				C6B5A75B1B1C9C7F00B68375 /* Products */,
@@ -209,7 +257,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C66D5A171B1C9D68002C94F5 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +302,9 @@
 			files = (
 				C66D5A141B1C9CF8002C94F5 /* main.m in Sources */,
 				C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */,
+				C62EBA041B1CA048001059CC /* KTPhotosCollectionView.m in Sources */,
+				C62EBA071B1CA09F001059CC /* KTPhotosCollectionViewCell.m in Sources */,
+				C62EBA001B1C9F61001059CC /* KTPhotosGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
