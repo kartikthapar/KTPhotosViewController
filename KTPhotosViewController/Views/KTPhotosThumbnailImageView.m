@@ -43,6 +43,7 @@
 
 - (void)kt_configureThumbnailImageView
 {
+    self.accessibilityLabel = KTPhotosThumbnailImageViewAccessibilityLabel;
     self.clipsToBounds = YES;
     self.contentMode = UIViewContentModeScaleAspectFill;
 }

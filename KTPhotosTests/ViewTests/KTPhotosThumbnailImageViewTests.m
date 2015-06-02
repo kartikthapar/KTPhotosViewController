@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import "KIF.h"
+#import "Expecta.h"
 
 #import "KTPhotos.h"
 
@@ -44,6 +46,32 @@
 {
     KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     XCTAssertNotNil(photoImageView, @"photoImageView cannot be nil");
+}
+
+- (void)testPhotosThumbnailImageViewDefaultProperties
+{
+    [self presentThumbnailImageView];
+    KTPhotosThumbnailImageView *photoImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
+    expect(photoImageView.imageViewBorderColor).to.equal([UIColor lightGrayColor]);
+    expect(photoImageView.imageViewBorderWidth).to.equal(1.0f);
+}
+
+#pragma mark - Internal
+
+- (void)presentThumbnailImageView
+{
+    // create a view controller
+    UIViewController *controller = [[UIViewController alloc] init];
+    controller.view.backgroundColor = [UIColor whiteColor];
+
+    // add photo image view
+    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    [controller.view addSubview:photoImageView];
+    
+    // present this view controller
+    UINavigationController *presentingController = [[UINavigationController alloc] initWithRootViewController:controller];
+    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [navigationController presentViewController:presentingController animated:YES completion:nil];
 }
 
 @end
