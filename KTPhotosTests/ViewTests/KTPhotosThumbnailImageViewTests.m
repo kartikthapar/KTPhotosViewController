@@ -36,6 +36,7 @@
 
 - (void)tearDown
 {
+    [self dismiss];
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
@@ -48,12 +49,27 @@
     XCTAssertNotNil(photoImageView, @"photoImageView cannot be nil");
 }
 
-- (void)testPhotosThumbnailImageViewDefaultProperties
+- (void)testPhotosThumbnailImageViewAppearanceDefaultProperties
 {
     [self presentThumbnailImageView];
     KTPhotosThumbnailImageView *photoImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
     expect(photoImageView.imageViewBorderColor).to.equal([UIColor lightGrayColor]);
     expect(photoImageView.imageViewBorderWidth).to.equal(1.0f);
+}
+
+- (void)testPhotosThumbnailImageViewAppearanceProperties
+{
+    UIColor *imageViewBorderColor = [UIColor redColor];
+    CGFloat imageViewBorderWidth = 10.0f;
+    
+    [[KTPhotosThumbnailImageView appearance] setImageViewBorderColor:imageViewBorderColor];
+    [[KTPhotosThumbnailImageView appearance] setImageViewBorderWidth:imageViewBorderWidth];
+    
+    [self presentThumbnailImageView];
+    
+    KTPhotosThumbnailImageView *photoImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
+    expect(photoImageView.imageViewBorderColor).to.equal(imageViewBorderColor);
+    expect(photoImageView.imageViewBorderWidth).to.equal(imageViewBorderWidth);
 }
 
 #pragma mark - Internal
@@ -72,6 +88,12 @@
     UINavigationController *presentingController = [[UINavigationController alloc] initWithRootViewController:controller];
     UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [navigationController presentViewController:presentingController animated:YES completion:nil];
+}
+
+- (void)dismiss
+{
+    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
