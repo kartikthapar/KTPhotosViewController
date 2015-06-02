@@ -10,6 +10,8 @@
 
 @class KTPhotosThumbnailImageView;
 
+#define KTPhotosCollectionViewCellAccessibilityLabel @"KTPhotosCollectionViewCellAccessibilityLabel"
+
 @interface KTPhotosCollectionViewCell : UICollectionViewCell
 
 /**
@@ -21,5 +23,11 @@
  * @abstract Returns the default string used to identify a reusable cell for photo items.
  */
 + (NSString *)cellReuseIdentifier;
+
+/**
+ * @abstract The background color of the cell.
+ * @discussion The default color is `[UIColor whiteColor]`.
+ */
+@property (nonatomic) UIColor *cellBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end

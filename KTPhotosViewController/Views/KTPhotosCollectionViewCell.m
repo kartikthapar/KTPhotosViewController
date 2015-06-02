@@ -21,6 +21,12 @@
 
 #pragma mark - init
 
++ (void)initialize
+{
+    KTPhotosCollectionViewCell *proxy = [self appearance];
+    proxy.cellBackgroundColor = [UIColor whiteColor];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
@@ -37,15 +43,21 @@
 
 - (void)kt_configureCollectionViewCell
 {
-    self.backgroundColor = [UIColor whiteColor];
-    
     // photoImageView
-    // TODO: custom image view required
     self.photoImageView = [[KTPhotosThumbnailImageView alloc] init];
-    self.photoImageView.backgroundColor = [UIColor lightGrayColor];
     self.photoImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.photoImageView];
     [self kt_configureLayoutConstraintsForPhotoImageview];
+    
+    self.accessibilityLabel = KTPhotosCollectionViewCellAccessibilityLabel;
+}
+
+#pragma mark - UIAppearance
+
+- (void)setCellBackgroundColor:(UIColor *)cellBackgroundColor
+{
+    _cellBackgroundColor = cellBackgroundColor;
+    self.backgroundColor = cellBackgroundColor;
 }
 
 #pragma mark - UICollectionViewCell
@@ -68,13 +80,6 @@
 {
     [super setSelected:selected];
     self.photoImageView.highlighted = selected;
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    [super setBackgroundColor:backgroundColor];
-    
-    self.photoImageView.backgroundColor = backgroundColor;
 }
 
 #pragma mark - Constraints
