@@ -10,8 +10,7 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 
-#import "KTPhotosGridViewController.h"
-#import "KTPhotosCollectionViewCell.h"
+#import "KTPhotos.h"
 
 #import "KTPhotosGridSampleViewController.h"
 

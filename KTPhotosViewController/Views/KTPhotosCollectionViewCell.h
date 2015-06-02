@@ -11,6 +11,11 @@
 @interface KTPhotosCollectionViewCell : UICollectionViewCell
 
 /**
+ * @abstract Returns the photo image view of the cell that is responsible for displaying the thumbnail image.
+ */
+@property (nonatomic, strong, readonly) UIImageView *photoImageView;
+
+/**
  * @abstract Returns the default string used to identify a reusable cell for photo items.
  */
 + (NSString *)cellReuseIdentifier;
