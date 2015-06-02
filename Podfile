@@ -8,5 +8,6 @@ end
 target 'KTPhotosTests' do
     pod 'OCMock'
     pod 'KIF'
+    pod 'Expecta'
 end
 
