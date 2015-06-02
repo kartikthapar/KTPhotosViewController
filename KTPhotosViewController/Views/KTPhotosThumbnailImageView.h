@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//NSString *const ATLAvatarImageViewAccessibilityLabel = @"ATLAvatarImageViewAccessibilityLabel";
 
 #define KTPhotosThumbnailImageViewAccessibilityLabel @"KTPhotosThumbnailImageViewAccessibilityLabel"
 
