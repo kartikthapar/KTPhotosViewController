@@ -7,5 +7,6 @@ end
 
 target 'KTPhotosTests' do
     pod 'OCMock'
+    pod 'KIF'
 end
 
