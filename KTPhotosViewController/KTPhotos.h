@@ -21,5 +21,6 @@
 
 #import "KTPhotosCollectionView.h"
 #import "KTPhotosCollectionViewCell.h"
+#import "KTPhotosThumbnailImageView.h"
 
 #endif

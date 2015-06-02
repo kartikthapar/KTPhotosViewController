@@ -31,7 +31,7 @@
 
 #pragma mark - Tests
 
-- (void)testMessageCollectionViewCellInit
+- (void)testPhotosCollectionViewCell
 {
     KTPhotosCollectionViewCell *collectionViewCell = [[KTPhotosCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
     XCTAssertNotNil(collectionViewCell, @"cell cannot be nil");
