@@ -42,6 +42,9 @@
     
     UIImageView *photoImageView = collectionViewCell.photoImageView;
     XCTAssertNotNil(photoImageView, @"photoImageView cannot be nil");
+    [collectionViewCell layoutIfNeeded];
+    XCTAssertEqual(photoImageView.frame.size.width, collectionViewCell.frame.size.width, @"photoImageView width should be same as that of collectionViewCell's");
+    XCTAssertEqual(photoImageView.frame.size.height, collectionViewCell.frame.size.height, @"photoImageView height should be same as that of collectionViewCell's");
 }
 
 @end

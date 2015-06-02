@@ -31,4 +31,11 @@
     return 8;
 }
 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    KTPhotosCollectionViewCell *cell = (KTPhotosCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    cell.photoImageView.image = [UIImage imageNamed:@"image_sample_1"];
+    return cell;
+}
+
 @end
