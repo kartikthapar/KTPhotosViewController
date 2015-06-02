@@ -7,10 +7,11 @@
 //
 
 #import "KTPhotosCollectionViewCell.h"
+#import "KTPhotosThumbnailImageView.h"
 
 @interface KTPhotosCollectionViewCell ()
 
-@property (nonatomic, strong, readwrite) UIImageView *photoImageView;
+@property (nonatomic, strong, readwrite) KTPhotosThumbnailImageView *photoImageView;
 
 - (void)kt_configureCollectionViewCell;
 
@@ -40,7 +41,7 @@
     
     // photoImageView
     // TODO: custom image view required
-    self.photoImageView = [[UIImageView alloc] init];
+    self.photoImageView = [[KTPhotosThumbnailImageView alloc] init];
     self.photoImageView.backgroundColor = [UIColor lightGrayColor];
     self.photoImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.photoImageView];

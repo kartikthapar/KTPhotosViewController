@@ -40,7 +40,7 @@
     XCTAssertNotNil(cellId, @"cell reuse identifier cannot be nil");
     XCTAssertEqualObjects(cellId, NSStringFromClass([KTPhotosCollectionViewCell class]));
     
-    UIImageView *photoImageView = collectionViewCell.photoImageView;
+    KTPhotosThumbnailImageView *photoImageView = collectionViewCell.photoImageView;
     XCTAssertNotNil(photoImageView, @"photoImageView cannot be nil");
     [collectionViewCell layoutIfNeeded];
     XCTAssertEqual(photoImageView.frame.size.width, collectionViewCell.frame.size.width, @"photoImageView width should be same as that of collectionViewCell's");
