@@ -16,6 +16,9 @@
 #pragma mark - Model
 
 #import "KTPhotosCollectionViewDataSource.h"
+#import "KTPhotoData.h"
+#import "KTPhotosThumbnailPresenting.h"
+#import "KTThumbnailItem.h"
 
 #pragma mark - Views
 

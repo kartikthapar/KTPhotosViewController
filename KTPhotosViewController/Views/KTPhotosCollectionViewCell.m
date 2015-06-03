@@ -82,6 +82,14 @@
     self.photoImageView.highlighted = selected;
 }
 
+#pragma mark - KTPhotosThumbnailPresenting
+
+- (void)updateWithPhotoItem:(id<KTPhotoData>)photoItem
+{
+    self.photoImageView.photoItem = photoItem;
+    [self setNeedsUpdateConstraints];
+}
+
 #pragma mark - Constraints
 
 - (void)kt_configureLayoutConstraintsForPhotoImageview

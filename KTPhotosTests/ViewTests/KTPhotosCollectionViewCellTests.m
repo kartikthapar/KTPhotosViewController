@@ -71,6 +71,14 @@
     expect(cell.cellBackgroundColor).to.equal(backgroundColor);
 }
 
+- (void)testPhotosCollectionViewCellImplementsKTPhotosThumbnailPresenting
+{
+    KTPhotosCollectionViewCell *collectionViewCell = [[KTPhotosCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
+    XCTAssertNotNil(collectionViewCell, @"cell cannot be nil");
+    
+    expect([collectionViewCell respondsToSelector:@selector(updateWithPhotoItem:)]).to.equal(true);
+}
+
 #pragma mark - Internal
 
 - (void)presentPhotosCollectionViewCell

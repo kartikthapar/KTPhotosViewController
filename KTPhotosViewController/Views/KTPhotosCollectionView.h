@@ -12,6 +12,10 @@
 
 @interface KTPhotosCollectionView : UICollectionView
 
+/**
+ * @abstract The data source for the collection view.
+ * @discussion The data source must conform to the `KTPhotosCollectionViewDataSource` protocol.
+ */
 @property (weak, nonatomic) id<KTPhotosCollectionViewDataSource> dataSource;
 
 @end

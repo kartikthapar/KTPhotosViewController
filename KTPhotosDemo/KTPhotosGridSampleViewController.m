@@ -7,8 +7,11 @@
 //
 
 #import "KTPhotosGridSampleViewController.h"
+#import "SampleModelData.h"
 
 @interface KTPhotosGridSampleViewController ()
+
+@property (nonatomic, strong) SampleModelData *sampleModelData;
 
 @end
 
@@ -17,25 +20,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.sampleModelData = [[SampleModelData alloc] init];
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 4;
+    return 200;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 8;
+    return self.sampleModelData.photos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     KTPhotosCollectionViewCell *cell = (KTPhotosCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    cell.photoImageView.image = [UIImage imageNamed:@"image_sample_1"];
     return cell;
+}
+
+#pragma mark - KTPhotosCollectionViewDataSource
+
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.sampleModelData.photos objectAtIndex:indexPath.row];
 }
 
 @end

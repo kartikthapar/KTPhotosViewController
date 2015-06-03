@@ -79,7 +79,7 @@
     // create a view controller
     UIViewController *controller = [[UIViewController alloc] init];
     controller.view.backgroundColor = [UIColor whiteColor];
-
+    
     // add photo image view
     KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     [controller.view addSubview:photoImageView];

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "KTPhotosThumbnailPresenting.h"
 @class KTPhotosThumbnailImageView;
 
 #define KTPhotosCollectionViewCellAccessibilityLabel @"KTPhotosCollectionViewCellAccessibilityLabel"
 
-@interface KTPhotosCollectionViewCell : UICollectionViewCell
+@interface KTPhotosCollectionViewCell : UICollectionViewCell <KTPhotosThumbnailPresenting>
 
 /**
  * @abstract Returns the photo image view of the cell that is responsible for displaying the thumbnail image.

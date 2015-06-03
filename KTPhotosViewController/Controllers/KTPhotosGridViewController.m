@@ -79,10 +79,25 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(KTPhotosCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // get a reusable cell
     NSString *cellIdentifier = self.photoCellIdentifier;
     KTPhotosCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = self.view.tintColor;
+    
+    // update cell contents
+    id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView photoDataItemAtIndexPath:indexPath];
+    NSParameterAssert(photoItem);
+    
+    [cell updateWithPhotoItem:photoItem];
+    
     return cell;
+}
+
+#pragma mark - KTPhotosCollectionViewDataSource
+
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegate

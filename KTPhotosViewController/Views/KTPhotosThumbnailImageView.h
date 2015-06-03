@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KTPhotoData;
+
 #define KTPhotosThumbnailImageViewAccessibilityLabel @"KTPhotosThumbnailImageViewAccessibilityLabel"
 
 @interface KTPhotosThumbnailImageView : UIImageView
+
+#pragma mark - Content
+
+/**
+ * @abstract The object conforming to the `KTPhotoData` protocol.
+ * @discussion The object's image is to used to display in the receiver.
+ */
+@property (nonatomic) id <KTPhotoData> photoItem;
 
 #pragma mark - UIAppearance
 

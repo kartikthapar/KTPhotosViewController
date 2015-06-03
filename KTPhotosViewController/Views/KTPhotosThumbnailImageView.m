@@ -8,6 +8,8 @@
 
 #import "KTPhotosThumbnailImageView.h"
 
+#import "KTPhotoData.h"
+
 @interface KTPhotosThumbnailImageView ()
 
 - (void)kt_configureThumbnailImageView;
@@ -48,6 +50,20 @@
     self.contentMode = UIViewContentModeScaleAspectFill;
 }
 
+#pragma mark - Content
+
+- (void)setPhotoItem:(id<KTPhotoData>)photoItem
+{
+    if ([photoItem image])
+    {
+        self.image = [photoItem image];
+    }
+    else if ([photoItem imagePath])
+    {
+        [self loadImageFromPath:[photoItem imagePath]];
+    }
+}
+
 #pragma mark - UIAppearance
 
 - (void)setImageViewBorderColor:(UIColor *)imageViewBorderColor
@@ -60,6 +76,15 @@
 {
     self.layer.borderWidth = imageViewBorderWidth;
     _imageViewBorderWidth = imageViewBorderWidth;
+}
+
+#pragma mark - Internal
+
+- (void)loadImageFromPath:(NSString *)imagePath
+{
+    // TODO: verify image path
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    self.image = image;
 }
 
 @end
