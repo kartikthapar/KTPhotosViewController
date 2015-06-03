@@ -44,4 +44,10 @@
  */
 - (UIImage *)image;
 
+/**
+ * @abstract The image URL for the photo data for a photo object.
+ * @discussion This may return a `nil` value provided at least one of the other content APIs provide a non `nil` photo data value. The URL must contain a valid image.
+ */
+- (NSURL *)imageURL;
+
 @end

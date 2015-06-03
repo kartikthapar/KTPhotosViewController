@@ -58,12 +58,33 @@
     return self;
 }
 
++ (instancetype)thumbnailWithURL:(NSURL *)imageURL cacheId:(NSString *)cacheId
+{
+    return [[KTThumbnailItem alloc] initWithImageURL:imageURL date:[NSDate date] cacheId:cacheId];
+}
+
+- (instancetype)initWithImageURL:(NSURL *)imageURL date:(NSDate *)date cacheId:(NSString *)cacheId
+{
+    NSParameterAssert(imageURL);
+    NSParameterAssert(date);
+    NSParameterAssert(cacheId);
+    
+    if (self = [super init])
+    {
+        _imageURL = [imageURL copy];
+        _date = [date copy];
+        _cacheId = [cacheId copy];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     _date = nil;
     _cacheId = nil;
     _imagePath = nil;
     _image = nil;
+    _imageURL = nil;
 }
 
 #pragma mark - NSCoding
@@ -76,6 +97,7 @@
         _cacheId = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(cacheId))];
         _imagePath = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(imagePath))];
         _image = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(image))];
+        _imageURL = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(imageURL))];
     }
     return self;
 }
@@ -86,6 +108,7 @@
     [aCoder encodeObject:self.cacheId forKey:NSStringFromSelector(@selector(cacheId))];
     [aCoder encodeObject:self.imagePath forKey:NSStringFromSelector(@selector(imagePath))];
     [aCoder encodeObject:self.image forKey:NSStringFromSelector(@selector(image))];
+    [aCoder encodeObject:self.imageURL forKey:NSStringFromSelector(@selector(imageURL))];
 }
 
 @end

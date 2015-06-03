@@ -25,6 +25,11 @@
     return nil;
 }
 
+- (NSURL *)imageURL
+{
+    return nil;
+}
+
 - (NSDate *)date
 {
     return [NSDate date];

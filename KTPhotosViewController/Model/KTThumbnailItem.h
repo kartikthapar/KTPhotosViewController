@@ -31,21 +31,28 @@
 /**
  * @abstract Returns the image path for the thumbnail image represented by the receiver object.
  * @discussion If this value is `nil`, see other image content APIs.
- * @see `image`;
+ * @see `image`, `imageURL`.
  */
 @property (nonatomic, copy, readonly) NSString *imagePath;
 
 /**
  * @abstract Returns the original thumbnail image represented by the receiver object.
  * @discussion If this value is `nil`, see other image content APIs.
- * @see `imagePath`.
+ * @see `imagePath`, `imageURL`.
  */
 @property (nonatomic, copy, readonly) UIImage *image;
+
+/**
+ * @abstract Returns the URL associated with image represented by the receiver object.
+ * @discussion If this value is `nil`, see other image content APIs.
+ * @see `imagePath`, `image`.
+ */
+@property (nonatomic, copy, readonly) NSURL *imageURL;
 
 #pragma mark - init
 
 /**
- * @abstract Initializes and returns an object with the specified image path, date and cacheId.
+ * @abstract Initializes and returns an object with the specified image path and cacheId.
  * @discussion This is typically used when the image path is available.
  * @param imagePath The image path of the thumbnail. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
@@ -53,7 +60,7 @@
 + (instancetype)thumbnailWithImagePath:(NSString *)imagePath cacheId:(NSString *)cacheId;
 
 /**
- * @abstract Initializes and returns an object with the specified image path and cacheId.
+ * @abstract Initializes and returns an object with the specified image path, date and cacheId.
  * @discussion This is typically used when the image path is available.
  * @param imagePath The image path of the thumbnail. This value must not be `nil`.
  * @param date The date on which the content was created. This value must not be `nil`.
@@ -62,7 +69,7 @@
 - (instancetype)initWithImagePath:(NSString *)imagePath  date:(NSDate *)date cacheId:(NSString *)cacheId;
 
 /**
- * @abstract Initializes and returns an object with the specified image, date and cacheId.
+ * @abstract Initializes and returns an object with the specified image and cacheId.
  * @discussion This is typically used when the image is available.
  * @param image The thumbnail image. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
@@ -70,12 +77,29 @@
 + (instancetype)thumbnailWithImage:(UIImage *)image cacheId:(NSString *)cacheId;
 
 /**
- * @abstract Initializes and returns an object with the specified image and cacheId.
+ * @abstract Initializes and returns an object with the specified image, date and cacheId.
  * @discussion This is typically used when the image path is available.
  * @param image The thumbnail image. This value must not be `nil`.
  * @param date The date on which the content was created. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
 - (instancetype)initWithImage:(UIImage *)image date:(NSDate *)date cacheId:(NSString *)cacheId;
+
+/**
+ * @abstract Initializes and returns an object with the specified image URL and cacheId.
+ * @discussion This is typically used when the image URL is available.
+ * @param imageURL The URL for the image. This value must not be `nil`.
+ * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
+ */
++ (instancetype)thumbnailWithURL:(NSURL *)imageURL cacheId:(NSString *)cacheId;
+
+/**
+ * @abstract Initializes and returns an object with the specified image URL, date and cacheId.
+ * @discussion This is typically used when the image URL is available.
+ * @param imageURL The URL for the image. This value must not be `nil`.
+ * @param date The date on which the content was created. This value must not be `nil`.
+ * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
+ */
+- (instancetype)initWithImageURL:(NSURL *)imageURL date:(NSDate *)date cacheId:(NSString *)cacheId;
 
 @end
