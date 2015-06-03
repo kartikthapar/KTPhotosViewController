@@ -18,6 +18,7 @@
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
 		C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */; };
+		C69186631B1F887400850C8C /* image_sample_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C69186621B1F887400850C8C /* image_sample_1.jpeg */; };
 		C692644C1B1D92CA002FD241 /* KTPhotosThumbnailImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C692644B1B1D92CA002FD241 /* KTPhotosThumbnailImageView.m */; };
 		C692644E1B1D9930002FD241 /* KTPhotosThumbnailImageViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C692644D1B1D9930002FD241 /* KTPhotosThumbnailImageViewTests.m */; };
 		C6E61F281B1CAABD0030F136 /* SampleGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E61F271B1CAABD0030F136 /* SampleGridViewController.m */; };
@@ -61,6 +62,7 @@
 		C66D5A161B1C9D68002C94F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C66D5A181B1C9DDC002C94F5 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
 		C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
+		C69186621B1F887400850C8C /* image_sample_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample_1.jpeg; sourceTree = "<group>"; };
 		C692644A1B1D92CA002FD241 /* KTPhotosThumbnailImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosThumbnailImageView.h; sourceTree = "<group>"; };
 		C692644B1B1D92CA002FD241 /* KTPhotosThumbnailImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosThumbnailImageView.m; sourceTree = "<group>"; };
 		C692644D1B1D9930002FD241 /* KTPhotosThumbnailImageViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosThumbnailImageViewTests.m; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				C6E61F271B1CAABD0030F136 /* SampleGridViewController.m */,
 				C6E8EBEC1B1E7D57003C2DCE /* SampleModelData.h */,
 				C6E8EBED1B1E7D57003C2DCE /* SampleModelData.m */,
+				C69186621B1F887400850C8C /* image_sample_1.jpeg */,
 				C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */,
 				C66D5A0F1B1C9CF8002C94F5 /* Info.plist */,
 				C66D5A101B1C9CF8002C94F5 /* main.m */,
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */,
+				C69186631B1F887400850C8C /* image_sample_1.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

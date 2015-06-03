@@ -17,10 +17,17 @@
 @interface KTPhotosThumbnailImageView ()
 
 - (void)kt_configureThumbnailImageView;
+- (void)kt_loadImageFromPath:(NSString *)path;
+- (void)kt_loadImageFromURL:(NSURL *)url;
 
 @end
 
 @interface KTPhotosThumbnailImageViewTests : XCTestCase
+
+@property (nonatomic, strong) NSString *cacheId;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *imagePath;
+@property (nonatomic, strong) NSURL *imageURL;
 
 @end
 
@@ -31,17 +38,21 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    self.cacheId = @"cacheId";
+    self.image = [UIImage imageNamed:@"image_sample_1"];
+    self.imagePath = [[NSBundle mainBundle] pathForResource:@"image_sample_1" ofType:@"jpeg"];
+    self.imageURL = [NSURL URLWithString:@"http://lorempixel.com/400/400"];
 }
 
 - (void)tearDown
 {
     [self dismiss];
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [self resetAppearance];
     [super tearDown];
 }
 
-#pragma mark - Tests
+#pragma mark - KTPhotosThumbnailImageView Properties
 
 - (void)testPhotosThumbnailImageViewInit
 {
@@ -51,7 +62,7 @@
 
 - (void)testPhotosThumbnailImageViewAppearanceDefaultProperties
 {
-    [self presentThumbnailImageView];
+    [self presentThumbnailImageView:nil];
     KTPhotosThumbnailImageView *photoImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
     expect(photoImageView.imageViewBorderColor).to.equal([UIColor lightGrayColor]);
     expect(photoImageView.imageViewBorderWidth).to.equal(1.0f);
@@ -65,23 +76,96 @@
     [[KTPhotosThumbnailImageView appearance] setImageViewBorderColor:imageViewBorderColor];
     [[KTPhotosThumbnailImageView appearance] setImageViewBorderWidth:imageViewBorderWidth];
     
-    [self presentThumbnailImageView];
+    [self presentThumbnailImageView:nil];
     
     KTPhotosThumbnailImageView *photoImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
     expect(photoImageView.imageViewBorderColor).to.equal(imageViewBorderColor);
     expect(photoImageView.imageViewBorderWidth).to.equal(imageViewBorderWidth);
 }
 
+#pragma mark - KTPhotosThumbnailImageView photoItem
+
+- (void)testPhotosThumbnailImageViewWithPhotoItem
+{
+    id mockPhotoItem = OCMClassMock([KTThumbnailItem class]);
+    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] init];
+    id mockPhotoImageView = OCMPartialMock(photoImageView);
+    
+    // test for imagePath
+    OCMStub([mockPhotoItem imagePath]).andReturn(self.imagePath);
+    photoImageView.photoItem = mockPhotoItem;
+    OCMVerify([mockPhotoImageView kt_loadImageFromPath:self.imagePath]);
+
+    // test for imageURL
+    mockPhotoItem = OCMClassMock([KTThumbnailItem class]);
+    OCMStub([mockPhotoItem imageURL]).andReturn(self.imageURL);
+    photoImageView.photoItem = mockPhotoItem;
+    OCMVerify([mockPhotoImageView kt_loadImageFromURL:self.imageURL]);
+}
+
+- (void)testPhotosThumbnailImageViewLoadedWithImage
+{
+    // Create a photo image view with the specified image loaded using the image API
+    // Load image view on tester and see if check if the photo is valid
+    
+    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithImage:self.image cacheId:self.cacheId];
+    photoImageView.photoItem = thumbnailItem;
+    
+    [self presentThumbnailImageView:photoImageView];
+    
+    KTPhotosThumbnailImageView *displayedImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
+    expect(displayedImageView.image).toNot.beNil();
+}
+
+- (void)testPhotosThumbnailImageViewLoadedWithImagePath
+{
+    // Create a photo image view with the specified image loaded using the imagePath API
+    // Load image view on tester and see if check if the photo is valid
+
+    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithImagePath:self.imagePath cacheId:self.cacheId];
+    photoImageView.photoItem = thumbnailItem;
+
+    [self presentThumbnailImageView:photoImageView];
+
+    KTPhotosThumbnailImageView *displayedImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
+    expect(displayedImageView.image).toNot.beNil();
+}
+
+- (void)testPhotosThumbnailImageViewLoadedWithImageURL
+{
+    // Create a photo image view with the specified image loaded using the imageURL API
+    // Load image view on tester and see if check if the photo is valid
+
+    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithURL:self.imageURL cacheId:self.cacheId];
+    photoImageView.photoItem = thumbnailItem;
+    
+    [self presentThumbnailImageView:photoImageView];
+    
+    // wait for 1.0f for loading the image from URL/animation, etc
+    [tester waitForTimeInterval:1.0f];
+    
+    // wait for animations to finish, maybe compensated in wait before, but its ok
+    [tester waitForAnimationsToFinishWithTimeout:1.0f];
+    KTPhotosThumbnailImageView *displayedImageView = (KTPhotosThumbnailImageView *)[tester waitForViewWithAccessibilityLabel:KTPhotosThumbnailImageViewAccessibilityLabel];
+    expect(displayedImageView.image).toNot.beNil();
+}
+
 #pragma mark - Internal
 
-- (void)presentThumbnailImageView
+- (void)presentThumbnailImageView:(KTPhotosThumbnailImageView *)photoImageView
 {
     // create a view controller
     UIViewController *controller = [[UIViewController alloc] init];
     controller.view.backgroundColor = [UIColor whiteColor];
     
     // add photo image view
-    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    if (!photoImageView)
+    {
+        photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    }
     [controller.view addSubview:photoImageView];
     
     // present this view controller
@@ -94,6 +178,12 @@
 {
     UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)resetAppearance
+{
+    [[KTPhotosThumbnailImageView appearance] setImageViewBorderColor:[UIColor lightGrayColor]];
+    [[KTPhotosThumbnailImageView appearance] setImageViewBorderWidth:1.0f];
 }
 
 @end
