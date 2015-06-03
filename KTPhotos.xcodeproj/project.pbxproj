@@ -20,7 +20,7 @@
 		C66D5A1A1B1C9DDC002C94F5 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A191B1C9DDC002C94F5 /* TestAppDelegate.m */; };
 		C692644C1B1D92CA002FD241 /* KTPhotosThumbnailImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C692644B1B1D92CA002FD241 /* KTPhotosThumbnailImageView.m */; };
 		C692644E1B1D9930002FD241 /* KTPhotosThumbnailImageViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C692644D1B1D9930002FD241 /* KTPhotosThumbnailImageViewTests.m */; };
-		C6E61F281B1CAABD0030F136 /* KTPhotosGridSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E61F271B1CAABD0030F136 /* KTPhotosGridSampleViewController.m */; };
+		C6E61F281B1CAABD0030F136 /* SampleGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E61F271B1CAABD0030F136 /* SampleGridViewController.m */; };
 		C6E8EBEB1B1E7CBB003C2DCE /* KTThumbnailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E8EBEA1B1E7CBB003C2DCE /* KTThumbnailItem.m */; };
 		C6E8EBEE1B1E7D57003C2DCE /* SampleModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E8EBED1B1E7D57003C2DCE /* SampleModelData.m */; };
 		C6E8EBF31B1E7DDA003C2DCE /* KTPhotoDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E8EBF01B1E7DDA003C2DCE /* KTPhotoDataTests.m */; };
@@ -66,8 +66,8 @@
 		C692644D1B1D9930002FD241 /* KTPhotosThumbnailImageViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosThumbnailImageViewTests.m; sourceTree = "<group>"; };
 		C6B5A75A1B1C9C7F00B68375 /* KTPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KTPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B5A7731B1C9C7F00B68375 /* KTPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KTPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6E61F261B1CAABD0030F136 /* KTPhotosGridSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosGridSampleViewController.h; sourceTree = "<group>"; };
-		C6E61F271B1CAABD0030F136 /* KTPhotosGridSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosGridSampleViewController.m; sourceTree = "<group>"; };
+		C6E61F261B1CAABD0030F136 /* SampleGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleGridViewController.h; sourceTree = "<group>"; };
+		C6E61F271B1CAABD0030F136 /* SampleGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleGridViewController.m; sourceTree = "<group>"; };
 		C6E8EBE71B1E7CBB003C2DCE /* KTPhotoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoData.h; sourceTree = "<group>"; };
 		C6E8EBE81B1E7CBB003C2DCE /* KTPhotosThumbnailPresenting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosThumbnailPresenting.h; sourceTree = "<group>"; };
 		C6E8EBE91B1E7CBB003C2DCE /* KTThumbnailItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbnailItem.h; sourceTree = "<group>"; };
@@ -184,8 +184,8 @@
 			children = (
 				C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */,
 				C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */,
-				C6E61F261B1CAABD0030F136 /* KTPhotosGridSampleViewController.h */,
-				C6E61F271B1CAABD0030F136 /* KTPhotosGridSampleViewController.m */,
+				C6E61F261B1CAABD0030F136 /* SampleGridViewController.h */,
+				C6E61F271B1CAABD0030F136 /* SampleGridViewController.m */,
 				C6E8EBEC1B1E7D57003C2DCE /* SampleModelData.h */,
 				C6E8EBED1B1E7D57003C2DCE /* SampleModelData.m */,
 				C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */,
@@ -388,7 +388,7 @@
 				C62EBA071B1CA09F001059CC /* KTPhotosCollectionViewCell.m in Sources */,
 				C6E8EBEE1B1E7D57003C2DCE /* SampleModelData.m in Sources */,
 				C692644C1B1D92CA002FD241 /* KTPhotosThumbnailImageView.m in Sources */,
-				C6E61F281B1CAABD0030F136 /* KTPhotosGridSampleViewController.m in Sources */,
+				C6E61F281B1CAABD0030F136 /* SampleGridViewController.m in Sources */,
 				C6E8EBEB1B1E7CBB003C2DCE /* KTThumbnailItem.m in Sources */,
 				C62EBA001B1C9F61001059CC /* KTPhotosGridViewController.m in Sources */,
 			);

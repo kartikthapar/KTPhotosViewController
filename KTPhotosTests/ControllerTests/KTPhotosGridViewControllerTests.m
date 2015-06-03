@@ -12,7 +12,7 @@
 
 #import "KTPhotos.h"
 
-#import "KTPhotosGridSampleViewController.h"
+#import "SampleGridViewController.h"
 
 @interface KTPhotosGridViewController ()
 
@@ -54,10 +54,10 @@
 
 - (void)testKTPhotosGridViewControllerSubclassInit
 {
-    KTPhotosGridSampleViewController *sampleVC = [KTPhotosGridSampleViewController photosViewController];
+    SampleGridViewController *sampleVC = [SampleGridViewController photosViewController];
     [sampleVC view];
     XCTAssertNotNil(sampleVC, @"View controller should not be nil");
-    XCTAssertTrue([sampleVC isKindOfClass:[KTPhotosGridSampleViewController class]], @"View controller should be kind of class: %@", [KTPhotosGridSampleViewController class]);
+    XCTAssertTrue([sampleVC isKindOfClass:[SampleGridViewController class]], @"View controller should be kind of class: %@", [SampleGridViewController class]);
     XCTAssertNotNil(sampleVC.view, @"View should not be nil");
     XCTAssertNotNil(sampleVC.collectionView, @"Collection view should not be nil");
 }

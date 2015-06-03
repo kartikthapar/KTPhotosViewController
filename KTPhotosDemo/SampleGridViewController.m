@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 Kartik Thapar. All rights reserved.
 //
 
-#import "KTPhotosGridSampleViewController.h"
+#import "SampleGridViewController.h"
 #import "SampleModelData.h"
 
-@interface KTPhotosGridSampleViewController ()
+@interface SampleGridViewController ()
 
 @property (nonatomic, strong) SampleModelData *sampleModelData;
 
 @end
 
-@implementation KTPhotosGridSampleViewController
+@implementation SampleGridViewController
 
 - (void)viewDidLoad
 {

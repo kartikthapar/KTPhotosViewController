@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "KTPhotosGridSampleViewController.h"
+#import "SampleGridViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    KTPhotosGridSampleViewController *gridViewController = [[KTPhotosGridSampleViewController alloc] init];
+    SampleGridViewController *gridViewController = [[SampleGridViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gridViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;

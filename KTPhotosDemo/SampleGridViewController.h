@@ -8,6 +8,6 @@
 
 #import "KTPhotos.h"
 
-@interface KTPhotosGridSampleViewController : KTPhotosGridViewController
+@interface SampleGridViewController : KTPhotosGridViewController
 
 @end
