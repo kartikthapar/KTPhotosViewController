@@ -11,6 +11,7 @@
 #import <OCMock/OCMock.h>
 #import "KIF.h"
 #import "Expecta.h"
+#import "XCTUtility.h"
 
 #import "KTPhotos.h"
 
@@ -47,7 +48,7 @@
 
 - (void)tearDown
 {
-    [self dismiss];
+    XCT_DismissViewController();
     [self resetAppearance];
     [super tearDown];
 }
@@ -168,16 +169,7 @@
     }
     [controller.view addSubview:photoImageView];
     
-    // present this view controller
-    UINavigationController *presentingController = [[UINavigationController alloc] initWithRootViewController:controller];
-    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [navigationController presentViewController:presentingController animated:YES completion:nil];
-}
-
-- (void)dismiss
-{
-    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [navigationController dismissViewControllerAnimated:YES completion:nil];
+    XCT_PresentViewController(controller);
 }
 
 - (void)resetAppearance

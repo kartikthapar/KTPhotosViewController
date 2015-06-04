@@ -11,12 +11,15 @@
 #import <OCMock/OCMock.h>
 #import "KIF.h"
 #import "Expecta.h"
+#import "XCTUtility.h"
 
 #import "KTPhotos.h"
 
-#define KTTestCellId @"KTTestCellId"
+#import "KTTestCollectionViewModel.h"
 
-@interface KTPhotosCollectionViewCellTests : XCTestCase <UICollectionViewDataSource>
+@interface KTPhotosCollectionViewCellTests : XCTestCase
+
+@property (nonatomic, strong) KTTestCollectionViewModel *testCollectionViewModel;
 
 @end
 
@@ -25,12 +28,16 @@
 - (void)setUp
 {
     [super setUp];
+    
+    self.testCollectionViewModel = [KTTestCollectionViewModel new];
+    
     [self resetAppearance];
 }
 
 - (void)tearDown
 {
-    [self dismiss];
+    XCT_DismissViewController();
+    
     [super tearDown];
 }
 
@@ -78,41 +85,8 @@
 
 - (void)presentPhotosCollectionViewCell
 {
-    // create a view controller
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    UICollectionViewController *controller = [[UICollectionViewController alloc] initWithCollectionViewLayout:layout];
-    controller.view.backgroundColor = [UIColor whiteColor];
-    [controller.collectionView registerClass:[KTPhotosCollectionViewCell class] forCellWithReuseIdentifier:KTTestCellId];
-    controller.collectionView.dataSource = self;
-    
-    // present this view controller
-    UINavigationController *presentingController = [[UINavigationController alloc] initWithRootViewController:controller];
-    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [navigationController presentViewController:presentingController animated:YES completion:nil];
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    KTPhotosCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KTTestCellId forIndexPath:indexPath];
-    return cell;
-}
-
-- (void)dismiss
-{
-    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [navigationController dismissViewControllerAnimated:YES completion:nil];
+    UICollectionViewController *controller = [self.testCollectionViewModel defaultCollectionViewController];
+    XCT_PresentViewController(controller);
 }
 
 - (void)resetAppearance

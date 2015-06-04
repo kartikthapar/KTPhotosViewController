@@ -11,13 +11,18 @@
 #import <OCMock/OCMock.h>
 #import "KIF.h"
 #import "Expecta.h"
+#import "XCTUtility.h"
 
 #import "KTPhotos.h"
+
+#import "KTTestCollectionViewModel.h"
 
 #import "SamplePhotosCollectionViewCell.h"
 #import "SamplePhotosSectionInfoHeaderView.h"
 
-@interface KTPhotosCollectionViewTests : XCTestCase <KTPhotosCollectionViewDataSource, UICollectionViewDelegate>
+@interface KTPhotosCollectionViewTests : XCTestCase
+
+@property (nonatomic, strong) KTTestCollectionViewModel *testCollectionViewModel;
 
 @end
 
@@ -26,12 +31,13 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    self.testCollectionViewModel = [KTTestCollectionViewModel new];
 }
 
 - (void)tearDown
 {
-    [self dismiss];
+    XCT_DismissViewController();
     [super tearDown];
 }
 
@@ -39,7 +45,7 @@
 
 - (void)testPhotosCollectionViewInit
 {
-    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     expect(collectionView).toNot.beNil();
     expect(collectionView.collectionViewLayout).toNot.beNil();
     expect(collectionView.cellIdentifier).to.equal([KTPhotosCollectionViewCell cellReuseIdentifier]);
@@ -50,7 +56,7 @@
 
 - (void)testPhotosCollectionViewDisplay
 {
-    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     
     [self presentPhotosCollectionView:collectionView];
     
@@ -59,7 +65,7 @@
 
 - (void)testPhotosCollectionViewWithCustomCellClass
 {
-    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     collectionView.cellClass = [SamplePhotosCollectionViewCell class];
     expect(collectionView.cellClass).to.equal([SamplePhotosCollectionViewCell class]);
     
@@ -70,7 +76,7 @@
 
 - (void)testPhotosCollectionViewWithCustomCellIdentifier
 {
-    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     NSString *cellIdentifier = [SamplePhotosCollectionViewCell cellReuseIdentifier];
     collectionView.cellIdentifier = cellIdentifier;
     expect(collectionView.cellIdentifier).to.equal(cellIdentifier);
@@ -83,7 +89,7 @@
 
 - (void)testPhotosCollectionViewWithCustomSectionHeaderClass
 {
-    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     collectionView.sectionInfoHeaderClass = [SamplePhotosSectionInfoHeaderView class];
     expect(collectionView.sectionInfoHeaderClass).to.equal([SamplePhotosSectionInfoHeaderView class]);
 
@@ -94,7 +100,7 @@
 
 - (void)testPhotosCollectionViewWithCustomSectionHeaderIdentifier
 {
-    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     collectionView.sectionInfoHeaderIdentifier = [SamplePhotosSectionInfoHeaderView headerReuseIdentifier];
     expect(collectionView.sectionInfoHeaderIdentifier).to.equal([SamplePhotosSectionInfoHeaderView headerReuseIdentifier]);
     
@@ -105,71 +111,10 @@
 
 #pragma mark - Internal
 
-- (KTPhotosCollectionView *)photosCollectionView
-{
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    KTPhotosCollectionView *collectionView = [[KTPhotosCollectionView alloc] initWithFrame:[[UIScreen mainScreen] bounds] collectionViewLayout:flowLayout];
-    return collectionView;
-}
-
 - (void)presentPhotosCollectionView:(KTPhotosCollectionView *)collectionView
 {
-    UICollectionViewController *controller = [[UICollectionViewController alloc] initWithCollectionViewLayout:nil];
-    controller.collectionView = collectionView;
-    collectionView.dataSource = self;
-    collectionView.delegate = self;
-    
-    // present this view controller
-    UINavigationController *presentingController = [[UINavigationController alloc] initWithRootViewController:controller];
-    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [navigationController presentViewController:presentingController animated:YES completion:nil];
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    KTPhotosCollectionView *photoCollectionView = (KTPhotosCollectionView *)collectionView;
-    
-    NSString *cellId = photoCollectionView.cellIdentifier;
-    UICollectionViewCell<KTPhotosThumbnailPresenting> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    return cell;
-}
-
-- (UICollectionReusableView *)collectionView:(KTPhotosCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *view = nil;
-    if (kind == UICollectionElementKindSectionHeader)
-    {
-        view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionInfoHeaderIdentifier forIndexPath:indexPath];
-    }
-    return view;
-}
-
-- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    KTThumbnailItem *item = [[KTThumbnailItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
-    return item;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return CGSizeMake(collectionView.bounds.size.width, 44.0f);
-}
-
-- (void)dismiss
-{
-    UINavigationController *navigationController = (UINavigationController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [navigationController dismissViewControllerAnimated:YES completion:nil];
+    UICollectionViewController *controller = [self.testCollectionViewModel collectionViewController:collectionView];
+    XCT_PresentViewController(controller);
 }
 
 @end
