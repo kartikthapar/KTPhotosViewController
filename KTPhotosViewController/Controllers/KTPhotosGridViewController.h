@@ -11,7 +11,9 @@
 @class KTPhotosCollectionView;
 #import "KTPhotosCollectionViewDataSource.h"
 
-@interface KTPhotosGridViewController : UIViewController <KTPhotosCollectionViewDataSource, UICollectionViewDelegate>
+@interface KTPhotosGridViewController : UIViewController <KTPhotosCollectionViewDataSource,
+                                                          UICollectionViewDelegate,
+                                                          UICollectionViewDelegateFlowLayout>
 
 /**
  * @abstract Creates and returns a new `KTPhotosGridViewController` instance.

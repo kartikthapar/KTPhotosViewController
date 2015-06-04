@@ -9,6 +9,7 @@
 #import "KTPhotosGridViewController.h"
 #import "KTPhotosCollectionView.h"
 #import "KTPhotosCollectionViewCell.h"
+#import "KTPhotosSectionInfoHeaderView.h"
 
 @interface KTPhotosGridViewController ()
 
@@ -19,8 +20,6 @@
 @end
 
 @implementation KTPhotosGridViewController
-
-static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad
 {
@@ -96,16 +95,16 @@ static NSString * const reuseIdentifier = @"Cell";
     return nil;
 }
 
-#pragma mark - UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionReusableView *)collectionView:(KTPhotosCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+    UICollectionReusableView *reusableView = nil;
+    if (kind == UICollectionElementKindSectionHeader)
+    {
+        // TODO: include a boolean flag indicating if section headers need to be created; can be based on indexPath also;
+        // create a section header
+        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionInfoHeaderIdentifier forIndexPath:indexPath];
+    }
+    return reusableView;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -118,6 +117,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(20, 20, 20, 20);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    // return the size of the header
+    return CGSizeMake(collectionView.bounds.size.width, 44.0f);
 }
 
 @end

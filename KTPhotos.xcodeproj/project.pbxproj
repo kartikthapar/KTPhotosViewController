@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0764A51656EC3522BCC64916 /* libPods-KTPhotosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */; };
+		C60DC3BE1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BD1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m */; };
+		C60DC3C01B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BF1B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m */; };
+		C60DC3C31B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3C21B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
@@ -44,6 +47,11 @@
 /* Begin PBXFileReference section */
 		45813867E94FF7E4C9C18DF0 /* Pods-KTPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
 		A82B9B228461E8FE06EC4D2E /* Pods-KTPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C60DC3BC1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosSectionInfoHeaderView.h; sourceTree = "<group>"; };
+		C60DC3BD1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosSectionInfoHeaderView.m; sourceTree = "<group>"; };
+		C60DC3BF1B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosSectionInfoHeaderViewTests.m; sourceTree = "<group>"; };
+		C60DC3C11B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePhotosSectionInfoHeaderView.h; sourceTree = "<group>"; };
+		C60DC3C21B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePhotosSectionInfoHeaderView.m; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -124,6 +132,8 @@
 				C6E61F271B1CAABD0030F136 /* SampleGridViewController.m */,
 				C6D1ECF91B1FADDF008C81F6 /* SamplePhotosCollectionViewCell.h */,
 				C6D1ECFA1B1FADDF008C81F6 /* SamplePhotosCollectionViewCell.m */,
+				C60DC3C11B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.h */,
+				C60DC3C21B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m */,
 				C6E8EBEC1B1E7D57003C2DCE /* SampleModelData.h */,
 				C6E8EBED1B1E7D57003C2DCE /* SampleModelData.m */,
 				C69186621B1F887400850C8C /* image_sample_1.jpeg */,
@@ -175,6 +185,8 @@
 				C69E9A131B1FEBCF00D52455 /* KTPhotosCollectionViewCell.m */,
 				C69E9A141B1FEBCF00D52455 /* KTPhotosThumbnailImageView.h */,
 				C69E9A151B1FEBCF00D52455 /* KTPhotosThumbnailImageView.m */,
+				C60DC3BC1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.h */,
+				C60DC3BD1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +238,7 @@
 				C69E9A291B1FEBDB00D52455 /* KTPhotosCollectionViewCellTests.m */,
 				C69E9A2A1B1FEBDB00D52455 /* KTPhotosCollectionViewTests.m */,
 				C69E9A2B1B1FEBDB00D52455 /* KTPhotosThumbnailImageViewTests.m */,
+				C60DC3BF1B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m */,
 			);
 			path = ViewTests;
 			sourceTree = "<group>";
@@ -394,11 +407,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C60DC3BE1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m in Sources */,
 				C66D5A141B1C9CF8002C94F5 /* main.m in Sources */,
 				C69E9A1A1B1FEBCF00D52455 /* KTPhotosThumbnailImageView.m in Sources */,
 				C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */,
 				C69E9A191B1FEBCF00D52455 /* KTPhotosCollectionViewCell.m in Sources */,
 				C69E9A161B1FEBCF00D52455 /* KTPhotosGridViewController.m in Sources */,
+				C60DC3C31B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m in Sources */,
 				C6D1ECFB1B1FADDF008C81F6 /* SamplePhotosCollectionViewCell.m in Sources */,
 				C69E9A171B1FEBCF00D52455 /* KTThumbnailItem.m in Sources */,
 				C6E8EBEE1B1E7D57003C2DCE /* SampleModelData.m in Sources */,
@@ -416,6 +431,7 @@
 				C69E9A2C1B1FEBDB00D52455 /* KTPhotosGridViewControllerTests.m in Sources */,
 				C69E9A301B1FEBDB00D52455 /* KTThumbnailItemTests.m in Sources */,
 				C69E9A331B1FEBDB00D52455 /* KTPhotosCollectionViewCellTests.m in Sources */,
+				C60DC3C01B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m in Sources */,
 				C69E9A351B1FEBDB00D52455 /* KTPhotosThumbnailImageViewTests.m in Sources */,
 				C69E9A311B1FEBDB00D52455 /* TestAppDelegate.m in Sources */,
 				C69E9A341B1FEBDB00D52455 /* KTPhotosCollectionViewTests.m in Sources */,

@@ -15,8 +15,9 @@
 #import "KTPhotos.h"
 
 #import "SamplePhotosCollectionViewCell.h"
+#import "SamplePhotosSectionInfoHeaderView.h"
 
-@interface KTPhotosCollectionViewTests : XCTestCase <KTPhotosCollectionViewDataSource>
+@interface KTPhotosCollectionViewTests : XCTestCase <KTPhotosCollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 
@@ -43,12 +44,13 @@
     expect(collectionView.collectionViewLayout).toNot.beNil();
     expect(collectionView.cellIdentifier).to.equal([KTPhotosCollectionViewCell cellReuseIdentifier]);
     expect(collectionView.cellClass).to.equal([KTPhotosCollectionViewCell class]);
+    expect(collectionView.sectionInfoHeaderClass).to.equal([KTPhotosSectionInfoHeaderView class]);
+    expect(collectionView.sectionInfoHeaderIdentifier).to.equal([KTPhotosSectionInfoHeaderView headerReuseIdentifier]);
 }
 
 - (void)testPhotosCollectionViewDisplay
 {
     KTPhotosCollectionView *collectionView = [self photosCollectionView];
-    expect(collectionView).toNot.beNil();
     
     [self presentPhotosCollectionView:collectionView];
     
@@ -58,7 +60,6 @@
 - (void)testPhotosCollectionViewWithCustomCellClass
 {
     KTPhotosCollectionView *collectionView = [self photosCollectionView];
-    expect(collectionView).toNot.beNil();
     collectionView.cellClass = [SamplePhotosCollectionViewCell class];
     expect(collectionView.cellClass).to.equal([SamplePhotosCollectionViewCell class]);
     
@@ -70,7 +71,6 @@
 - (void)testPhotosCollectionViewWithCustomCellIdentifier
 {
     KTPhotosCollectionView *collectionView = [self photosCollectionView];
-    expect(collectionView).toNot.beNil();
     NSString *cellIdentifier = [SamplePhotosCollectionViewCell cellReuseIdentifier];
     collectionView.cellIdentifier = cellIdentifier;
     expect(collectionView.cellIdentifier).to.equal(cellIdentifier);
@@ -79,6 +79,28 @@
     
     UICollectionViewCell *cell = (UICollectionViewCell *)[tester waitForViewWithAccessibilityLabel:KTPhotosCollectionViewCellAccessibilityLabel];
     expect(cell.reuseIdentifier).to.equal(cellIdentifier);
+}
+
+- (void)testPhotosCollectionViewWithCustomSectionHeaderClass
+{
+    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    collectionView.sectionInfoHeaderClass = [SamplePhotosSectionInfoHeaderView class];
+    expect(collectionView.sectionInfoHeaderClass).to.equal([SamplePhotosSectionInfoHeaderView class]);
+
+    [self presentPhotosCollectionView:collectionView];
+    
+    [tester waitForViewWithAccessibilityLabel:SamplePhotosSectionInfoHeaderViewAccessibilityLabel];
+}
+
+- (void)testPhotosCollectionViewWithCustomSectionHeaderIdentifier
+{
+    KTPhotosCollectionView *collectionView = [self photosCollectionView];
+    collectionView.sectionInfoHeaderIdentifier = [SamplePhotosSectionInfoHeaderView headerReuseIdentifier];
+    expect(collectionView.sectionInfoHeaderIdentifier).to.equal([SamplePhotosSectionInfoHeaderView headerReuseIdentifier]);
+    
+    [self presentPhotosCollectionView:collectionView];
+    
+    [tester waitForViewWithAccessibilityLabel:KTPhotosSectionInfoHeaderViewAccessibilityLabel];
 }
 
 #pragma mark - Internal
@@ -96,6 +118,7 @@
     UICollectionViewController *controller = [[UICollectionViewController alloc] initWithCollectionViewLayout:nil];
     controller.collectionView = collectionView;
     collectionView.dataSource = self;
+    collectionView.delegate = self;
     
     // present this view controller
     UINavigationController *presentingController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -122,10 +145,25 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(KTPhotosCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *view = nil;
+    if (kind == UICollectionElementKindSectionHeader)
+    {
+        view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionInfoHeaderIdentifier forIndexPath:indexPath];
+    }
+    return view;
+}
+
 - (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
     KTThumbnailItem *item = [[KTThumbnailItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
     return item;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(collectionView.bounds.size.width, 44.0f);
 }
 
 - (void)dismiss
