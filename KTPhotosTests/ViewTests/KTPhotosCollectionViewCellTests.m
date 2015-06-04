@@ -36,20 +36,17 @@
 
 #pragma mark - Tests
 
-- (void)testPhotosCollectionViewCell
+- (void)testPhotosCollectionViewCellInit
 {
-    KTPhotosCollectionViewCell *collectionViewCell = [[KTPhotosCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
-    XCTAssertNotNil(collectionViewCell, @"cell cannot be nil");
+    KTPhotosCollectionViewCell *cell = [[KTPhotosCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
+    expect(cell).toNot.beNil();
     
-    NSString *cellId = [KTPhotosCollectionViewCell cellReuseIdentifier];
-    XCTAssertNotNil(cellId, @"cell reuse identifier cannot be nil");
-    XCTAssertEqualObjects(cellId, NSStringFromClass([KTPhotosCollectionViewCell class]));
+    expect([KTPhotosCollectionViewCell cellReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosCollectionViewCell class]));
     
-    KTPhotosThumbnailImageView *photoImageView = collectionViewCell.photoImageView;
-    XCTAssertNotNil(photoImageView, @"photoImageView cannot be nil");
-    [collectionViewCell layoutIfNeeded];
-    XCTAssertEqual(photoImageView.frame.size.width, collectionViewCell.frame.size.width, @"photoImageView width should be same as that of collectionViewCell's");
-    XCTAssertEqual(photoImageView.frame.size.height, collectionViewCell.frame.size.height, @"photoImageView height should be same as that of collectionViewCell's");
+    KTPhotosThumbnailImageView *photoImageView = cell.photoImageView;
+    expect(photoImageView).toNot.beNil();
+    [cell layoutIfNeeded];
+    expect(photoImageView.frame.size).to.equal(cell.frame.size);
 }
 
 - (void)testPhotosCollectionViewCellDefaultAppearance
@@ -74,8 +71,6 @@
 - (void)testPhotosCollectionViewCellImplementsKTPhotosThumbnailPresenting
 {
     KTPhotosCollectionViewCell *collectionViewCell = [[KTPhotosCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
-    XCTAssertNotNil(collectionViewCell, @"cell cannot be nil");
-    
     expect([collectionViewCell respondsToSelector:@selector(updateWithPhotoItem:)]).to.equal(true);
 }
 

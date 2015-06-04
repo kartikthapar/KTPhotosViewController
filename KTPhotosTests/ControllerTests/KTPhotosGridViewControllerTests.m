@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import "KIF.h"
+#import "Expecta.h"
 
 #import "KTPhotos.h"
 
@@ -45,20 +47,20 @@
 {
     KTPhotosGridViewController *vc = [KTPhotosGridViewController photosViewController];
     [vc view];
-    XCTAssertNotNil(vc, @"View controller should not be nil");
-    XCTAssertNotNil(vc.view, @"View should not be nil");
-    XCTAssertNotNil(vc.collectionView, @"Collection view should not be nil");
-    XCTAssertEqual(vc.automaticallyAdjustsScrollViewInsets, YES, @"Property should be equal to default value");
+    expect(vc).toNot.beNil();
+    expect(vc.view).toNot.beNil();
+    expect(vc.collectionView).toNot.beNil();
+    expect(vc.automaticallyAdjustsScrollViewInsets).to.equal(YES);
 }
 
 - (void)testKTPhotosGridViewControllerSubclassInit
 {
     SampleGridViewController *sampleVC = [SampleGridViewController photosViewController];
     [sampleVC view];
-    XCTAssertNotNil(sampleVC, @"View controller should not be nil");
-    XCTAssertTrue([sampleVC isKindOfClass:[SampleGridViewController class]], @"View controller should be kind of class: %@", [SampleGridViewController class]);
-    XCTAssertNotNil(sampleVC.view, @"View should not be nil");
-    XCTAssertNotNil(sampleVC.collectionView, @"Collection view should not be nil");
+    expect(sampleVC).toNot.beNil();
+    expect([sampleVC isKindOfClass:[SampleGridViewController class]]).to.equal(YES);
+    expect(sampleVC.view).toNot.beNil();
+    expect(sampleVC.collectionView).toNot.beNil();
 }
 
 - (void)testViewConfiguration

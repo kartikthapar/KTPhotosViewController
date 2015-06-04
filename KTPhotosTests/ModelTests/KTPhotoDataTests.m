@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+#import "KIF.h"
+#import "Expecta.h"
 
 #import "KTPhotos.h"
 
@@ -60,13 +63,13 @@
 - (void)testPhotoSamplePhotoItemInit
 {
     KTPhotosSamplePhotoItem *photoItem = [[KTPhotosSamplePhotoItem alloc] init];
-    XCTAssertNotNil(photoItem, @"photoItem cannot be nil");
+    expect(photoItem).toNot.beNil();
     
     NSString *cacheId = [photoItem cacheId];
-    XCTAssertNil(cacheId, @"cacheId is nil as it is not set internally by KTPhotosSamplePhotoItem");
+    expect(cacheId).to.beNil; //set internally
     
     photoItem.imagePath = @"image_path";
-    XCTAssertNotNil([photoItem imagePath], @"imagePath cannot be nil");
+    expect([photoItem imagePath]).toNot.beNil();
 }
 
 @end

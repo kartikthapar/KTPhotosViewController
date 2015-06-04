@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+#import "KIF.h"
+#import "Expecta.h"
 
-#import "KTThumbnailItem.h"
+#import "KTPhotos.h"
 
 @interface KTThumbnailItemTests : XCTestCase
 
@@ -48,28 +51,28 @@
 - (void)testThumbnailItemInitWithImagePath
 {
     KTThumbnailItem *thumbnailItem = [[KTThumbnailItem alloc] initWithImagePath:self.imagePath date:self.date cacheId:self.cacheId];
-    XCTAssertNotNil(thumbnailItem, @"thumbnailItem cannot be nil");
-    XCTAssertEqualObjects([thumbnailItem date], self.date, @"date must be equal to set date");
-    XCTAssertEqualObjects([thumbnailItem cacheId], self.cacheId, @"cacheId must be equal to set cacheId");
-    XCTAssertEqualObjects([thumbnailItem imagePath], self.imagePath, @"imagePath must be equal to set imagePath");
+    expect(thumbnailItem).toNot.beNil();
+    expect(thumbnailItem.date).to.equal(self.date);
+    expect(thumbnailItem.cacheId).to.equal(self.cacheId);
+    expect(thumbnailItem.imagePath).to.equal(self.imagePath);
 }
 
 - (void)testThumbnailItemInitWithImage
 {
     KTThumbnailItem *thumbnailItem = [[KTThumbnailItem alloc] initWithImage:self.image date:self.date cacheId:self.cacheId];
-    XCTAssertNotNil(thumbnailItem, @"thumbnailItem cannot be nil");
-    XCTAssertEqualObjects([thumbnailItem date], self.date, @"date must be equal to set date");
-    XCTAssertEqualObjects([thumbnailItem cacheId], self.cacheId, @"cacheId must be equal to set cacheId");
-    XCTAssertEqualObjects([thumbnailItem image], self.image, @"image must be equal to set image");
+    expect(thumbnailItem).toNot.beNil();
+    expect(thumbnailItem.date).to.equal(self.date);
+    expect(thumbnailItem.cacheId).to.equal(self.cacheId);
+    expect(thumbnailItem.image).to.equal(self.image);
 }
 
 - (void)testThumbnailItemInitWithImageURL
 {
     KTThumbnailItem *thumbnailItem = [[KTThumbnailItem alloc] initWithImageURL:self.imageURL date:self.date cacheId:self.cacheId];
-    XCTAssertNotNil(thumbnailItem, @"thumbnailItem cannot be nil");
-    XCTAssertEqualObjects([thumbnailItem date], self.date, @"date must be equal to set date");
-    XCTAssertEqualObjects([thumbnailItem cacheId], self.cacheId, @"cacheId must be equal to set cacheId");
-    XCTAssertEqualObjects([thumbnailItem imageURL], self.imageURL, @"imageURL must be equal to set imageURL");
+    expect(thumbnailItem).toNot.beNil();
+    expect(thumbnailItem.date).to.equal(self.date);
+    expect(thumbnailItem.cacheId).to.equal(self.cacheId);
+    expect(thumbnailItem.imageURL).to.equal(self.imageURL);
 }
 
 - (void)testThumbnailItemArchivingForImagePath
@@ -80,9 +83,9 @@
 
     KTThumbnailItem *unarchivedThumbnailItem = [NSKeyedUnarchiver unarchiveObjectWithData:thumbnailData];
     
-    XCTAssertEqualObjects(thumbnailItem.date, unarchivedThumbnailItem.date, @"date must be equal");
-    XCTAssertEqualObjects(thumbnailItem.cacheId, unarchivedThumbnailItem.cacheId, @"cacheId must be equal");
-    XCTAssertEqualObjects(thumbnailItem.imagePath, unarchivedThumbnailItem.imagePath, @"imagePath must be equal");
+    expect(thumbnailItem.date).to.equal(unarchivedThumbnailItem.date);
+    expect(thumbnailItem.cacheId).to.equal(unarchivedThumbnailItem.cacheId);
+    expect(thumbnailItem.imagePath).to.equal(unarchivedThumbnailItem.imagePath);
 }
 
 - (void)testThumbnailItemArchivingForImage
@@ -93,9 +96,9 @@
     
     KTThumbnailItem *unarchivedThumbnailItem = [NSKeyedUnarchiver unarchiveObjectWithData:thumbnailData];
 
-    XCTAssertEqualObjects(thumbnailItem.date, unarchivedThumbnailItem.date, @"date must be equal");
-    XCTAssertEqualObjects(thumbnailItem.cacheId, unarchivedThumbnailItem.cacheId, @"cacheId must be equal");
-    XCTAssertNotNil(unarchivedThumbnailItem.image, @"image must not be nil");
+    expect(thumbnailItem.date).to.equal(unarchivedThumbnailItem.date);
+    expect(thumbnailItem.cacheId).to.equal(unarchivedThumbnailItem.cacheId);
+    expect(unarchivedThumbnailItem.image).toNot.beNil();
 }
 
 - (void)testThumbnailItemArchivingForImageURL
@@ -106,9 +109,9 @@
     
     KTThumbnailItem *unarchivedThumbnailItem = [NSKeyedUnarchiver unarchiveObjectWithData:thumbnailData];
     
-    XCTAssertEqualObjects(thumbnailItem.date, unarchivedThumbnailItem.date, @"date must be equal");
-    XCTAssertEqualObjects(thumbnailItem.cacheId, unarchivedThumbnailItem.cacheId, @"cacheId must be equal");
-    XCTAssertEqualObjects(thumbnailItem.imageURL, unarchivedThumbnailItem.imageURL, @"imageURL must be equal");
+    expect(thumbnailItem.date).to.equal(unarchivedThumbnailItem.date);
+    expect(thumbnailItem.cacheId).to.equal(unarchivedThumbnailItem.cacheId);
+    expect(thumbnailItem.imageURL).to.equal(unarchivedThumbnailItem.imageURL);
 }
 
 @end

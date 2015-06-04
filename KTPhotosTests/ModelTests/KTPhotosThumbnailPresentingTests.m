@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+#import "KIF.h"
+#import "Expecta.h"
 
 #import "KTPhotos.h"
 
@@ -44,7 +47,7 @@
 - (void)testPhotosSampleThumbnailPresentingInit
 {
     KTPhotosSampleThumbnailPresenting *presenter = [[KTPhotosSampleThumbnailPresenting alloc] init];
-    XCTAssertEqual([presenter respondsToSelector:@selector(updateWithPhotoItem:)], YES, @"presenter must implement `updateWithPhotoItem:`");
+    expect([presenter respondsToSelector:@selector(updateWithPhotoItem:)]).to.equal(YES);
 }
 
 @end

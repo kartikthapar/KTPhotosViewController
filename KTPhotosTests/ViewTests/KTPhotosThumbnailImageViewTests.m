@@ -57,7 +57,7 @@
 - (void)testPhotosThumbnailImageViewInit
 {
     KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    XCTAssertNotNil(photoImageView, @"photoImageView cannot be nil");
+    expect(photoImageView).toNot.beNil();
 }
 
 - (void)testPhotosThumbnailImageViewAppearanceDefaultProperties
