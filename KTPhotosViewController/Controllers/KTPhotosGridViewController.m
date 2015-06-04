@@ -35,8 +35,6 @@ static NSString * const reuseIdentifier = @"Cell";
     _collectionView.dataSource = nil;
     _collectionView.delegate = nil;
     _collectionView = nil;
-    
-    _photoCellIdentifier = nil;
 }
 
 + (instancetype)photosViewController
@@ -55,8 +53,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.view addSubview:self.collectionView];
-    
-    self.photoCellIdentifier = [KTPhotosCollectionViewCell cellReuseIdentifier];
     
     // Appearance
     self.view.backgroundColor = [UIColor whiteColor];
@@ -80,8 +76,8 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(KTPhotosCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // get a reusable cell
-    NSString *cellIdentifier = self.photoCellIdentifier;
-    KTPhotosCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    NSString *cellIdentifier = collectionView.cellIdentifier;
+    UICollectionViewCell<KTPhotosThumbnailPresenting> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // update cell contents
     id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView photoDataItemAtIndexPath:indexPath];

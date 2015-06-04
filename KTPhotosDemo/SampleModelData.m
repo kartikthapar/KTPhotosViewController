@@ -37,4 +37,9 @@
     }
 }
 
+- (NSInteger)numberOfSections
+{
+    return 4;
+}
+
 @end

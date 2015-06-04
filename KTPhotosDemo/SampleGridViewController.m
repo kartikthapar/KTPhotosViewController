@@ -7,6 +7,7 @@
 //
 
 #import "SampleGridViewController.h"
+#import "SamplePhotosCollectionViewCell.h"
 #import "SampleModelData.h"
 
 @interface SampleGridViewController ()
@@ -21,6 +22,13 @@
 {
     [super viewDidLoad];
     
+    // demonstrate use of custom cell class for collection view
+    self.collectionView.cellClass = [SamplePhotosCollectionViewCell class];
+    
+    // demonstrate use of custom cell identifier for collection view
+    self.collectionView.cellIdentifier = [SamplePhotosCollectionViewCell cellReuseIdentifier];
+    
+    // configure data for collection view
     self.sampleModelData = [[SampleModelData alloc] init];
 }
 
@@ -28,18 +36,12 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 200;
+    return [self.sampleModelData numberOfSections];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.sampleModelData.photos.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    KTPhotosCollectionViewCell *cell = (KTPhotosCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    return cell;
 }
 
 #pragma mark - KTPhotosCollectionViewDataSource

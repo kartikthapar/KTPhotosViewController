@@ -49,7 +49,6 @@
     XCTAssertNotNil(vc.view, @"View should not be nil");
     XCTAssertNotNil(vc.collectionView, @"Collection view should not be nil");
     XCTAssertEqual(vc.automaticallyAdjustsScrollViewInsets, YES, @"Property should be equal to default value");
-    XCTAssert([vc.photoCellIdentifier isEqualToString:[KTPhotosCollectionViewCell cellReuseIdentifier]], @"Property should be equal to the default value");
 }
 
 - (void)testKTPhotosGridViewControllerSubclassInit

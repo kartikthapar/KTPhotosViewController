@@ -9,6 +9,14 @@
 #import "KTPhotosCollectionView.h"
 #import "KTPhotosCollectionViewCell.h"
 
+#import <objc/runtime.h>
+
+@interface KTPhotosCollectionViewCell ()
+
+- (void)kt_configureCollectionView;
+
+@end
+
 @implementation KTPhotosCollectionView
 
 @dynamic dataSource;
@@ -28,14 +36,31 @@
     self.bounces = YES;
     self.alwaysBounceVertical = YES;
     
-    NSString *photoCellIdentifier = [KTPhotosCollectionViewCell cellReuseIdentifier];
-    [self registerClass:[KTPhotosCollectionViewCell class] forCellWithReuseIdentifier:photoCellIdentifier];
+    _cellIdentifier = [KTPhotosCollectionViewCell cellReuseIdentifier];
+    _cellClass = [KTPhotosCollectionViewCell class];
+    
+    [self registerClass:_cellClass forCellWithReuseIdentifier:_cellIdentifier];
 }
 
-- (void)awakeFromNib
+#pragma mark - Config
+
+- (void)setCellClass:(Class<KTPhotosThumbnailPresenting>)cellClass
 {
-    [super awakeFromNib];
-    [self kt_configureCollectionView];
+    if (!class_conformsToProtocol(cellClass, @protocol(KTPhotosThumbnailPresenting)))
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Cell class must conform to KTPhotosThumbnailPresenting protocol" userInfo:nil];
+    }
+    
+    _cellClass = cellClass;
+    [self registerClass:_cellClass forCellWithReuseIdentifier:_cellIdentifier];
+}
+
+- (void)setCellIdentifier:(NSString *)cellIdentifier
+{
+    NSParameterAssert(cellIdentifier);
+    
+    _cellIdentifier = cellIdentifier;
+    [self registerClass:_cellClass forCellWithReuseIdentifier:cellIdentifier];
 }
 
 @end

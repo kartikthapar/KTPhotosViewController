@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray *photos;
 
+- (NSInteger)numberOfSections;
+
 @end
