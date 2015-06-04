@@ -56,6 +56,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C6B5A7721B1C9C7F00B68375"
+               BuildableName = "KTPhotosTests.xctest"
+               BlueprintName = "KTPhotosTests"
+               ReferencedContainer = "container:KTPhotos.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
