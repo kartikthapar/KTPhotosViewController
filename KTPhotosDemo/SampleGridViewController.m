@@ -23,17 +23,17 @@
 {
     [super viewDidLoad];
     
-    // demonstrate use of custom cell class for collection view
-    self.collectionView.cellClass = [SamplePhotosCollectionViewCell class];
-    
-    // demonstrate use of custom cell identifier for collection view
-    self.collectionView.cellIdentifier = [SamplePhotosCollectionViewCell cellReuseIdentifier];
-    
-    // demonstrate use of custom header class for collection view
-    self.collectionView.sectionInfoHeaderClass = [SamplePhotosSectionInfoHeaderView class];
-    
-    // demonstrate use of custom header identifier for collection view
-    self.collectionView.sectionInfoHeaderIdentifier = [SamplePhotosSectionInfoHeaderView headerReuseIdentifier];
+//    // demonstrate use of custom cell class for collection view
+//    self.collectionView.cellClass = [SamplePhotosCollectionViewCell class];
+//    
+//    // demonstrate use of custom cell identifier for collection view
+//    self.collectionView.cellIdentifier = [SamplePhotosCollectionViewCell cellReuseIdentifier];
+//    
+//    // demonstrate use of custom header class for collection view
+//    self.collectionView.sectionInfoHeaderClass = [SamplePhotosSectionInfoHeaderView class];
+//    
+//    // demonstrate use of custom header identifier for collection view
+//    self.collectionView.sectionInfoHeaderIdentifier = [SamplePhotosSectionInfoHeaderView headerReuseIdentifier];
     
     // configure data for collection view
     self.sampleModelData = [[SampleModelData alloc] init];
@@ -56,6 +56,11 @@
 - (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.sampleModelData.photos objectAtIndex:indexPath.row];
+}
+
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Obviously";
 }
 
 @end

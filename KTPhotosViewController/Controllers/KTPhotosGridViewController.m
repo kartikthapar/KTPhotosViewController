@@ -9,6 +9,7 @@
 #import "KTPhotosGridViewController.h"
 #import "KTPhotosCollectionView.h"
 #import "KTPhotosThumbnailPresenting.h"
+#import "KTPhotosSectionHeaderPresenting.h"
 
 @interface KTPhotosGridViewController ()
 
@@ -86,14 +87,6 @@
     return cell;
 }
 
-#pragma mark - KTPhotosCollectionViewDataSource
-
-- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
-    return nil;
-}
-
 - (UICollectionReusableView *)collectionView:(KTPhotosCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *reusableView = nil;
@@ -102,8 +95,35 @@
         // TODO: include a boolean flag indicating if section headers need to be created; can be based on indexPath also;
         // create a section header
         reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionInfoHeaderIdentifier forIndexPath:indexPath];
+        
+        if ([reusableView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)])
+        {
+            // view conforms to protocol KTPhotosSectionHeaderPresenting; so either this is an instance of KTPhotosSectionInfoHeaderView or some custom class that conforms to KTPhotosSectionHeaderPresenting
+            // it is possiblethat the data source does not implement some of the data source methods
+            
+            // get title, this might still not be a valid string
+            NSString *title = [collectionView.dataSource collectionView:collectionView titleTextForHeaderAtIndexPath:indexPath];
+            if (title)
+            {
+                [(id<KTPhotosSectionHeaderPresenting>)reusableView updateWithTitle:title];
+            }
+        }
     }
     return reusableView;
+}
+
+#pragma mark - KTPhotosCollectionViewDataSource
+
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
+    return nil;
+}
+
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
+{
+    // return nil so that the header view does not update
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "KTPhotosSectionHeaderPresenting.h"
+
 #define KTPhotosSectionInfoHeaderViewAccessibilityLabel @"KTPhotosSectionInfoHeaderViewAccessibilityLabel"
 
-@interface KTPhotosSectionInfoHeaderView : UICollectionReusableView
+@interface KTPhotosSectionInfoHeaderView : UICollectionReusableView <KTPhotosSectionHeaderPresenting>
 
+/**
+ * @abstract Returns the default string used to identify a reusable header view.
+ */
 + (NSString *)headerReuseIdentifier;
 
 @end

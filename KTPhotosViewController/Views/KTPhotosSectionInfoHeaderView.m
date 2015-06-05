@@ -39,6 +39,14 @@
     [self kt_configureConstraintsForTitleLabel];
 }
 
+#pragma mark - KTPhotosSectionHeaderPresenting
+
+- (void)updateWithTitle:(NSString *)title
+{
+    // TODO: update accessibility label
+    self.titleLabel.text = title;
+}
+
 #pragma mark - Constraints
 
 - (void)kt_configureConstraintsForTitleLabel
