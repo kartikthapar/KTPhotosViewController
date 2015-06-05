@@ -109,8 +109,8 @@
 
 - (void)kt_configureConstraintsForTitleLabel
 {
-    NSDictionary *metrics = @{@"leftMargin":@(15),
-                              @"topMargin":@(5)};
+    NSDictionary *metrics = @{@"leftMargin": @(15),
+                              @"topMargin": @(5)};
     NSDictionary *views = @{@"titleLabel": self.titleLabel};
     NSArray *leftMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftMargin-[titleLabel]" options:0 metrics:metrics views:views];
     NSArray *topMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[titleLabel]" options:0 metrics:metrics views:views];
@@ -121,15 +121,20 @@
 
 - (void)kt_configureConstraintsForSubtitleLabel
 {
-    NSDictionary *metrics = @{@"leftMargin":@(15),
-                              @"topMargin":@(5)};
+    NSDictionary *metrics = @{@"leftMargin": @(15),
+                              @"titleTopMargin": @(5),
+                              @"subtitleTopMargin": @(0),
+                              @"subtitleBotMargin": @(5)};
     NSDictionary *views = @{@"subtitleLabel": self.subtitleLabel,
                             @"titleLabel":self.titleLabel};
-    NSArray *leftMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftMargin-[subtitleLabel]" options:0 metrics:metrics views:views];
-    NSArray *topMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[titleLabel]-topMargin-[subtitleLabel]" options:0 metrics:metrics views:views];
+
+    NSString *xConstraintFormat = @"H:|-leftMargin-[subtitleLabel]";
+    NSArray *xConstraint = [NSLayoutConstraint constraintsWithVisualFormat:xConstraintFormat options:0 metrics:metrics views:views];
+    NSString *yConstraintFormat = @"V:|-titleTopMargin-[titleLabel]->=subtitleTopMargin-[subtitleLabel]-subtitleBotMargin-|";
+    NSArray *yConstraint = [NSLayoutConstraint constraintsWithVisualFormat:yConstraintFormat options:0 metrics:metrics views:views];
     
-    [self addConstraints:leftMarginConstraint];
-    [self addConstraints:topMarginConstraint];
+    [self addConstraints:xConstraint];
+    [self addConstraints:yConstraint];
 }
 
 #pragma mark - Info

@@ -11,6 +11,9 @@
 #import "KTPhotosThumbnailPresenting.h"
 #import "KTPhotosSectionHeaderPresenting.h"
 
+#import "KTPhotosCollectionViewCell.h"
+#import "KTPhotosSectionHeaderView.h"
+
 @interface KTPhotosGridViewController ()
 
 @property (nonatomic, strong, readwrite) KTPhotosCollectionView *collectionView;
@@ -54,6 +57,7 @@
     [self.view addSubview:self.collectionView];
     
     // Appearance
+    [[KTPhotosSectionHeaderView appearance] setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f]];
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Scrolling
@@ -62,12 +66,12 @@
 
 #pragma mark UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(KTPhotosCollectionView *)collectionView
 {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(KTPhotosCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return 5;
 }
@@ -138,22 +142,28 @@
     return nil;
 }
 
+- (CGSize)collectionView:(KTPhotosCollectionView *)collectionView sizeForHeaderInSection:(NSInteger)section
+{
+    // return the default value
+    return KTPhotosCollectionViewDefaultSectionHeaderSize;
+}
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(75, 75);
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+- (UIEdgeInsets)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(20, 20, 20, 20);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+- (CGSize)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     // return the size of the header
-    return CGSizeMake(collectionView.bounds.size.width, 44.0f);
+    return [collectionView.dataSource collectionView:collectionView sizeForHeaderInSection:section];
 }
 
 @end

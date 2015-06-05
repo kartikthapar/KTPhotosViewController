@@ -42,4 +42,13 @@
  */
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView subtitleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ * @abstract The size for the section header displayed in the collection view.
+ * @discussion The default value is given by `KTPhotosCollectionViewDefaultSectionHeaderHeight`.
+ * @param collectionView The collection view instance request the information.
+ * @param section The integer section value for which the collection view has requested information.
+ * @return The `CGSize` for the header.
+ */
+- (CGSize)collectionView:(KTPhotosCollectionView *)collectionView sizeForHeaderInSection:(NSInteger)section;
+
 @end

@@ -11,6 +11,8 @@
 #import "KTPhotosCollectionViewDataSource.h"
 @protocol KTPhotosThumbnailPresenting;
 
+#define KTPhotosCollectionViewDefaultSectionHeaderSize CGSizeMake([UIScreen mainScreen].bounds.size.width, 44.0f)
+
 @interface KTPhotosCollectionView : UICollectionView
 
 /**
