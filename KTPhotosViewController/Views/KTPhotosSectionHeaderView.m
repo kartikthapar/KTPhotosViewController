@@ -19,6 +19,14 @@
 
 @implementation KTPhotosSectionHeaderView
 
++ (void)initialize
+{
+    KTPhotosSectionHeaderView *proxy = [self appearance];
+    proxy.titleLabelFont = [UIFont systemFontOfSize:17.0f];
+    proxy.titleLabelColor = [UIColor darkGrayColor];
+    proxy.headerBackgroundColor = [UIColor whiteColor];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
@@ -34,6 +42,8 @@
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.titleLabel.font = self.titleLabelFont;
+    self.titleLabel.textColor = self.titleLabelColor;
     [self addSubview:self.titleLabel];
     
     [self kt_configureConstraintsForTitleLabel];
@@ -45,6 +55,26 @@
 {
     // TODO: update accessibility label
     self.titleLabel.text = title;
+}
+
+#pragma mark - UIAppearance
+
+- (void)setTitleLabelFont:(UIFont *)titleLabelFont
+{
+    _titleLabelFont = titleLabelFont;
+    self.titleLabel.font = titleLabelFont;
+}
+
+- (void)setTitleLabelColor:(UIColor *)titleLabelColor
+{
+    _titleLabelColor = titleLabelColor;
+    self.titleLabel.textColor = titleLabelColor;
+}
+
+- (void)setHeaderBackgroundColor:(UIColor *)headerBackgroundColor
+{
+    _headerBackgroundColor = headerBackgroundColor;
+    self.backgroundColor = headerBackgroundColor;
 }
 
 #pragma mark - Constraints
