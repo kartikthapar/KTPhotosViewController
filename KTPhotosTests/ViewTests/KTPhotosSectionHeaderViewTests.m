@@ -47,6 +47,13 @@
     expect([KTPhotosSectionHeaderView headerReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosSectionHeaderView class]));
 }
 
+- (void)testPhotosSectionHeaderViewImplementingKTPhotosSectionHeaderPresenting
+{
+    KTPhotosSectionHeaderView *headerView = [KTPhotosSectionHeaderView new];
+    expect([headerView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)]).to.equal(YES);
+    expect([headerView respondsToSelector:@selector(updateWithTitle:)]).to.equal(YES);
+}
+
 - (void)testPhotosSectionHeaderViewDisplay
 {
     [self presentPhotosSectionHeaderView];
