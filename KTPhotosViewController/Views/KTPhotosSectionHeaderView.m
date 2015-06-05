@@ -12,8 +12,10 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
+@property (nonatomic, strong) UIVisualEffectView *blurView;
 
 - (void)kt_configureSectionHeaderView;
+- (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
 - (void)kt_configureConstraintsForSubtitleLabel;
 
@@ -28,7 +30,7 @@
     proxy.titleLabelColor = [UIColor darkGrayColor];
     proxy.subtitleLabelFont = [UIFont systemFontOfSize:14.0f];
     proxy.subtitleLabelColor = [UIColor lightGrayColor];
-    proxy.headerBackgroundColor = [UIColor whiteColor];
+    proxy.headerBackgroundColor = [UIColor clearColor];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -44,6 +46,12 @@
 {
     self.accessibilityLabel = KTPhotosSectionHeaderViewAccessibilityLabel;
     
+    UIBlurEffect * effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    self.blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    self.blurView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.blurView];
+    [self sendSubviewToBack:self.blurView];
+
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.font = self.titleLabelFont;
@@ -56,6 +64,7 @@
     self.subtitleLabel.textColor = self.subtitleLabelColor;
     [self addSubview:self.subtitleLabel];
     
+    [self kt_configureConstraintsForBlurView];
     [self kt_configureConstraintsForTitleLabel];
     [self kt_configureConstraintsForSubtitleLabel];
 }
@@ -106,6 +115,16 @@
 }
 
 #pragma mark - Constraints
+
+- (void)kt_configureConstraintsForBlurView
+{
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    [self addConstraint:widthConstraint];
+    [self addConstraint:heightConstraint];
+}
 
 - (void)kt_configureConstraintsForTitleLabel
 {

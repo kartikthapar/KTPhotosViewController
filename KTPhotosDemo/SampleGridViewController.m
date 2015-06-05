@@ -70,7 +70,7 @@
 
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView sizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(self.view.bounds.size.width, 56.0f);
+    return CGSizeMake(self.view.bounds.size.width, 50.0f);
 }
 
 @end

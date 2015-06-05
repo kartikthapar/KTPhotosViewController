@@ -21,6 +21,7 @@
 
 @property UILabel *titleLabel;
 @property UILabel *subtitleLabel;
+@property UIVisualEffectView *blurView;
 
 @end
 
@@ -65,7 +66,10 @@
 {
     [self presentPhotosSectionHeaderView];
     
-    [tester waitForViewWithAccessibilityLabel:KTPhotosSectionHeaderViewAccessibilityLabel];
+    KTPhotosSectionHeaderView *headerView = (KTPhotosSectionHeaderView *)[tester waitForViewWithAccessibilityLabel:KTPhotosSectionHeaderViewAccessibilityLabel];
+    expect(headerView.titleLabel).toNot.beNil();
+    expect(headerView.subtitleLabel).toNot.beNil();
+    expect(headerView.blurView).toNot.beNil();
 }
 
 - (void)testPhotosSectionHeaderViewDefaultAppearance
@@ -85,7 +89,7 @@
     expect(headerView.subtitleLabelColor).to.equal([UIColor lightGrayColor]);
     expect(headerView.subtitleLabel.textColor).to.equal(headerView.subtitleLabelColor);
 
-    expect(headerView.headerBackgroundColor).to.equal([UIColor whiteColor]);
+    expect(headerView.headerBackgroundColor).to.equal([UIColor clearColor]);
     expect(headerView.backgroundColor).to.equal(headerView.headerBackgroundColor);
 }
 
@@ -135,7 +139,7 @@
     [[KTPhotosSectionHeaderView appearance] setTitleLabelColor:[UIColor darkGrayColor]];
     [[KTPhotosSectionHeaderView appearance] setSubtitleLabelFont:[UIFont systemFontOfSize:14.0f]];
     [[KTPhotosSectionHeaderView appearance] setSubtitleLabelColor:[UIColor lightGrayColor]];
-    [[KTPhotosSectionHeaderView appearance] setHeaderBackgroundColor:[UIColor whiteColor]];
+    [[KTPhotosSectionHeaderView appearance] setHeaderBackgroundColor:[UIColor clearColor]];
 }
 
 @end
