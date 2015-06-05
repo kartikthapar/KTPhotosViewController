@@ -1,5 +1,5 @@
 //
-//  KTPhotosSectionInfoHeaderView.h
+//  KTPhotosSectionHeaderView.h
 //  KTPhotos
 //
 //  Created by Kartik Thapar on 6/4/15.
@@ -10,9 +10,9 @@
 
 #import "KTPhotosSectionHeaderPresenting.h"
 
-#define KTPhotosSectionInfoHeaderViewAccessibilityLabel @"KTPhotosSectionInfoHeaderViewAccessibilityLabel"
+#define KTPhotosSectionHeaderViewAccessibilityLabel @"KTPhotosSectionHeaderViewAccessibilityLabel"
 
-@interface KTPhotosSectionInfoHeaderView : UICollectionReusableView <KTPhotosSectionHeaderPresenting>
+@interface KTPhotosSectionHeaderView : UICollectionReusableView <KTPhotosSectionHeaderPresenting>
 
 /**
  * @abstract Returns the default string used to identify a reusable header view.

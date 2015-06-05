@@ -8,7 +8,7 @@
 
 #import "KTPhotosCollectionView.h"
 #import "KTPhotosCollectionViewCell.h"
-#import "KTPhotosSectionInfoHeaderView.h"
+#import "KTPhotosSectionHeaderView.h"
 
 #import <objc/runtime.h>
 
@@ -40,8 +40,8 @@
     _cellClass = [KTPhotosCollectionViewCell class];
     _cellIdentifier = [KTPhotosCollectionViewCell cellReuseIdentifier];
     
-    _sectionInfoHeaderClass = [KTPhotosSectionInfoHeaderView class];
-    _sectionInfoHeaderIdentifier = [KTPhotosSectionInfoHeaderView headerReuseIdentifier];
+    _sectionInfoHeaderClass = [KTPhotosSectionHeaderView class];
+    _sectionInfoHeaderIdentifier = [KTPhotosSectionHeaderView headerReuseIdentifier];
     
     [self registerClass:self.cellClass forCellWithReuseIdentifier:self.cellIdentifier];
     [self registerClass:self.sectionInfoHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:self.sectionInfoHeaderIdentifier];

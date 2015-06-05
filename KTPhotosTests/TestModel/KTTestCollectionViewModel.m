@@ -63,7 +63,7 @@
 - (void)registerClasses:(UICollectionView *)collectionView
 {
     [collectionView registerClass:[KTPhotosCollectionViewCell class] forCellWithReuseIdentifier:[KTPhotosCollectionViewCell cellReuseIdentifier]];
-    [collectionView registerClass:[KTPhotosSectionInfoHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[KTPhotosSectionInfoHeaderView headerReuseIdentifier]];
+    [collectionView registerClass:[KTPhotosSectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[KTPhotosSectionHeaderView headerReuseIdentifier]];
 }
 
 #pragma mark - KTPhotosCollectionViewDataSource

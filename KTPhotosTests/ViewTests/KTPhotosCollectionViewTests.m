@@ -50,8 +50,8 @@
     expect(collectionView.collectionViewLayout).toNot.beNil();
     expect(collectionView.cellIdentifier).to.equal([KTPhotosCollectionViewCell cellReuseIdentifier]);
     expect(collectionView.cellClass).to.equal([KTPhotosCollectionViewCell class]);
-    expect(collectionView.sectionInfoHeaderClass).to.equal([KTPhotosSectionInfoHeaderView class]);
-    expect(collectionView.sectionInfoHeaderIdentifier).to.equal([KTPhotosSectionInfoHeaderView headerReuseIdentifier]);
+    expect(collectionView.sectionInfoHeaderClass).to.equal([KTPhotosSectionHeaderView class]);
+    expect(collectionView.sectionInfoHeaderIdentifier).to.equal([KTPhotosSectionHeaderView headerReuseIdentifier]);
 }
 
 - (void)testPhotosCollectionViewDisplay
@@ -106,7 +106,7 @@
     
     [self presentPhotosCollectionView:collectionView];
     
-    [tester waitForViewWithAccessibilityLabel:KTPhotosSectionInfoHeaderViewAccessibilityLabel];
+    [tester waitForViewWithAccessibilityLabel:KTPhotosSectionHeaderViewAccessibilityLabel];
 }
 
 #pragma mark - Internal

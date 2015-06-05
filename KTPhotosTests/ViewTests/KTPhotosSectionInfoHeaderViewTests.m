@@ -1,5 +1,5 @@
 //
-//  KTPhotosSectionInfoHeaderViewTests.m
+//  KTPhotosSectionHeaderViewTests.m
 //  KTPhotos
 //
 //  Created by Kartik Thapar on 6/4/15.
@@ -17,13 +17,13 @@
 
 #import "KTTestCollectionViewModel.h"
 
-@interface KTPhotosSectionInfoHeaderViewTests : XCTestCase
+@interface KTPhotosSectionHeaderViewTests : XCTestCase
 
 @property (nonatomic, strong) KTTestCollectionViewModel *testCollectionViewModel;
 
 @end
 
-@implementation KTPhotosSectionInfoHeaderViewTests
+@implementation KTPhotosSectionHeaderViewTests
 
 - (void)setUp
 {
@@ -42,16 +42,16 @@
 
 - (void)testPhotosSectionInfoHeaderViewInit
 {
-    KTPhotosSectionInfoHeaderView *headerView = [[KTPhotosSectionInfoHeaderView alloc] init];
+    KTPhotosSectionHeaderView *headerView = [[KTPhotosSectionHeaderView alloc] init];
     expect(headerView).toNot.beNil();
-    expect([KTPhotosSectionInfoHeaderView headerReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosSectionInfoHeaderView class]));
+    expect([KTPhotosSectionHeaderView headerReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosSectionHeaderView class]));
 }
 
 - (void)testPhotosSectionInfoHeaderViewDisplay
 {
     [self presentPhotosSectionInfoHeaderView];
     
-    [tester waitForViewWithAccessibilityLabel:KTPhotosSectionInfoHeaderViewAccessibilityLabel];
+    [tester waitForViewWithAccessibilityLabel:KTPhotosSectionHeaderViewAccessibilityLabel];
 }
 
 #pragma mark - Internal

@@ -1,14 +1,14 @@
 //
-//  KTPhotosSectionInfoHeaderView.m
+//  KTPhotosSectionHeaderView.m
 //  KTPhotos
 //
 //  Created by Kartik Thapar on 6/4/15.
 //  Copyright (c) 2015 Kartik Thapar. All rights reserved.
 //
 
-#import "KTPhotosSectionInfoHeaderView.h"
+#import "KTPhotosSectionHeaderView.h"
 
-@interface KTPhotosSectionInfoHeaderView ()
+@interface KTPhotosSectionHeaderView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation KTPhotosSectionInfoHeaderView
+@implementation KTPhotosSectionHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -30,7 +30,7 @@
 
 - (void)kt_configureSectionInfoHeaderView
 {
-    self.accessibilityLabel = KTPhotosSectionInfoHeaderViewAccessibilityLabel;
+    self.accessibilityLabel = KTPhotosSectionHeaderViewAccessibilityLabel;
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;

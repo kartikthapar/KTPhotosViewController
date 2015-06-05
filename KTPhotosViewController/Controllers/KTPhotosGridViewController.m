@@ -98,7 +98,7 @@
         
         if ([reusableView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)])
         {
-            // view conforms to protocol KTPhotosSectionHeaderPresenting; so either this is an instance of KTPhotosSectionInfoHeaderView or some custom class that conforms to KTPhotosSectionHeaderPresenting
+            // view conforms to protocol KTPhotosSectionHeaderPresenting; so either this is an instance of KTPhotosSectionHeaderView or some custom class that conforms to KTPhotosSectionHeaderPresenting
             // it is possiblethat the data source does not implement some of the data source methods
             
             // get title, this might still not be a valid string

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0764A51656EC3522BCC64916 /* libPods-KTPhotosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F531955DAFDD4E26D40E6A3D /* libPods-KTPhotosTests.a */; };
-		C60DC3BE1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BD1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m */; };
+		C60DC3BE1B201C2400D05886 /* KTPhotosSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BD1B201C2400D05886 /* KTPhotosSectionHeaderView.m */; };
 		C60DC3C01B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BF1B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m */; };
 		C60DC3C31B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3C21B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
@@ -49,8 +49,8 @@
 /* Begin PBXFileReference section */
 		45813867E94FF7E4C9C18DF0 /* Pods-KTPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
 		A82B9B228461E8FE06EC4D2E /* Pods-KTPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KTPhotosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KTPhotosTests/Pods-KTPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C60DC3BC1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosSectionInfoHeaderView.h; sourceTree = "<group>"; };
-		C60DC3BD1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosSectionInfoHeaderView.m; sourceTree = "<group>"; };
+		C60DC3BC1B201C2400D05886 /* KTPhotosSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosSectionHeaderView.h; sourceTree = "<group>"; };
+		C60DC3BD1B201C2400D05886 /* KTPhotosSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosSectionHeaderView.m; sourceTree = "<group>"; };
 		C60DC3BF1B201FEF00D05886 /* KTPhotosSectionInfoHeaderViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosSectionInfoHeaderViewTests.m; sourceTree = "<group>"; };
 		C60DC3C11B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePhotosSectionInfoHeaderView.h; sourceTree = "<group>"; };
 		C60DC3C21B2029F700D05886 /* SamplePhotosSectionInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePhotosSectionInfoHeaderView.m; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 				C69E9A131B1FEBCF00D52455 /* KTPhotosCollectionViewCell.m */,
 				C69E9A141B1FEBCF00D52455 /* KTPhotosThumbnailImageView.h */,
 				C69E9A151B1FEBCF00D52455 /* KTPhotosThumbnailImageView.m */,
-				C60DC3BC1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.h */,
-				C60DC3BD1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m */,
+				C60DC3BC1B201C2400D05886 /* KTPhotosSectionHeaderView.h */,
+				C60DC3BD1B201C2400D05886 /* KTPhotosSectionHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -430,7 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C60DC3BE1B201C2400D05886 /* KTPhotosSectionInfoHeaderView.m in Sources */,
+				C60DC3BE1B201C2400D05886 /* KTPhotosSectionHeaderView.m in Sources */,
 				C66D5A141B1C9CF8002C94F5 /* main.m in Sources */,
 				C69E9A1A1B1FEBCF00D52455 /* KTPhotosThumbnailImageView.m in Sources */,
 				C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */,
