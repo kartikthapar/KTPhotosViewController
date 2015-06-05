@@ -42,7 +42,7 @@
 
 - (KTPhotosCollectionView *)defaultCollectionView
 {
-    UICollectionViewLayout *layout = [self flowLayout];
+    KTPhotosCollectionViewFlowLayout *layout = [KTPhotosCollectionViewFlowLayout new];
     KTPhotosCollectionView *collectionView = [[KTPhotosCollectionView alloc] initWithFrame:[[UIScreen mainScreen] bounds] collectionViewLayout:layout];
     collectionView.delegate = self;
     collectionView.dataSource = self;

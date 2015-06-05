@@ -49,6 +49,11 @@
     [vc view];
     expect(vc).toNot.beNil();
     expect(vc.view).toNot.beNil();
+    
+    expect(vc.collectionView).to.beAnInstanceOf([KTPhotosCollectionView class]);
+    expect(vc.collectionView.dataSource).to.conformTo(@protocol(KTPhotosCollectionViewDataSource));
+    expect(vc.collectionView.collectionViewLayout).to.beAnInstanceOf([KTPhotosCollectionViewFlowLayout class]);
+    
     expect(vc.collectionView).toNot.beNil();
     expect(vc.automaticallyAdjustsScrollViewInsets).to.equal(YES);
 }

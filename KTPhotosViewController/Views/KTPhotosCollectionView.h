@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "KTPhotosCollectionViewDataSource.h"
+#import "KTPhotosCollectionViewFlowLayout.h"
+
 @protocol KTPhotosThumbnailPresenting;
 
 #define KTPhotosCollectionViewDefaultSectionHeaderSize CGSizeMake([UIScreen mainScreen].bounds.size.width, 44.0f)
@@ -20,6 +22,11 @@
  * @discussion The data source must conform to the `KTPhotosCollectionViewDataSource` protocol.
  */
 @property (weak, nonatomic) id<KTPhotosCollectionViewDataSource> dataSource;
+
+/**
+ * @abstract The collection view layout for the collection view.
+ */
+@property (nonatomic, strong) KTPhotosCollectionViewFlowLayout *collectionViewLayout;
 
 /**
  * @abstract The `UICollectionViewCell` subclass for customizing the presentation of thumbnails in the collection view.

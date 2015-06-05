@@ -8,6 +8,7 @@
 
 #import "KTPhotosGridViewController.h"
 #import "KTPhotosCollectionView.h"
+#import "KTPhotosCollectionViewFlowLayout.h"
 #import "KTPhotosThumbnailPresenting.h"
 #import "KTPhotosSectionHeaderPresenting.h"
 
@@ -49,7 +50,7 @@
 - (void)kt_configurePhotosViewController
 {
     // UICollectionView
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    KTPhotosCollectionViewFlowLayout *flowLayout = [[KTPhotosCollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     self.collectionView = [[KTPhotosCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;
@@ -57,7 +58,6 @@
     [self.view addSubview:self.collectionView];
     
     // Appearance
-    [[KTPhotosSectionHeaderView appearance] setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1.0f]];
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Scrolling

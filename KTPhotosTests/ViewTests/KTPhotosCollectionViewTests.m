@@ -48,6 +48,7 @@
     KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
     expect(collectionView).toNot.beNil();
     expect(collectionView.collectionViewLayout).toNot.beNil();
+    expect(collectionView.collectionViewLayout).to.beAnInstanceOf([KTPhotosCollectionViewFlowLayout class]);
     expect(collectionView.cellIdentifier).to.equal([KTPhotosCollectionViewCell cellReuseIdentifier]);
     expect(collectionView.cellClass).to.equal([KTPhotosCollectionViewCell class]);
     expect(collectionView.sectionHeaderClass).to.equal([KTPhotosSectionHeaderView class]);

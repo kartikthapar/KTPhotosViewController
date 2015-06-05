@@ -28,4 +28,8 @@
 #import "KTPhotosThumbnailImageView.h"
 #import "KTPhotosSectionHeaderView.h"
 
+#pragma mark - Layout
+
+#import "KTPhotosCollectionViewFlowLayout.h"
+
 #endif

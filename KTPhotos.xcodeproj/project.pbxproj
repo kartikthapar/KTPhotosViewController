@@ -11,6 +11,7 @@
 		C60DC3BE1B201C2400D05886 /* KTPhotosSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BD1B201C2400D05886 /* KTPhotosSectionHeaderView.m */; };
 		C60DC3C01B201FEF00D05886 /* KTPhotosSectionHeaderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3BF1B201FEF00D05886 /* KTPhotosSectionHeaderViewTests.m */; };
 		C60DC3C31B2029F700D05886 /* SamplePhotosSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3C21B2029F700D05886 /* SamplePhotosSectionHeaderView.m */; };
+		C62C6B0D1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
@@ -54,6 +55,8 @@
 		C60DC3BF1B201FEF00D05886 /* KTPhotosSectionHeaderViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosSectionHeaderViewTests.m; sourceTree = "<group>"; };
 		C60DC3C11B2029F700D05886 /* SamplePhotosSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePhotosSectionHeaderView.h; sourceTree = "<group>"; };
 		C60DC3C21B2029F700D05886 /* SamplePhotosSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePhotosSectionHeaderView.m; sourceTree = "<group>"; };
+		C62C6B0B1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -131,6 +134,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C62C6B0A1B21E131003A3F18 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				C62C6B0B1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.h */,
+				C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +171,7 @@
 				C69E9A081B1FEBCF00D52455 /* KTPhotos.h */,
 				C69E9A091B1FEBCF00D52455 /* Model */,
 				C69E9A0F1B1FEBCF00D52455 /* Views */,
+				C62C6B0A1B21E131003A3F18 /* Layout */,
 			);
 			path = KTPhotosViewController;
 			sourceTree = "<group>";
@@ -437,6 +450,7 @@
 				C69E9A191B1FEBCF00D52455 /* KTPhotosCollectionViewCell.m in Sources */,
 				C69E9A161B1FEBCF00D52455 /* KTPhotosGridViewController.m in Sources */,
 				C60DC3C31B2029F700D05886 /* SamplePhotosSectionHeaderView.m in Sources */,
+				C62C6B0D1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m in Sources */,
 				C6D1ECFB1B1FADDF008C81F6 /* SamplePhotosCollectionViewCell.m in Sources */,
 				C69E9A171B1FEBCF00D52455 /* KTThumbnailItem.m in Sources */,
 				C6E8EBEE1B1E7D57003C2DCE /* SampleModelData.m in Sources */,
