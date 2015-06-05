@@ -1,6 +1,0 @@
-language: objective-c
-xcode_workspace: KTPhotos.xcworkspace
-xcode_scheme: KTPhotosTravis
-notifications:
-  email:
-    on_success: always
