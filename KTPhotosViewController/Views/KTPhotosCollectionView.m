@@ -21,6 +21,7 @@
 @implementation KTPhotosCollectionView
 
 @dynamic dataSource;
+@dynamic delegate;
 @dynamic collectionViewLayout;
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout

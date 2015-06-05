@@ -12,7 +12,7 @@
 
 #import "KTPhotos.h"
 
-@interface KTTestCollectionViewModel () <KTPhotosCollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface KTTestCollectionViewModel () <KTPhotosCollectionViewDataSource, KTPhotosCollectionViewDelegateFlowLayout, UICollectionViewDelegateFlowLayout>
 
 @end
 
@@ -131,6 +131,13 @@
 {
     // return the size of the header
     return [collectionView.dataSource collectionView:collectionView sizeForHeaderInSection:section];
+}
+
+#pragma mark - KTPhotosCollectionViewDelegateFlowLayout
+
+- (BOOL)collectionView:(KTPhotosCollectionView *)collectionView shouldStickHeaderToTopInSection:(NSUInteger)section
+{
+    return YES;
 }
 
 @end

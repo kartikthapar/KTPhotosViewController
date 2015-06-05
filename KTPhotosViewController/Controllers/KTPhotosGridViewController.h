@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class KTPhotosCollectionView;
 #import "KTPhotosCollectionViewDataSource.h"
+#import "KTPhotosCollectionViewDelegateFlowLayout.h"
+
+@class KTPhotosCollectionView;
 
 @interface KTPhotosGridViewController : UIViewController <KTPhotosCollectionViewDataSource,
-                                                          UICollectionViewDelegate,
+                                                          KTPhotosCollectionViewDelegateFlowLayout,
                                                           UICollectionViewDelegateFlowLayout>
 
 /**

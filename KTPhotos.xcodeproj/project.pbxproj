@@ -57,6 +57,7 @@
 		C60DC3C21B2029F700D05886 /* SamplePhotosSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePhotosSectionHeaderView.m; sourceTree = "<group>"; };
 		C62C6B0B1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		C6383AA71B21EFC30063CEDD /* KTPhotosCollectionViewDelegateFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewDelegateFlowLayout.h; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 			children = (
 				C62C6B0B1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.h */,
 				C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */,
+				C6383AA71B21EFC30063CEDD /* KTPhotosCollectionViewDelegateFlowLayout.h */,
 			);
 			path = Layout;
 			sourceTree = "<group>";

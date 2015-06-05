@@ -31,5 +31,6 @@
 #pragma mark - Layout
 
 #import "KTPhotosCollectionViewFlowLayout.h"
+#import "KTPhotosCollectionViewDelegateFlowLayout.h"
 
 #endif

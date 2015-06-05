@@ -10,6 +10,7 @@
 
 #import "KTPhotosCollectionViewDataSource.h"
 #import "KTPhotosCollectionViewFlowLayout.h"
+#import "KTPhotosCollectionViewDelegateFlowLayout.h"
 
 @protocol KTPhotosThumbnailPresenting;
 
@@ -22,6 +23,12 @@
  * @discussion The data source must conform to the `KTPhotosCollectionViewDataSource` protocol.
  */
 @property (weak, nonatomic) id<KTPhotosCollectionViewDataSource> dataSource;
+
+/**
+ * @abstract The delegate for the collection view.
+ * @discussion The delegate must confor to the `KTPhotosCollectionViewDelegateFlowLayout` protocol.
+ */
+@property (weak, nonatomic) id<KTPhotosCollectionViewDelegateFlowLayout> delegate;
 
 /**
  * @abstract The collection view layout for the collection view.
