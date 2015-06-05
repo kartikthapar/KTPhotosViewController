@@ -63,4 +63,9 @@
     return @"Obviously";
 }
 
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView subtitleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Hello";
+}
+
 @end

@@ -11,9 +11,11 @@
 @interface KTPhotosSectionHeaderView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *subtitleLabel;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForTitleLabel;
+- (void)kt_configureConstraintsForSubtitleLabel;
 
 @end
 
@@ -24,6 +26,8 @@
     KTPhotosSectionHeaderView *proxy = [self appearance];
     proxy.titleLabelFont = [UIFont systemFontOfSize:17.0f];
     proxy.titleLabelColor = [UIColor darkGrayColor];
+    proxy.subtitleLabelFont = [UIFont systemFontOfSize:14.0f];
+    proxy.subtitleLabelColor = [UIColor lightGrayColor];
     proxy.headerBackgroundColor = [UIColor whiteColor];
 }
 
@@ -46,15 +50,27 @@
     self.titleLabel.textColor = self.titleLabelColor;
     [self addSubview:self.titleLabel];
     
+    self.subtitleLabel = [[UILabel alloc] init];
+    self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.subtitleLabel.font = self.subtitleLabelFont;
+    self.subtitleLabel.textColor = self.subtitleLabelColor;
+    [self addSubview:self.subtitleLabel];
+    
     [self kt_configureConstraintsForTitleLabel];
+    [self kt_configureConstraintsForSubtitleLabel];
 }
 
 #pragma mark - KTPhotosSectionHeaderPresenting
 
 - (void)updateWithTitle:(NSString *)title
 {
-    // TODO: update accessibility label
+    // TOOD: accessibility label
     self.titleLabel.text = title;
+}
+
+- (void)updateWithSubtitle:(NSString *)subtitle
+{
+    self.subtitleLabel.text = subtitle;
 }
 
 #pragma mark - UIAppearance
@@ -69,6 +85,18 @@
 {
     _titleLabelColor = titleLabelColor;
     self.titleLabel.textColor = titleLabelColor;
+}
+
+- (void)setSubtitleLabelFont:(UIFont *)subtitleLabelFont
+{
+    _subtitleLabelFont = subtitleLabelFont;
+    self.subtitleLabel.font = subtitleLabelFont;
+}
+
+- (void)setSubtitleLabelColor:(UIColor *)subtitleLabelColor
+{
+    _subtitleLabelColor = subtitleLabelColor;
+    self.subtitleLabel.textColor = subtitleLabelColor;
 }
 
 - (void)setHeaderBackgroundColor:(UIColor *)headerBackgroundColor
@@ -87,6 +115,19 @@
     NSArray *leftMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftMargin-[titleLabel]" options:0 metrics:metrics views:views];
     NSArray *topMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[titleLabel]" options:0 metrics:metrics views:views];
 
+    [self addConstraints:leftMarginConstraint];
+    [self addConstraints:topMarginConstraint];
+}
+
+- (void)kt_configureConstraintsForSubtitleLabel
+{
+    NSDictionary *metrics = @{@"leftMargin":@(15),
+                              @"topMargin":@(5)};
+    NSDictionary *views = @{@"subtitleLabel": self.subtitleLabel,
+                            @"titleLabel":self.titleLabel};
+    NSArray *leftMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftMargin-[subtitleLabel]" options:0 metrics:metrics views:views];
+    NSArray *topMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[titleLabel]-topMargin-[subtitleLabel]" options:0 metrics:metrics views:views];
+    
     [self addConstraints:leftMarginConstraint];
     [self addConstraints:topMarginConstraint];
 }

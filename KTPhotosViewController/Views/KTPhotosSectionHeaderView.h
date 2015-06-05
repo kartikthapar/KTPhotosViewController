@@ -32,6 +32,16 @@
 @property (nonatomic) UIColor *titleLabelColor UI_APPEARANCE_SELECTOR;
 
 /**
+ * @abstract The font for the subtitle label displayed in the header view.
+ */
+@property (nonatomic) UIFont *subtitleLabelFont UI_APPEARANCE_SELECTOR;
+
+/**
+ * @abstract The text color for the subtitle label displayed in the header view.
+ */
+@property (nonatomic) UIColor *subtitleLabelColor UI_APPEARANCE_SELECTOR;
+
+/**
  * @abstract The background color for the header view.
  */
 @property (nonatomic) UIColor *headerBackgroundColor UI_APPEARANCE_SELECTOR;

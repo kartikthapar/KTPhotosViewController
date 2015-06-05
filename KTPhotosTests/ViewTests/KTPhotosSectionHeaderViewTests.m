@@ -20,6 +20,7 @@
 @interface KTPhotosSectionHeaderView ()
 
 @property UILabel *titleLabel;
+@property UILabel *subtitleLabel;
 
 @end
 
@@ -78,6 +79,12 @@
     expect(headerView.titleLabelColor).to.equal([UIColor darkGrayColor]);
     expect(headerView.titleLabel.textColor).to.equal(headerView.titleLabelColor);
     
+    expect(headerView.subtitleLabelFont).to.equal([UIFont systemFontOfSize:14.0f]);
+    expect(headerView.subtitleLabel.font).to.equal(headerView.subtitleLabelFont);
+
+    expect(headerView.subtitleLabelColor).to.equal([UIColor lightGrayColor]);
+    expect(headerView.subtitleLabel.textColor).to.equal(headerView.subtitleLabelColor);
+
     expect(headerView.headerBackgroundColor).to.equal([UIColor whiteColor]);
     expect(headerView.backgroundColor).to.equal(headerView.headerBackgroundColor);
 }
@@ -86,9 +93,13 @@
 {
     UIFont *titleLabelFont = [UIFont fontWithName:@"Georgia" size:24.0f];
     UIColor *titleLabelColor = [UIColor blueColor];
+    UIFont *subtitleLabelFont = [UIFont fontWithName:@"Georgia" size:12.0f];
+    UIColor *subtitleLabelColor = [UIColor greenColor];
     UIColor *headerBackgroundColor = [UIColor redColor];
     [[KTPhotosSectionHeaderView appearance] setTitleLabelFont:titleLabelFont];
     [[KTPhotosSectionHeaderView appearance] setTitleLabelColor:titleLabelColor];
+    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelFont:subtitleLabelFont];
+    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelColor:subtitleLabelColor];
     [[KTPhotosSectionHeaderView appearance] setHeaderBackgroundColor:headerBackgroundColor];
     
     [self presentPhotosSectionHeaderView];
@@ -99,6 +110,12 @@
     
     expect(headerView.titleLabelColor).to.equal(titleLabelColor);
     expect(headerView.titleLabel.textColor).to.equal(headerView.titleLabelColor);
+    
+    expect(headerView.subtitleLabelFont).to.equal(subtitleLabelFont);
+    expect(headerView.subtitleLabel.font).to.equal(headerView.subtitleLabelFont);
+    
+    expect(headerView.subtitleLabelColor).to.equal(subtitleLabelColor);
+    expect(headerView.subtitleLabel.textColor).to.equal(headerView.subtitleLabelColor);
     
     expect(headerView.headerBackgroundColor).to.equal(headerBackgroundColor);
     expect(headerView.backgroundColor).to.equal(headerBackgroundColor);
@@ -116,6 +133,8 @@
 {
     [[KTPhotosSectionHeaderView appearance] setTitleLabelFont:[UIFont systemFontOfSize:17.0f]];
     [[KTPhotosSectionHeaderView appearance] setTitleLabelColor:[UIColor darkGrayColor]];
+    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelFont:[UIFont systemFontOfSize:14.0f]];
+    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelColor:[UIColor lightGrayColor]];
     [[KTPhotosSectionHeaderView appearance] setHeaderBackgroundColor:[UIColor whiteColor]];
 }
 

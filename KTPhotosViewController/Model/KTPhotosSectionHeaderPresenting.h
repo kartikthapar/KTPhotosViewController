@@ -22,4 +22,10 @@
  */
 - (void)updateWithTitle:(NSString *)title;
 
+/**
+ * @abstract Update the header with the specified subtitle.
+ * @param subtitle The subtitle string for the header view.
+ */
+- (void)updateWithSubtitle:(NSString *)subtitle;
+
 @end

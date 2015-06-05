@@ -107,6 +107,12 @@
             {
                 [(id<KTPhotosSectionHeaderPresenting>)reusableView updateWithTitle:title];
             }
+            
+            NSString *subtitle = [collectionView.dataSource collectionView:collectionView subtitleTextForHeaderAtIndexPath:indexPath];
+            if (subtitle)
+            {
+                [(id<KTPhotosSectionHeaderPresenting>)reusableView updateWithSubtitle:subtitle];
+            }
         }
     }
     return reusableView;
@@ -121,6 +127,12 @@
 }
 
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
+{
+    // return nil so that the header view does not update
+    return nil;
+}
+
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView subtitleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
 {
     // return nil so that the header view does not update
     return nil;

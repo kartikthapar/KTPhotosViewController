@@ -33,4 +33,13 @@
  */
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ * @abstract The subtitle text for the section header displayed in the collection view.
+ * @discussion The default value returned is nil.
+ * @param collectionView The collection view instance requesting the information.
+ * @param indexPath The index path that specifies the location of the item.
+ * @return An `NSString` with the subtitle for the header.
+ */
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView subtitleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
