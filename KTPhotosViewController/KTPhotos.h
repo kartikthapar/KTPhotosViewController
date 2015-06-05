@@ -17,6 +17,7 @@
 
 #import "KTPhotosCollectionViewDataSource.h"
 #import "KTPhotoData.h"
+#import "KTPhotosSectionHeaderPresenting.h"
 #import "KTPhotosThumbnailPresenting.h"
 #import "KTThumbnailItem.h"
 
