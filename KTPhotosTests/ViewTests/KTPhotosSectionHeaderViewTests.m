@@ -40,23 +40,23 @@
 
 #pragma mark - Tests
 
-- (void)testPhotosSectionInfoHeaderViewInit
+- (void)testPhotosSectionHeaderViewInit
 {
     KTPhotosSectionHeaderView *headerView = [[KTPhotosSectionHeaderView alloc] init];
     expect(headerView).toNot.beNil();
     expect([KTPhotosSectionHeaderView headerReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosSectionHeaderView class]));
 }
 
-- (void)testPhotosSectionInfoHeaderViewDisplay
+- (void)testPhotosSectionHeaderViewDisplay
 {
-    [self presentPhotosSectionInfoHeaderView];
+    [self presentPhotosSectionHeaderView];
     
     [tester waitForViewWithAccessibilityLabel:KTPhotosSectionHeaderViewAccessibilityLabel];
 }
 
 #pragma mark - Internal
 
-- (void)presentPhotosSectionInfoHeaderView
+- (void)presentPhotosSectionHeaderView
 {
     UICollectionViewController *controller = [self.testCollectionViewModel defaultCollectionViewController];
     XCT_PresentViewController(controller);

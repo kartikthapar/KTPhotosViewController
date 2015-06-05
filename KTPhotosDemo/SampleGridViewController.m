@@ -9,7 +9,7 @@
 #import "SampleGridViewController.h"
 #import "SamplePhotosCollectionViewCell.h"
 #import "SampleModelData.h"
-#import "SamplePhotosSectionInfoHeaderView.h"
+#import "SamplePhotosSectionHeaderView.h"
 
 @interface SampleGridViewController ()
 
@@ -30,10 +30,10 @@
 //    self.collectionView.cellIdentifier = [SamplePhotosCollectionViewCell cellReuseIdentifier];
 //    
 //    // demonstrate use of custom header class for collection view
-//    self.collectionView.sectionInfoHeaderClass = [SamplePhotosSectionInfoHeaderView class];
+//    self.collectionView.sectionHeaderClass = [SamplePhotosSectionHeaderView class];
 //    
 //    // demonstrate use of custom header identifier for collection view
-//    self.collectionView.sectionInfoHeaderIdentifier = [SamplePhotosSectionInfoHeaderView headerReuseIdentifier];
+//    self.collectionView.sectionHeaderIdentifier = [SamplePhotosSectionHeaderView headerReuseIdentifier];
     
     // configure data for collection view
     self.sampleModelData = [[SampleModelData alloc] init];

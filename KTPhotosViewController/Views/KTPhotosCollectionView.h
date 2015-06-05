@@ -35,12 +35,12 @@
  * @abstract The `UICollectionReusableView` subclass for customizing the presentation of section headers in the collection view.
  * @discussion Setting this property registers the class for headers for this collection view. Setting the class when the view is already displayed results in undefined behavior. The default value is returned by `[KTPhotosSectionHeaderView class]`. This value must not be `nil`.
  */
-@property (nonatomic) Class sectionInfoHeaderClass;
+@property (nonatomic) Class sectionHeaderClass;
 
 /**
  * @abstract The section header identifier for dequeing headers in the collection view.
  * @discussion Setting this property registers the specified reuse identifier for section headers for this collection view. Setting the identifier when the view is already displayed results in undefined behavior. The default value is returned by `[KTPhotosSectionHeaderView headerReuseIdentifier]`. This value must not be `nil`.
  */
-@property (nonatomic) NSString *sectionInfoHeaderIdentifier;
+@property (nonatomic) NSString *sectionHeaderIdentifier;
 
 @end

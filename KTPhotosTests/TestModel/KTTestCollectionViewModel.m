@@ -88,7 +88,7 @@
     UICollectionReusableView *view = nil;
     if (kind == UICollectionElementKindSectionHeader)
     {
-        view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionInfoHeaderIdentifier forIndexPath:indexPath];
+        view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionHeaderIdentifier forIndexPath:indexPath];
     }
     return view;
 }

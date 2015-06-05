@@ -40,11 +40,11 @@
     _cellClass = [KTPhotosCollectionViewCell class];
     _cellIdentifier = [KTPhotosCollectionViewCell cellReuseIdentifier];
     
-    _sectionInfoHeaderClass = [KTPhotosSectionHeaderView class];
-    _sectionInfoHeaderIdentifier = [KTPhotosSectionHeaderView headerReuseIdentifier];
+    _sectionHeaderClass = [KTPhotosSectionHeaderView class];
+    _sectionHeaderIdentifier = [KTPhotosSectionHeaderView headerReuseIdentifier];
     
     [self registerClass:self.cellClass forCellWithReuseIdentifier:self.cellIdentifier];
-    [self registerClass:self.sectionInfoHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:self.sectionInfoHeaderIdentifier];
+    [self registerClass:self.sectionHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:self.sectionHeaderIdentifier];
 }
 
 #pragma mark - Config
@@ -70,20 +70,20 @@
     [self registerClass:_cellClass forCellWithReuseIdentifier:cellIdentifier];
 }
 
-- (void)setSectionInfoHeaderClass:(Class)sectionInfoHeaderClass
+- (void)setSectionHeaderClass:(Class)sectionHeaderClass
 {
-    NSParameterAssert(sectionInfoHeaderClass);
+    NSParameterAssert(sectionHeaderClass);
     
-    _sectionInfoHeaderClass = sectionInfoHeaderClass;
-    [self registerClass:_sectionInfoHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:_sectionInfoHeaderIdentifier];
+    _sectionHeaderClass = sectionHeaderClass;
+    [self registerClass:_sectionHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:_sectionHeaderIdentifier];
 }
 
-- (void)setSectionInfoHeaderIdentifier:(NSString *)sectionInfoHeaderIdentifier
+- (void)setSectionHeaderIdentifier:(NSString *)sectionHeaderIdentifier
 {
-    NSParameterAssert(sectionInfoHeaderIdentifier);
+    NSParameterAssert(sectionHeaderIdentifier);
 
-    _sectionInfoHeaderIdentifier = sectionInfoHeaderIdentifier;
-    [self registerClass:_sectionInfoHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:_sectionInfoHeaderIdentifier];
+    _sectionHeaderIdentifier = sectionHeaderIdentifier;
+    [self registerClass:_sectionHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:_sectionHeaderIdentifier];
 }
 
 @end

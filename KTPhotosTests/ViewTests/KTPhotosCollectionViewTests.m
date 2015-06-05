@@ -18,7 +18,7 @@
 #import "KTTestCollectionViewModel.h"
 
 #import "SamplePhotosCollectionViewCell.h"
-#import "SamplePhotosSectionInfoHeaderView.h"
+#import "SamplePhotosSectionHeaderView.h"
 
 @interface KTPhotosCollectionViewTests : XCTestCase
 
@@ -50,8 +50,8 @@
     expect(collectionView.collectionViewLayout).toNot.beNil();
     expect(collectionView.cellIdentifier).to.equal([KTPhotosCollectionViewCell cellReuseIdentifier]);
     expect(collectionView.cellClass).to.equal([KTPhotosCollectionViewCell class]);
-    expect(collectionView.sectionInfoHeaderClass).to.equal([KTPhotosSectionHeaderView class]);
-    expect(collectionView.sectionInfoHeaderIdentifier).to.equal([KTPhotosSectionHeaderView headerReuseIdentifier]);
+    expect(collectionView.sectionHeaderClass).to.equal([KTPhotosSectionHeaderView class]);
+    expect(collectionView.sectionHeaderIdentifier).to.equal([KTPhotosSectionHeaderView headerReuseIdentifier]);
 }
 
 - (void)testPhotosCollectionViewDisplay
@@ -90,19 +90,19 @@
 - (void)testPhotosCollectionViewWithCustomSectionHeaderClass
 {
     KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
-    collectionView.sectionInfoHeaderClass = [SamplePhotosSectionInfoHeaderView class];
-    expect(collectionView.sectionInfoHeaderClass).to.equal([SamplePhotosSectionInfoHeaderView class]);
+    collectionView.sectionHeaderClass = [SamplePhotosSectionHeaderView class];
+    expect(collectionView.sectionHeaderClass).to.equal([SamplePhotosSectionHeaderView class]);
 
     [self presentPhotosCollectionView:collectionView];
     
-    [tester waitForViewWithAccessibilityLabel:SamplePhotosSectionInfoHeaderViewAccessibilityLabel];
+    [tester waitForViewWithAccessibilityLabel:SamplePhotosSectionHeaderViewAccessibilityLabel];
 }
 
 - (void)testPhotosCollectionViewWithCustomSectionHeaderIdentifier
 {
     KTPhotosCollectionView *collectionView = [self.testCollectionViewModel defaultCollectionView];
-    collectionView.sectionInfoHeaderIdentifier = [SamplePhotosSectionInfoHeaderView headerReuseIdentifier];
-    expect(collectionView.sectionInfoHeaderIdentifier).to.equal([SamplePhotosSectionInfoHeaderView headerReuseIdentifier]);
+    collectionView.sectionHeaderIdentifier = [SamplePhotosSectionHeaderView headerReuseIdentifier];
+    expect(collectionView.sectionHeaderIdentifier).to.equal([SamplePhotosSectionHeaderView headerReuseIdentifier]);
     
     [self presentPhotosCollectionView:collectionView];
     

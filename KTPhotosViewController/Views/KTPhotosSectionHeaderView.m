@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
-- (void)kt_configureSectionInfoHeaderView;
+- (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForTitleLabel;
 
 @end
@@ -23,12 +23,12 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        [self kt_configureSectionInfoHeaderView];
+        [self kt_configureSectionHeaderView];
     }
     return self;
 }
 
-- (void)kt_configureSectionInfoHeaderView
+- (void)kt_configureSectionHeaderView
 {
     self.accessibilityLabel = KTPhotosSectionHeaderViewAccessibilityLabel;
     

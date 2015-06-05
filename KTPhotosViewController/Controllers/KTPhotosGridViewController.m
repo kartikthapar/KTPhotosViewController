@@ -94,7 +94,7 @@
     {
         // TODO: include a boolean flag indicating if section headers need to be created; can be based on indexPath also;
         // create a section header
-        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionInfoHeaderIdentifier forIndexPath:indexPath];
+        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionHeaderIdentifier forIndexPath:indexPath];
         
         if ([reusableView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)])
         {

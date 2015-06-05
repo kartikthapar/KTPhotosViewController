@@ -1,27 +1,27 @@
 //
-//  SamplePhotosSectionInfoHeaderView.m
+//  SamplePhotosSectionHeaderView.m
 //  KTPhotos
 //
 //  Created by Kartik Thapar on 6/4/15.
 //  Copyright (c) 2015 Kartik Thapar. All rights reserved.
 //
 
-#import "SamplePhotosSectionInfoHeaderView.h"
+#import "SamplePhotosSectionHeaderView.h"
 
-@implementation SamplePhotosSectionInfoHeaderView
+@implementation SamplePhotosSectionHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
-        [self configureSectionInfoHeaderView];
+        [self configureSectionHeaderView];
     }
     return self;
 }
 
-- (void)configureSectionInfoHeaderView
+- (void)configureSectionHeaderView
 {
-    self.accessibilityLabel = SamplePhotosSectionInfoHeaderViewAccessibilityLabel;
+    self.accessibilityLabel = SamplePhotosSectionHeaderViewAccessibilityLabel;
     self.backgroundColor = [UIColor blueColor];
 }
 
