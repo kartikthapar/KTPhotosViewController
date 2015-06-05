@@ -8,8 +8,7 @@
 
 #import "KTPhotosGridViewController.h"
 #import "KTPhotosCollectionView.h"
-#import "KTPhotosCollectionViewCell.h"
-#import "KTPhotosSectionInfoHeaderView.h"
+#import "KTPhotosThumbnailPresenting.h"
 
 @interface KTPhotosGridViewController ()
 
