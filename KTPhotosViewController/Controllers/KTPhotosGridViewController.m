@@ -20,6 +20,8 @@
 #define kLeftEdgeInsetDefault 0
 #define kRightEdgeInsetDefault 0
 
+#define kCellSizeDefault 93
+
 @interface KTPhotosGridViewController ()
 
 @property (nonatomic, strong, readwrite) KTPhotosCollectionView *collectionView;
@@ -158,7 +160,7 @@
 
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(75, 75);
+    return CGSizeMake(kCellSizeDefault, kCellSizeDefault);
 }
 
 - (UIEdgeInsets)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
