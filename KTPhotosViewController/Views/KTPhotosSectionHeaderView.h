@@ -46,4 +46,10 @@
  */
 @property (nonatomic) UIColor *headerBackgroundColor UI_APPEARANCE_SELECTOR;
 
+/**
+ * @abstract The background color for the right accessory view.
+ * @discussion The default value is `[UIColor grayColor]`.
+ */
+@property (nonatomic) UIColor *rightAccessoryBackgroundColor UI_APPEARANCE_SELECTOR;
+
 @end

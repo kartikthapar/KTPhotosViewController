@@ -13,11 +13,13 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UIVisualEffectView *blurView;
+@property (nonatomic, strong) UIView *rightAccessoryView;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
 - (void)kt_configureConstraintsForSubtitleLabel;
+- (void)kt_configureConstraintsForRightAccessoryView;
 
 @end
 
@@ -31,6 +33,7 @@
     proxy.subtitleLabelFont = [UIFont systemFontOfSize:14.0f];
     proxy.subtitleLabelColor = [UIColor lightGrayColor];
     proxy.headerBackgroundColor = [UIColor clearColor];
+    proxy.rightAccessoryBackgroundColor = [UIColor grayColor];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -64,9 +67,15 @@
     self.subtitleLabel.textColor = self.subtitleLabelColor;
     [self addSubview:self.subtitleLabel];
     
+    self.rightAccessoryView = [[UIView alloc] init];
+    self.rightAccessoryView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.rightAccessoryView.backgroundColor = _rightAccessoryBackgroundColor;
+    [self addSubview:self.rightAccessoryView];
+    
     [self kt_configureConstraintsForBlurView];
     [self kt_configureConstraintsForTitleLabel];
     [self kt_configureConstraintsForSubtitleLabel];
+    [self kt_configureConstraintsForRightAccessoryView];
 }
 
 #pragma mark - KTPhotosSectionHeaderPresenting
@@ -114,6 +123,12 @@
     self.backgroundColor = headerBackgroundColor;
 }
 
+- (void)setRightAccessoryBackgroundColor:(UIColor *)rightAccessoryBackgroundColor
+{
+    _rightAccessoryBackgroundColor = rightAccessoryBackgroundColor;
+    self.rightAccessoryView.backgroundColor = rightAccessoryBackgroundColor;
+}
+
 #pragma mark - Constraints
 
 - (void)kt_configureConstraintsForBlurView
@@ -154,6 +169,22 @@
     
     [self addConstraints:xConstraint];
     [self addConstraints:yConstraint];
+}
+
+- (void)kt_configureConstraintsForRightAccessoryView
+{
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0.1 constant:0];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryView attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+
+    NSLayoutConstraint *xConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:0.98 constant:0.0f];
+
+    NSLayoutConstraint *yConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f];
+
+    [self addConstraint:widthConstraint];
+    [self addConstraint:heightConstraint];
+    [self addConstraint:xConstraint];
+    [self addConstraint:yConstraint];
+
 }
 
 #pragma mark - Info
