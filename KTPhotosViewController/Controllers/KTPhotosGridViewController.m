@@ -15,6 +15,11 @@
 #import "KTPhotosCollectionViewCell.h"
 #import "KTPhotosSectionHeaderView.h"
 
+#define kTopEdgeInsetDefault 0
+#define kBottomEdgeInsetDefault 5
+#define kLeftEdgeInsetDefault 0
+#define kRightEdgeInsetDefault 0
+
 @interface KTPhotosGridViewController ()
 
 @property (nonatomic, strong, readwrite) KTPhotosCollectionView *collectionView;
@@ -56,6 +61,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.view addSubview:self.collectionView];
+    self.automaticallyAdjustsScrollViewInsets = YES;
     
     // Appearance
     self.view.backgroundColor = [UIColor whiteColor];
@@ -157,7 +163,7 @@
 
 - (UIEdgeInsets)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(20, 20, 20, 20);
+    return UIEdgeInsetsMake(kTopEdgeInsetDefault, kLeftEdgeInsetDefault, kBottomEdgeInsetDefault, kRightEdgeInsetDefault);
 }
 
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
