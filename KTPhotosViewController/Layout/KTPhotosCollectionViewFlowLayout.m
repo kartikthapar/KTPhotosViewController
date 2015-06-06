@@ -9,16 +9,33 @@
 #import "KTPhotosCollectionViewFlowLayout.h"
 #import "KTPhotosCollectionView.h"
 
+#define kDefaultMinimumInteritemSpacing 1.0f
+#define kDefaultMinimumLineSpacing 1.0f
+
 @implementation KTPhotosCollectionViewFlowLayout
 
 @dynamic collectionView;
 
-- (BOOL) shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+#pragma mark - init
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        self.minimumInteritemSpacing = kDefaultMinimumInteritemSpacing;
+        self.minimumLineSpacing = kDefaultMinimumLineSpacing;
+    }
+    return self;
+}
+
+#pragma mark - UICollectionViewLayout
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     return YES;
 }
 
-- (NSArray *) layoutAttributesForElementsInRect:(CGRect)rect
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
     NSMutableArray *attributes = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     NSMutableArray *visibleSectionsWithoutHeader = [NSMutableArray array];
@@ -93,6 +110,12 @@
     return attributes;
 }
 
+#pragma mark - Internal
+
+/**
+ * @abstract Returns a boolean value indicating if the collection view wants a stick header for the specified section.
+ * @param section The section for which the header display is to be ascertain.
+ */
 - (BOOL)shouldStickHeaderToTopInSection:(NSUInteger)section
 {
     return [self.collectionView.delegate collectionView:self.collectionView shouldStickHeaderToTopInSection:section];

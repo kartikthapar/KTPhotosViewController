@@ -35,6 +35,11 @@
 //    // demonstrate use of custom header identifier for collection view
 //    self.collectionView.sectionHeaderIdentifier = [SamplePhotosSectionHeaderView headerReuseIdentifier];
     
+//    // demonstrate flow layout item/line spacing
+//    KTPhotosCollectionViewFlowLayout *flowLayout = self.collectionView.collectionViewLayout;
+//    flowLayout.minimumInteritemSpacing = 2.0f;
+//    flowLayout.minimumLineSpacing = 5.0f;
+    
     // configure data for collection view
     self.sampleModelData = [[SampleModelData alloc] init];
 }
