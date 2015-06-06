@@ -14,6 +14,10 @@
  */
 @protocol KTPhotosSectionHeaderPresenting <NSObject>
 
+@required
+
+@property (nonatomic, assign) NSInteger sectionIndex;
+
 @optional
 
 /**

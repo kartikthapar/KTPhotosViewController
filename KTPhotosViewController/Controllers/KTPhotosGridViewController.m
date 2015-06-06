@@ -103,8 +103,13 @@
         // create a section header
         reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:collectionView.sectionHeaderIdentifier forIndexPath:indexPath];
         
+        UICollectionReusableView<KTPhotosSectionHeaderPresenting> *headerView = (UICollectionReusableView<KTPhotosSectionHeaderPresenting> *)reusableView;
+        
         if ([reusableView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)])
         {
+            // set the section for the header view (for gestures, etc)
+            headerView.sectionIndex = indexPath.section;
+            
             // view conforms to protocol KTPhotosSectionHeaderPresenting; so either this is an instance of KTPhotosSectionHeaderView or some custom class that conforms to KTPhotosSectionHeaderPresenting
             // it is possiblethat the data source does not implement some of the data source methods
             
@@ -112,13 +117,13 @@
             NSString *title = [collectionView.dataSource collectionView:collectionView titleTextForHeaderAtIndexPath:indexPath];
             if (title)
             {
-                [(id<KTPhotosSectionHeaderPresenting>)reusableView updateWithTitle:title];
+                [headerView updateWithTitle:title];
             }
             
             NSString *subtitle = [collectionView.dataSource collectionView:collectionView subtitleTextForHeaderAtIndexPath:indexPath];
             if (subtitle)
             {
-                [(id<KTPhotosSectionHeaderPresenting>)reusableView updateWithSubtitle:subtitle];
+                [headerView updateWithSubtitle:subtitle];
             }
         }
     }

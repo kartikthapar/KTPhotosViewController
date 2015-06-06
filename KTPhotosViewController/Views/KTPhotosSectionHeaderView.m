@@ -13,17 +13,21 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UIVisualEffectView *blurView;
-@property (nonatomic, strong) UIView *rightAccessoryView;
+@property (nonatomic, strong, readwrite) UIView *rightAccessoryView;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
 - (void)kt_configureConstraintsForSubtitleLabel;
 - (void)kt_configureConstraintsForRightAccessoryView;
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
 
 @end
 
 @implementation KTPhotosSectionHeaderView
+
+@synthesize sectionIndex;
 
 + (void)initialize
 {
@@ -48,6 +52,9 @@
 - (void)kt_configureSectionHeaderView
 {
     self.accessibilityLabel = KTPhotosSectionHeaderViewAccessibilityLabel;
+    
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kt_handleTapGesture:)];
+    [self addGestureRecognizer:self.tapGestureRecognizer];
     
     UIBlurEffect * effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     self.blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
@@ -129,6 +136,17 @@
     self.rightAccessoryView.backgroundColor = rightAccessoryBackgroundColor;
 }
 
+#pragma mark - Actions
+
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    CGPoint location = [tapGestureRecognizer locationInView:self];
+    
+    if (CGRectContainsPoint(self.rightAccessoryView.frame, location))
+    {
+    }
+}
+
 #pragma mark - Constraints
 
 - (void)kt_configureConstraintsForBlurView
@@ -184,7 +202,6 @@
     [self addConstraint:heightConstraint];
     [self addConstraint:xConstraint];
     [self addConstraint:yConstraint];
-
 }
 
 #pragma mark - Info
