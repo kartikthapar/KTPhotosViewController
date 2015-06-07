@@ -28,6 +28,20 @@
  */
 - (void)sectionHeaderDidTapLeftAccessoryButton:(KTPhotosSectionHeaderView *)sectionHeaderView;
 
+/**
+ * @abstract Tells the delegate that the in the header view was tapped.
+ * @param sectionHeaderView The section header in which the title label exists.
+ */
+- (void)sectionHeaderDidTapTitleLabel:(KTPhotosSectionHeaderView *)sectionHeaderView;
+
+/**
+ * @abstract Tells the delegate that the header view was tapped at the specified position.
+ * @discussion This methods is only called if the position is not within the bounds of the auxiliary views like titleLabel, accessory buttons, etc.
+ * @param sectionHeaderView The section header that was tapped.
+ * @param location The point at which header view was tapped.
+ */
+- (void)sectionHeaderDidTapHeaderView:(KTPhotosSectionHeaderView *)sectionHeaderView atPosition:(CGPoint)location;
+
 @end
 
 @interface KTPhotosSectionHeaderView : UICollectionReusableView <KTPhotosSectionHeaderPresenting>
@@ -36,6 +50,12 @@
  * @abstract Returns the default string used to identify a reusable header view.
  */
 + (NSString *)headerReuseIdentifier;
+
+/**
+ * @abstract Returns the title label for the header view.
+ * @discussion See `UIAppearance` properties for the title label as well as the `KTPhotosSectionHeaderPresenting` API to change title label appearance or content.
+ */
+@property (nonatomic, strong, readonly) UILabel *titleLabel;
 
 /**
  * @abstract Returns the left accessory button for the header view.

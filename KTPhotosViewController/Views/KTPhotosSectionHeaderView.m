@@ -10,8 +10,8 @@
 
 @interface KTPhotosSectionHeaderView ()
 
-@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIVisualEffectView *blurView;
+@property (nonatomic, strong, readwrite) UILabel *titleLabel;
 @property (nonatomic, strong, readwrite) UIButton *rightAccessoryButton;
 @property (nonatomic, strong, readwrite) UIButton *leftAccessoryButton;
 
@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelWithRightAccessoryConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelWithoutRightAccessoryConstraint;
 
+@property (nonatomic, strong, readwrite) UITapGestureRecognizer *tapGestureRecognizer;
+
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
@@ -27,6 +29,7 @@
 - (void)kt_configureConstraintsForLeftAccessoryButton;
 - (void)kt_didTapRightAccessoryButton:(id)sender;
 - (void)kt_didTapLeftAccessoryButton:(id)sender;
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
 
 @end
 
@@ -56,6 +59,9 @@
 - (void)kt_configureSectionHeaderView
 {
     self.accessibilityLabel = KTPhotosSectionHeaderViewAccessibilityLabel;
+    
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kt_handleTapGesture:)];
+    [self addGestureRecognizer:self.tapGestureRecognizer];
     
     UIBlurEffect * effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     self.blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
@@ -151,6 +157,22 @@
 - (void)kt_didTapLeftAccessoryButton:(id)sender
 {
     [self.delegate sectionHeaderDidTapLeftAccessoryButton:self];
+}
+
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    CGPoint location = [tapGestureRecognizer locationInView:self];
+    
+    // TODO: find the exact rect of the title label (with the text)
+    
+    if (CGRectContainsPoint(self.titleLabel.frame, location))
+    {
+        [self.delegate sectionHeaderDidTapTitleLabel:self];
+    }
+    else
+    {
+        [self.delegate sectionHeaderDidTapHeaderView:self atPosition:location];
+    }
 }
 
 #pragma mark - Constraints

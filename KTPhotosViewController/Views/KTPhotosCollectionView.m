@@ -102,4 +102,16 @@
     [self.delegate collectionView:self didTapLeftAccessoryButton:sectionHeaderView.rightAccessoryButton inSectionHeader:sectionHeaderView];
 }
 
+- (void)sectionHeaderDidTapTitleLabel:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    // notify the delegate that the left accessory button in the header of this collection view was tapped
+    [self.delegate collectionView:self didTapTitleLabel:sectionHeaderView.titleLabel inSectionHeader:sectionHeaderView];
+}
+
+- (void)sectionHeaderDidTapHeaderView:(KTPhotosSectionHeaderView *)sectionHeaderView atPosition:(CGPoint)location
+{
+    // notify the delegate that the header view of this collection view was tapped
+    [self.delegate collectionView:self didTapSectionHeader:sectionHeaderView atPosition:location];
+}
+
 @end

@@ -41,4 +41,21 @@
  */
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapLeftAccessoryButton:(UIButton *)leftAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
 
+/**
+ * @abstract Tells the delegate that the title label in the header has been tapped.
+ * @param collectionView The collection view instance in which the header exists.
+ * @param titleLabel The title label in the header.
+ * @param sectionHeaderView The header view in which the accessory button exists.
+ */
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapTitleLabel:(UILabel *)titleLabel inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
+
+/**
+ * @abstract Tells the delegate that the section headerhas been tapped.
+ * @discussion This methods is only called if the position is not within the bounds of the auxiliary views like titleLabel, accessory buttons, etc.
+ * @param collectionView The collection view instance in which the header exists.
+ * @param titleLabel The title label in the header.
+ * @param sectionHeaderView The header view in which the accessory button exists.
+ */
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView atPosition:(CGPoint)location;
+
 @end
