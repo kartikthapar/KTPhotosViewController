@@ -11,16 +11,20 @@
 @interface KTPhotosSectionHeaderView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UIVisualEffectView *blurView;
 @property (nonatomic, strong, readwrite) UIButton *rightAccessoryButton;
+@property (nonatomic, strong, readwrite) UIButton *leftAccessoryButton;
+
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelWithLeftAccessoryConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelWithoutLeftAccessoryConstraint;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
-- (void)kt_configureConstraintsForSubtitleLabel;
 - (void)kt_configureConstraintsForRightAccessoryButton;
+- (void)kt_configureConstraintsForLeftAccessoryButton;
 - (void)kt_didTapRightAccessoryButton:(id)sender;
+- (void)kt_didTapLeftAccessoryButton:(id)sender;
 
 @end
 
@@ -33,10 +37,9 @@
     KTPhotosSectionHeaderView *proxy = [self appearance];
     proxy.titleLabelFont = [UIFont systemFontOfSize:17.0f];
     proxy.titleLabelColor = [UIColor darkGrayColor];
-    proxy.subtitleLabelFont = [UIFont systemFontOfSize:14.0f];
-    proxy.subtitleLabelColor = [UIColor lightGrayColor];
     proxy.headerBackgroundColor = [UIColor clearColor];
     proxy.rightAccessoryBackgroundColor = [UIColor grayColor];
+    proxy.leftAccessoryBackgroundColor = [UIColor grayColor];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -64,22 +67,23 @@
     self.titleLabel.textColor = self.titleLabelColor;
     [self addSubview:self.titleLabel];
     
-    self.subtitleLabel = [[UILabel alloc] init];
-    self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.subtitleLabel.font = self.subtitleLabelFont;
-    self.subtitleLabel.textColor = self.subtitleLabelColor;
-    [self addSubview:self.subtitleLabel];
-    
     self.rightAccessoryButton = [[UIButton alloc] init];
     [self.rightAccessoryButton addTarget:self action:@selector(kt_didTapRightAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
     self.rightAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.rightAccessoryButton.backgroundColor = _rightAccessoryBackgroundColor;
     [self addSubview:self.rightAccessoryButton];
     
+    self.leftAccessoryButton = [[UIButton alloc] init];
+    self.leftAccessoryButton.hidden = YES;
+    [self.leftAccessoryButton addTarget:self action:@selector(kt_didTapLeftAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.leftAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.leftAccessoryButton.backgroundColor = self.leftAccessoryBackgroundColor;
+    [self addSubview:self.leftAccessoryButton];
+    
     [self kt_configureConstraintsForBlurView];
     [self kt_configureConstraintsForTitleLabel];
-    [self kt_configureConstraintsForSubtitleLabel];
     [self kt_configureConstraintsForRightAccessoryButton];
+    [self kt_configureConstraintsForLeftAccessoryButton];
 }
 
 #pragma mark - KTPhotosSectionHeaderPresenting
@@ -90,9 +94,10 @@
     self.titleLabel.text = title;
 }
 
-- (void)updateWithSubtitle:(NSString *)subtitle
+- (void)showLeftAccessory
 {
-    self.subtitleLabel.text = subtitle;
+    self.leftAccessoryButton.hidden = NO;
+    [self setNeedsUpdateConstraints];
 }
 
 #pragma mark - UIAppearance
@@ -109,18 +114,6 @@
     self.titleLabel.textColor = titleLabelColor;
 }
 
-- (void)setSubtitleLabelFont:(UIFont *)subtitleLabelFont
-{
-    _subtitleLabelFont = subtitleLabelFont;
-    self.subtitleLabel.font = subtitleLabelFont;
-}
-
-- (void)setSubtitleLabelColor:(UIColor *)subtitleLabelColor
-{
-    _subtitleLabelColor = subtitleLabelColor;
-    self.subtitleLabel.textColor = subtitleLabelColor;
-}
-
 - (void)setHeaderBackgroundColor:(UIColor *)headerBackgroundColor
 {
     _headerBackgroundColor = headerBackgroundColor;
@@ -133,6 +126,12 @@
     self.rightAccessoryButton.backgroundColor = rightAccessoryBackgroundColor;
 }
 
+- (void)setLeftAccessoryBackgroundColor:(UIColor *)leftAccessoryBackgroundColor
+{
+    _leftAccessoryBackgroundColor = leftAccessoryBackgroundColor;
+    self.leftAccessoryButton.backgroundColor = leftAccessoryBackgroundColor;
+}
+
 #pragma mark - Actions
 
 - (void)kt_didTapRightAccessoryButton:(id)sender
@@ -140,61 +139,57 @@
     [self.delegate sectionHeaderDidTapRightAccessoryButton:self];
 }
 
+- (void)kt_didTapLeftAccessoryButton:(id)sender
+{
+    [self.delegate sectionHeaderDidTapLeftAccessoryButton:self];
+}
+
 #pragma mark - Constraints
+
+- (void)updateConstraints
+{
+    if (self.leftAccessoryButton.isHidden)
+    {
+        [self removeConstraint:self.titleLabelWithLeftAccessoryConstraint];
+        [self addConstraint:self.titleLabelWithoutLeftAccessoryConstraint];
+    }
+    else
+    {
+        [self removeConstraint:self.titleLabelWithoutLeftAccessoryConstraint];
+        [self addConstraint:self.titleLabelWithLeftAccessoryConstraint];
+    }
+    
+    [super updateConstraints];
+}
 
 - (void)kt_configureConstraintsForBlurView
 {
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
-    
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
-    
-    [self addConstraint:widthConstraint];
-    [self addConstraint:heightConstraint];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
 }
 
 - (void)kt_configureConstraintsForTitleLabel
 {
-    NSDictionary *metrics = @{@"leftMargin": @(15),
-                              @"topMargin": @(5)};
-    NSDictionary *views = @{@"titleLabel": self.titleLabel};
-    NSArray *leftMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftMargin-[titleLabel]" options:0 metrics:metrics views:views];
-    NSArray *topMarginConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[titleLabel]" options:0 metrics:metrics views:views];
-
-    [self addConstraints:leftMarginConstraint];
-    [self addConstraints:topMarginConstraint];
-}
-
-- (void)kt_configureConstraintsForSubtitleLabel
-{
-    NSDictionary *metrics = @{@"leftMargin": @(15),
-                              @"titleTopMargin": @(5),
-                              @"subtitleTopMargin": @(0),
-                              @"subtitleBotMargin": @(5)};
-    NSDictionary *views = @{@"subtitleLabel": self.subtitleLabel,
-                            @"titleLabel":self.titleLabel};
-
-    NSString *xConstraintFormat = @"H:|-leftMargin-[subtitleLabel]";
-    NSArray *xConstraint = [NSLayoutConstraint constraintsWithVisualFormat:xConstraintFormat options:0 metrics:metrics views:views];
-    NSString *yConstraintFormat = @"V:|-titleTopMargin-[titleLabel]->=subtitleTopMargin-[subtitleLabel]-subtitleBotMargin-|";
-    NSArray *yConstraint = [NSLayoutConstraint constraintsWithVisualFormat:yConstraintFormat options:0 metrics:metrics views:views];
-    
-    [self addConstraints:xConstraint];
-    [self addConstraints:yConstraint];
+    self.titleLabelWithLeftAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.leftAccessoryButton attribute:NSLayoutAttributeRight multiplier:1.0 constant:10];
+    self.titleLabelWithoutLeftAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:10];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f]];
 }
 
 - (void)kt_configureConstraintsForRightAccessoryButton
 {
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0.1 constant:0];
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.6 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:-10]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+}
 
-    NSLayoutConstraint *xConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:0.98 constant:0.0f];
-
-    NSLayoutConstraint *yConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f];
-
-    [self addConstraint:widthConstraint];
-    [self addConstraint:heightConstraint];
-    [self addConstraint:xConstraint];
-    [self addConstraint:yConstraint];
+- (void)kt_configureConstraintsForLeftAccessoryButton
+{
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.6 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.leftAccessoryButton attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:10]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
 }
 
 #pragma mark - Info

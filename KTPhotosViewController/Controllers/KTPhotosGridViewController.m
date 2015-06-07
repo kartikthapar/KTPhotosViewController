@@ -132,13 +132,9 @@
                 }
             }
             
-            NSString *subtitle = [collectionView.dataSource collectionView:collectionView subtitleTextForHeaderAtIndexPath:indexPath];
-            if (subtitle)
+            if ([headerView respondsToSelector:@selector(showLeftAccessory)])
             {
-                if ([headerView respondsToSelector:@selector(updateWithSubtitle:)])
-                {
-                    [headerView updateWithSubtitle:subtitle];
-                }
+                [headerView showLeftAccessory];
             }
         }
     }
@@ -154,12 +150,6 @@
 }
 
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
-{
-    // return nil so that the header view does not update
-    return nil;
-}
-
-- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView subtitleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
 {
     // return nil so that the header view does not update
     return nil;
@@ -193,6 +183,12 @@
 }
 
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
+    return;
+}
+
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapLeftAccessoryButton:(UIButton *)leftAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
 {
     NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
     return;

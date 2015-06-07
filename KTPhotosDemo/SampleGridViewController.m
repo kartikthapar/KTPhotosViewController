@@ -68,11 +68,6 @@
     return @"Obviously";
 }
 
-- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView subtitleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"Hello";
-}
-
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView sizeForHeaderInSection:(NSInteger)section
 {
     return CGSizeMake(self.view.bounds.size.width, 50.0f);
@@ -81,6 +76,11 @@
 #pragma mark - KTPhotosCollectionViewDelegateFlowLayout
 
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    
+}
+
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapLeftAccessoryButton:(UIButton *)leftAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
 {
     
 }

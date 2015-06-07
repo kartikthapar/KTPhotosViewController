@@ -33,4 +33,12 @@
  */
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
 
+/**
+ * @abstract Tells the delegate that the left accessory button in the header has been tapped.
+ * @param collectionView The collection view instance in which the header exists.
+ * @param leftAccessoryButton The left accessory button in the header.
+ * @param sectionHeaderView The header view in which the accessory button exists.
+ */
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapLeftAccessoryButton:(UIButton *)leftAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
+
 @end

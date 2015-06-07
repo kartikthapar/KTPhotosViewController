@@ -96,4 +96,10 @@
     [self.delegate collectionView:self didTapRightAccessoryButton:sectionHeaderView.rightAccessoryButton inSectionHeader:sectionHeaderView];
 }
 
+- (void)sectionHeaderDidTapLeftAccessoryButton:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    // notify the delegate that the left accessory button in the header of this collection view was tapped
+    [self.delegate collectionView:self didTapLeftAccessoryButton:sectionHeaderView.rightAccessoryButton inSectionHeader:sectionHeaderView];
+}
+
 @end

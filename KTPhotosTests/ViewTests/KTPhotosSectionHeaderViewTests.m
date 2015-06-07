@@ -19,17 +19,22 @@
 
 @interface KTPhotosSectionHeaderView ()
 
-@property UILabel *titleLabel;
-@property UILabel *subtitleLabel;
-@property UIVisualEffectView *blurView;
-@property UIButton *rightAccessoryButton;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIVisualEffectView *blurView;
+@property (nonatomic, strong, readwrite) UIButton *rightAccessoryButton;
+@property (nonatomic, strong, readwrite) UIButton *leftAccessoryButton;
+
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelWithLeftAccessoryConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelWithoutLeftAccessoryConstraint;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
-- (void)kt_configureConstraintsForSubtitleLabel;
 - (void)kt_configureConstraintsForRightAccessoryButton;
+- (void)kt_configureConstraintsForLeftAccessoryButton;
 - (void)kt_didTapRightAccessoryButton:(id)sender;
+- (void)kt_didTapLeftAccessoryButton:(id)sender;
+
 @end
 
 @interface KTPhotosSectionHeaderViewTests : XCTestCase
@@ -68,7 +73,6 @@
     KTPhotosSectionHeaderView *headerView = [KTPhotosSectionHeaderView new];
     expect([headerView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)]).to.equal(YES);
     expect([headerView respondsToSelector:@selector(updateWithTitle:)]).to.equal(YES);
-    expect([headerView respondsToSelector:@selector(updateWithSubtitle:)]).to.equal(YES);
     expect([headerView respondsToSelector:@selector(sectionIndex)]).to.equal(YES);
 }
 
@@ -78,7 +82,6 @@
     
     KTPhotosSectionHeaderView *headerView = (KTPhotosSectionHeaderView *)[tester waitForViewWithAccessibilityLabel:KTPhotosSectionHeaderViewAccessibilityLabel];
     expect(headerView.titleLabel).toNot.beNil();
-    expect(headerView.subtitleLabel).toNot.beNil();
     expect(headerView.blurView).toNot.beNil();
     expect(headerView.rightAccessoryButton).toNot.beNil();
 }
@@ -94,12 +97,6 @@
     expect(headerView.titleLabelColor).to.equal([UIColor darkGrayColor]);
     expect(headerView.titleLabel.textColor).to.equal(headerView.titleLabelColor);
     
-    expect(headerView.subtitleLabelFont).to.equal([UIFont systemFontOfSize:14.0f]);
-    expect(headerView.subtitleLabel.font).to.equal(headerView.subtitleLabelFont);
-
-    expect(headerView.subtitleLabelColor).to.equal([UIColor lightGrayColor]);
-    expect(headerView.subtitleLabel.textColor).to.equal(headerView.subtitleLabelColor);
-
     expect(headerView.headerBackgroundColor).to.equal([UIColor clearColor]);
     expect(headerView.backgroundColor).to.equal(headerView.headerBackgroundColor);
     
@@ -111,15 +108,11 @@
 {
     UIFont *titleLabelFont = [UIFont fontWithName:@"Georgia" size:24.0f];
     UIColor *titleLabelColor = [UIColor blueColor];
-    UIFont *subtitleLabelFont = [UIFont fontWithName:@"Georgia" size:12.0f];
-    UIColor *subtitleLabelColor = [UIColor greenColor];
     UIColor *headerBackgroundColor = [UIColor redColor];
     UIColor *rightAccessoryBackgroundColor = [UIColor blueColor];
     
     [[KTPhotosSectionHeaderView appearance] setTitleLabelFont:titleLabelFont];
     [[KTPhotosSectionHeaderView appearance] setTitleLabelColor:titleLabelColor];
-    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelFont:subtitleLabelFont];
-    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelColor:subtitleLabelColor];
     [[KTPhotosSectionHeaderView appearance] setHeaderBackgroundColor:headerBackgroundColor];
     [[KTPhotosSectionHeaderView appearance] setRightAccessoryBackgroundColor:rightAccessoryBackgroundColor];
     
@@ -131,12 +124,6 @@
     
     expect(headerView.titleLabelColor).to.equal(titleLabelColor);
     expect(headerView.titleLabel.textColor).to.equal(headerView.titleLabelColor);
-    
-    expect(headerView.subtitleLabelFont).to.equal(subtitleLabelFont);
-    expect(headerView.subtitleLabel.font).to.equal(headerView.subtitleLabelFont);
-    
-    expect(headerView.subtitleLabelColor).to.equal(subtitleLabelColor);
-    expect(headerView.subtitleLabel.textColor).to.equal(headerView.subtitleLabelColor);
     
     expect(headerView.headerBackgroundColor).to.equal(headerBackgroundColor);
     expect(headerView.backgroundColor).to.equal(headerBackgroundColor);
@@ -157,8 +144,6 @@
 {
     [[KTPhotosSectionHeaderView appearance] setTitleLabelFont:[UIFont systemFontOfSize:17.0f]];
     [[KTPhotosSectionHeaderView appearance] setTitleLabelColor:[UIColor darkGrayColor]];
-    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelFont:[UIFont systemFontOfSize:14.0f]];
-    [[KTPhotosSectionHeaderView appearance] setSubtitleLabelColor:[UIColor lightGrayColor]];
     [[KTPhotosSectionHeaderView appearance] setHeaderBackgroundColor:[UIColor clearColor]];
     [[KTPhotosSectionHeaderView appearance] setRightAccessoryBackgroundColor:[UIColor grayColor]];
 }
