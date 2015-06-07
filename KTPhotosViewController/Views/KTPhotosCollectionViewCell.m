@@ -13,7 +13,10 @@
 
 @property (nonatomic, strong, readwrite) KTPhotosThumbnailImageView *photoImageView;
 
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+
 - (void)kt_configureCollectionViewCell;
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
 
 @end
 
@@ -43,13 +46,16 @@
 
 - (void)kt_configureCollectionViewCell
 {
+    self.accessibilityLabel = KTPhotosCollectionViewCellAccessibilityLabel;
+    
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kt_handleTapGesture:)];
+    [self addGestureRecognizer:self.tapGestureRecognizer];
+    
     // photoImageView
     self.photoImageView = [[KTPhotosThumbnailImageView alloc] init];
     self.photoImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.photoImageView];
     [self kt_configureLayoutConstraintsForPhotoImageview];
-    
-    self.accessibilityLabel = KTPhotosCollectionViewCellAccessibilityLabel;
 }
 
 #pragma mark - UIAppearance
@@ -88,6 +94,15 @@
 {
     self.photoImageView.photoItem = photoItem;
     [self setNeedsUpdateConstraints];
+}
+
+#pragma mark - Actions
+
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    CGPoint location = [tapGestureRecognizer locationInView:self];
+
+    [self.delegate photosCollectionViewCellDidTapCell:self atPosition:location];
 }
 
 #pragma mark - Constraints

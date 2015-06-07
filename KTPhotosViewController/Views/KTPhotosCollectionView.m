@@ -88,6 +88,13 @@
     [self registerClass:_sectionHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:_sectionHeaderIdentifier];
 }
 
+#pragma mark - KTPhotosCollectionViewCellDelegate
+
+- (void)photosCollectionViewCellDidTapCell:(KTPhotosCollectionViewCell *)cell atPosition:(CGPoint)location
+{
+    
+}
+
 #pragma mark - KTPhotosSectionHeaderDelegate
 
 - (void)sectionHeaderDidTapRightAccessoryButton:(KTPhotosSectionHeaderView *)sectionHeaderView

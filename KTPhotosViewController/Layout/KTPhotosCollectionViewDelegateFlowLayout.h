@@ -17,6 +17,8 @@
 
 @required
 
+#pragma mark - KTPhotosSectionHeaderView
+
 /**
  * @abstract Asks the delegate if the specified section should stick to top.
  * @param collectionView The collection view instance requesting the information.

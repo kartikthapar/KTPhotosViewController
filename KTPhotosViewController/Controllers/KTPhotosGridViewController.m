@@ -85,6 +85,12 @@
     NSString *cellIdentifier = collectionView.cellIdentifier;
     UICollectionViewCell<KTPhotosThumbnailPresenting> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
+    // set the delegate if possible
+    if ([cell respondsToSelector:@selector(delegate)])
+    {
+        [cell setValue:collectionView forKey:NSStringFromSelector(@selector(delegate))];
+    }
+    
     // update cell contents
     id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView photoDataItemAtIndexPath:indexPath];
     NSParameterAssert(photoItem);
