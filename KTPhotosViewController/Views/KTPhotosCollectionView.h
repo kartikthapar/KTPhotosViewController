@@ -17,7 +17,7 @@
 
 #define KTPhotosCollectionViewDefaultSectionHeaderSize CGSizeMake([UIScreen mainScreen].bounds.size.width, 44.0f)
 
-@interface KTPhotosCollectionView : UICollectionView <KTphotosSectionHeaderDelegate>
+@interface KTPhotosCollectionView : UICollectionView <KTPhotosSectionHeaderDelegate>
 
 /**
  * @abstract The data source for the collection view.

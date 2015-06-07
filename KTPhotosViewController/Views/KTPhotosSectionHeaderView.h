@@ -14,7 +14,7 @@
 
 #define KTPhotosSectionHeaderViewAccessibilityLabel @"KTPhotosSectionHeaderViewAccessibilityLabel"
 
-@protocol KTphotosSectionHeaderDelegate <NSObject>
+@protocol KTPhotosSectionHeaderDelegate <NSObject>
 
 /**
  * @abstract Tells the delegate that the right accessory button was tapped.
@@ -70,7 +70,7 @@
 /**
  * @abstract The delegate for the header view.
  */
-@property (nonatomic, assign) id<KTphotosSectionHeaderDelegate> delegate;
+@property (nonatomic, assign) id<KTPhotosSectionHeaderDelegate> delegate;
 
 #pragma mark - UIAppearance
 
