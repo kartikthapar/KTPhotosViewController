@@ -32,24 +32,27 @@
  * @param collectionView The collection view instance in which the header exists.
  * @param rightAccessoryButton The right accessory button in the header.
  * @param sectionHeaderView The header view in which the accessory button exists.
+ * @param section The section index for the header view.
  */
-- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView inSection:(NSInteger)section;
 
 /**
  * @abstract Tells the delegate that the left accessory button in the header has been tapped.
  * @param collectionView The collection view instance in which the header exists.
  * @param leftAccessoryButton The left accessory button in the header.
  * @param sectionHeaderView The header view in which the accessory button exists.
+ * @param section The section index for the header view.
  */
-- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapLeftAccessoryButton:(UIButton *)leftAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapLeftAccessoryButton:(UIButton *)leftAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView inSection:(NSInteger)section;
 
 /**
  * @abstract Tells the delegate that the title label in the header has been tapped.
  * @param collectionView The collection view instance in which the header exists.
  * @param titleLabel The title label in the header.
  * @param sectionHeaderView The header view in which the accessory button exists.
+ * @param section The section index for the header view.
  */
-- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapTitleLabel:(UILabel *)titleLabel inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapTitleLabel:(UILabel *)titleLabel inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView inSection:(NSInteger)section;
 
 /**
  * @abstract Tells the delegate that the section headerhas been tapped.
@@ -57,7 +60,8 @@
  * @param collectionView The collection view instance in which the header exists.
  * @param titleLabel The title label in the header.
  * @param sectionHeaderView The header view in which the accessory button exists.
+ * @param section The section index for the header view.
  */
-- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView atPosition:(CGPoint)location;
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView atPosition:(CGPoint)location inSection:(NSInteger)section;
 
 @end
