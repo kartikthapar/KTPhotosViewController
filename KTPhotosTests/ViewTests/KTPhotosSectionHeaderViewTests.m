@@ -23,6 +23,14 @@
 @property UILabel *subtitleLabel;
 @property UIVisualEffectView *blurView;
 @property UIView *rightAccessoryView;
+@property UITapGestureRecognizer *tapGestureRecognizer;
+
+- (void)kt_configureSectionHeaderView;
+- (void)kt_configureConstraintsForBlurView;
+- (void)kt_configureConstraintsForTitleLabel;
+- (void)kt_configureConstraintsForSubtitleLabel;
+- (void)kt_configureConstraintsForRightAccessoryView;
+- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
 
 @end
 
@@ -52,6 +60,7 @@
 - (void)testPhotosSectionHeaderViewInit
 {
     KTPhotosSectionHeaderView *headerView = [[KTPhotosSectionHeaderView alloc] init];
+    expect(headerView.rightAccessoryView).toNot.beNil();
     expect(headerView).toNot.beNil();
     expect([KTPhotosSectionHeaderView headerReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosSectionHeaderView class]));
 }
@@ -61,6 +70,8 @@
     KTPhotosSectionHeaderView *headerView = [KTPhotosSectionHeaderView new];
     expect([headerView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)]).to.equal(YES);
     expect([headerView respondsToSelector:@selector(updateWithTitle:)]).to.equal(YES);
+    expect([headerView respondsToSelector:@selector(updateWithSubtitle:)]).to.equal(YES);
+    expect([headerView respondsToSelector:@selector(sectionIndex)]).to.equal(YES);
 }
 
 - (void)testPhotosSectionHeaderViewDisplay

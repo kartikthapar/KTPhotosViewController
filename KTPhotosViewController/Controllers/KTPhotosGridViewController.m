@@ -108,7 +108,16 @@
         if ([reusableView conformsToProtocol:@protocol(KTPhotosSectionHeaderPresenting)])
         {
             // set the section for the header view (for gestures, etc)
-            headerView.sectionIndex = indexPath.section;
+            if ([headerView respondsToSelector:@selector(sectionIndex)])
+            {
+                [headerView setSectionIndex:indexPath.section];
+            }
+            
+            // set the delegate if the header view responds to the delegate property
+            if ([headerView respondsToSelector:@selector(delegate)])
+            {
+                [headerView setValue:collectionView forKey:NSStringFromSelector(@selector(delegate))];
+            }
             
             // view conforms to protocol KTPhotosSectionHeaderPresenting; so either this is an instance of KTPhotosSectionHeaderView or some custom class that conforms to KTPhotosSectionHeaderPresenting
             // it is possiblethat the data source does not implement some of the data source methods
@@ -117,13 +126,19 @@
             NSString *title = [collectionView.dataSource collectionView:collectionView titleTextForHeaderAtIndexPath:indexPath];
             if (title)
             {
-                [headerView updateWithTitle:title];
+                if ([headerView respondsToSelector:@selector(updateWithTitle:)])
+                {
+                    [headerView updateWithTitle:title];
+                }
             }
             
             NSString *subtitle = [collectionView.dataSource collectionView:collectionView subtitleTextForHeaderAtIndexPath:indexPath];
             if (subtitle)
             {
-                [headerView updateWithSubtitle:subtitle];
+                if ([headerView respondsToSelector:@selector(updateWithSubtitle:)])
+                {
+                    [headerView updateWithSubtitle:subtitle];
+                }
             }
         }
     }
@@ -175,6 +190,12 @@
 {
     // stick all headers
     return YES;
+}
+
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryView:(UIView *)rightAccessoryView inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
+    return;
 }
 
 @end

@@ -11,12 +11,13 @@
 #import "KTPhotosCollectionViewDataSource.h"
 #import "KTPhotosCollectionViewFlowLayout.h"
 #import "KTPhotosCollectionViewDelegateFlowLayout.h"
+#import "KTPhotosSectionHeaderView.h"
 
 @protocol KTPhotosThumbnailPresenting;
 
 #define KTPhotosCollectionViewDefaultSectionHeaderSize CGSizeMake([UIScreen mainScreen].bounds.size.width, 44.0f)
 
-@interface KTPhotosCollectionView : UICollectionView
+@interface KTPhotosCollectionView : UICollectionView <KTphotosSectionHeaderDelegate>
 
 /**
  * @abstract The data source for the collection view.

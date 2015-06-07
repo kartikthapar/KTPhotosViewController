@@ -10,7 +10,19 @@
 
 #import "KTPhotosSectionHeaderPresenting.h"
 
+@class KTPhotosSectionHeaderView;
+
 #define KTPhotosSectionHeaderViewAccessibilityLabel @"KTPhotosSectionHeaderViewAccessibilityLabel"
+
+@protocol KTphotosSectionHeaderDelegate <NSObject>
+
+/**
+ * @abstract Tells the delegate that the right accessory view was tapped.
+ * @param sectionHeaderView The section header in which the right accessory view exists.
+ */
+- (void)sectionHeaderDidTapRightAccessoryView:(KTPhotosSectionHeaderView *)sectionHeaderView;
+
+@end
 
 @interface KTPhotosSectionHeaderView : UICollectionReusableView <KTPhotosSectionHeaderPresenting>
 
@@ -18,6 +30,13 @@
  * @abstract Returns the default string used to identify a reusable header view.
  */
 + (NSString *)headerReuseIdentifier;
+
+/**
+ * @abstract Returns the right accessory view for the header view.
+ */
+@property (nonatomic, strong, readonly) UIView *rightAccessoryView;
+
+@property (nonatomic, assign) id<KTphotosSectionHeaderDelegate> delegate;
 
 #pragma mark - UIAppearance
 

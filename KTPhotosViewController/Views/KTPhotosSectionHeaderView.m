@@ -144,6 +144,8 @@
     
     if (CGRectContainsPoint(self.rightAccessoryView.frame, location))
     {
+        // notify the delegate about tap event in right accessory view
+        [self.delegate sectionHeaderDidTapRightAccessoryView:self];
     }
 }
 

@@ -14,11 +14,12 @@
  */
 @protocol KTPhotosSectionHeaderPresenting <NSObject>
 
-@required
-
-@property (nonatomic, assign) NSInteger sectionIndex;
-
 @optional
+
+/**
+ * @abstract The index for the section in which the header currently exists.
+ */
+@property (nonatomic, assign) NSInteger sectionIndex;
 
 /**
  * @abstract Update the header with the specified title.

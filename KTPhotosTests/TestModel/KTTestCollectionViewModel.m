@@ -140,4 +140,9 @@
     return YES;
 }
 
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryView:(UIView *)rightAccessoryView inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    
+}
+
 @end

@@ -88,4 +88,12 @@
     [self registerClass:_sectionHeaderClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:_sectionHeaderIdentifier];
 }
 
+#pragma mark - KTPhotosSectionHeaderDelegate
+
+- (void)sectionHeaderDidTapRightAccessoryView:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    // notify the delegate that the right accessory view in the header of this collection view was tapped
+    [self.delegate collectionView:self didTapRightAccessoryView:sectionHeaderView.rightAccessoryView inSectionHeader:sectionHeaderView];
+}
+
 @end

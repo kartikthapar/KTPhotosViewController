@@ -78,4 +78,11 @@
     return CGSizeMake(self.view.bounds.size.width, 50.0f);
 }
 
+#pragma mark - KTPhotosCollectionViewDelegateFlowLayout
+
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryView:(UIView *)rightAccessoryView inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
+{
+    
+}
+
 @end
