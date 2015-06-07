@@ -28,8 +28,13 @@
 - (void)updateWithTitle:(NSString *)title;
 
 /**
- * @abstract Display the left accessory in the header view.
+ * @abstract Display the left accessory button in the header view.
  */
-- (void)showLeftAccessory;
+- (void)showLeftAccessoryButton;
+
+/**
+ * @abstract Display the right accessory button in the header view.
+ */
+- (void)showRightAccessoryButton;
 
 @end

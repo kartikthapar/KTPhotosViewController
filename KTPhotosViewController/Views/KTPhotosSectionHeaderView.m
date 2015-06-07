@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelWithLeftAccessoryConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelWithoutLeftAccessoryConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelWithRightAccessoryConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelWithoutRightAccessoryConstraint;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
@@ -67,18 +69,19 @@
     self.titleLabel.textColor = self.titleLabelColor;
     [self addSubview:self.titleLabel];
     
-    self.rightAccessoryButton = [[UIButton alloc] init];
-    [self.rightAccessoryButton addTarget:self action:@selector(kt_didTapRightAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.rightAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.rightAccessoryButton.backgroundColor = _rightAccessoryBackgroundColor;
-    [self addSubview:self.rightAccessoryButton];
-    
     self.leftAccessoryButton = [[UIButton alloc] init];
     self.leftAccessoryButton.hidden = YES;
     [self.leftAccessoryButton addTarget:self action:@selector(kt_didTapLeftAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
     self.leftAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.leftAccessoryButton.backgroundColor = self.leftAccessoryBackgroundColor;
     [self addSubview:self.leftAccessoryButton];
+    
+    self.rightAccessoryButton = [[UIButton alloc] init];
+    self.rightAccessoryButton.hidden = YES;
+    [self.rightAccessoryButton addTarget:self action:@selector(kt_didTapRightAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.rightAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.rightAccessoryButton.backgroundColor = _rightAccessoryBackgroundColor;
+    [self addSubview:self.rightAccessoryButton];
     
     [self kt_configureConstraintsForBlurView];
     [self kt_configureConstraintsForTitleLabel];
@@ -94,9 +97,15 @@
     self.titleLabel.text = title;
 }
 
-- (void)showLeftAccessory
+- (void)showLeftAccessoryButton
 {
     self.leftAccessoryButton.hidden = NO;
+    [self setNeedsUpdateConstraints];
+}
+
+- (void)showRightAccessoryButton
+{
+    self.rightAccessoryButton.hidden = NO;
     [self setNeedsUpdateConstraints];
 }
 
@@ -159,20 +168,37 @@
         [self addConstraint:self.titleLabelWithLeftAccessoryConstraint];
     }
     
+    if (self.rightAccessoryButton.isHidden)
+    {
+        [self removeConstraint:self.titleLabelWithRightAccessoryConstraint];
+        [self addConstraint:self.titleLabelWithoutRightAccessoryConstraint];
+    }
+    else
+    {
+        [self removeConstraint:self.titleLabelWithoutRightAccessoryConstraint];
+        [self addConstraint:self.titleLabelWithRightAccessoryConstraint];
+    }
+    
     [super updateConstraints];
 }
 
 - (void)kt_configureConstraintsForBlurView
 {
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.blurView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
 }
 
 - (void)kt_configureConstraintsForTitleLabel
 {
-    self.titleLabelWithLeftAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.leftAccessoryButton attribute:NSLayoutAttributeRight multiplier:1.0 constant:10];
+    // x constraint based on left accessory button
+    self.titleLabelWithLeftAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.leftAccessoryButton attribute:NSLayoutAttributeRight multiplier:1 constant:10];
     self.titleLabelWithoutLeftAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:10];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f]];
+    
+    // x constraint based on right accessory button
+    self.titleLabelWithRightAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryButton attribute:NSLayoutAttributeLeft multiplier:1 constant:-10];
+    self.titleLabelWithoutRightAccessoryConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1 constant:-10];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
 - (void)kt_configureConstraintsForRightAccessoryButton
@@ -180,16 +206,16 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.6 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:-10]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1 constant:-10]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
 - (void)kt_configureConstraintsForLeftAccessoryButton
 {
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.6 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.leftAccessoryButton attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:10]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:10]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.leftAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
 #pragma mark - Info

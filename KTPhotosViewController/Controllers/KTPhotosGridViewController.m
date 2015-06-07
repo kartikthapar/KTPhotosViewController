@@ -132,9 +132,14 @@
                 }
             }
             
-            if ([headerView respondsToSelector:@selector(showLeftAccessory)])
+            if ([headerView respondsToSelector:@selector(showLeftAccessoryButton)])
             {
-                [headerView showLeftAccessory];
+                [headerView showLeftAccessoryButton];
+            }
+            
+            if ([headerView respondsToSelector:@selector(showRightAccessoryButton)])
+            {
+                [headerView showRightAccessoryButton];
             }
         }
     }
