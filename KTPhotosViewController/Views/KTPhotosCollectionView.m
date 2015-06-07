@@ -92,7 +92,9 @@
 
 - (void)photosCollectionViewCellDidTapCell:(KTPhotosCollectionViewCell *)cell atPosition:(CGPoint)location
 {
-    
+    // notify the delegate that the cell was tapped
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    [self.delegate collectionView:self didTapCellAtIndexPath:indexPath atPosition:location];
 }
 
 #pragma mark - KTPhotosSectionHeaderDelegate

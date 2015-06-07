@@ -130,6 +130,11 @@
 
 #pragma mark - KTPhotosCollectionViewDelegateFlowLayout
 
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath atPosition:(CGPoint)location
+{
+    
+}
+
 - (BOOL)collectionView:(KTPhotosCollectionView *)collectionView shouldStickHeaderToTopInSection:(NSUInteger)section
 {
     return YES;

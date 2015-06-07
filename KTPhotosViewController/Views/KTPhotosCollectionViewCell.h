@@ -26,7 +26,7 @@
  * @abstract Tells the delegate that the cell was tapped at the specified position.
  * @discussion This methods is only called if the position is not within the bounds of auxiliary views in the cell.
  * @param cell The cell that was tapped.
- * @param location The point at which cell was tapped.
+ * @param location The location of the tap event in the cell.
  */
 - (void)photosCollectionViewCellDidTapCell:(KTPhotosCollectionViewCell *)cell atPosition:(CGPoint)location;
 
