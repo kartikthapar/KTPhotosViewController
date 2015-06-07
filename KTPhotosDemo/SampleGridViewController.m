@@ -80,7 +80,7 @@
 
 #pragma mark - KTPhotosCollectionViewDelegateFlowLayout
 
-- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryView:(UIView *)rightAccessoryView inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView
 {
     
 }

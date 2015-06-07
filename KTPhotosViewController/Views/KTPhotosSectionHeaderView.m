@@ -13,15 +13,14 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UIVisualEffectView *blurView;
-@property (nonatomic, strong, readwrite) UIView *rightAccessoryView;
-@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong, readwrite) UIButton *rightAccessoryButton;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
 - (void)kt_configureConstraintsForSubtitleLabel;
-- (void)kt_configureConstraintsForRightAccessoryView;
-- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
+- (void)kt_configureConstraintsForRightAccessoryButton;
+- (void)kt_didTapRightAccessoryButton:(id)sender;
 
 @end
 
@@ -53,9 +52,6 @@
 {
     self.accessibilityLabel = KTPhotosSectionHeaderViewAccessibilityLabel;
     
-    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kt_handleTapGesture:)];
-    [self addGestureRecognizer:self.tapGestureRecognizer];
-    
     UIBlurEffect * effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     self.blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
     self.blurView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -74,15 +70,16 @@
     self.subtitleLabel.textColor = self.subtitleLabelColor;
     [self addSubview:self.subtitleLabel];
     
-    self.rightAccessoryView = [[UIView alloc] init];
-    self.rightAccessoryView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.rightAccessoryView.backgroundColor = _rightAccessoryBackgroundColor;
-    [self addSubview:self.rightAccessoryView];
+    self.rightAccessoryButton = [[UIButton alloc] init];
+    [self.rightAccessoryButton addTarget:self action:@selector(kt_didTapRightAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.rightAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.rightAccessoryButton.backgroundColor = _rightAccessoryBackgroundColor;
+    [self addSubview:self.rightAccessoryButton];
     
     [self kt_configureConstraintsForBlurView];
     [self kt_configureConstraintsForTitleLabel];
     [self kt_configureConstraintsForSubtitleLabel];
-    [self kt_configureConstraintsForRightAccessoryView];
+    [self kt_configureConstraintsForRightAccessoryButton];
 }
 
 #pragma mark - KTPhotosSectionHeaderPresenting
@@ -133,20 +130,14 @@
 - (void)setRightAccessoryBackgroundColor:(UIColor *)rightAccessoryBackgroundColor
 {
     _rightAccessoryBackgroundColor = rightAccessoryBackgroundColor;
-    self.rightAccessoryView.backgroundColor = rightAccessoryBackgroundColor;
+    self.rightAccessoryButton.backgroundColor = rightAccessoryBackgroundColor;
 }
 
 #pragma mark - Actions
 
-- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
+- (void)kt_didTapRightAccessoryButton:(id)sender
 {
-    CGPoint location = [tapGestureRecognizer locationInView:self];
-    
-    if (CGRectContainsPoint(self.rightAccessoryView.frame, location))
-    {
-        // notify the delegate about tap event in right accessory view
-        [self.delegate sectionHeaderDidTapRightAccessoryView:self];
-    }
+    [self.delegate sectionHeaderDidTapRightAccessoryButton:self];
 }
 
 #pragma mark - Constraints
@@ -191,14 +182,14 @@
     [self addConstraints:yConstraint];
 }
 
-- (void)kt_configureConstraintsForRightAccessoryView
+- (void)kt_configureConstraintsForRightAccessoryButton
 {
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0.1 constant:0];
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryView attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0.1 constant:0];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.rightAccessoryButton attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
 
-    NSLayoutConstraint *xConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:0.98 constant:0.0f];
+    NSLayoutConstraint *xConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:0.98 constant:0.0f];
 
-    NSLayoutConstraint *yConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f];
+    NSLayoutConstraint *yConstraint = [NSLayoutConstraint constraintWithItem:self.rightAccessoryButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f];
 
     [self addConstraint:widthConstraint];
     [self addConstraint:heightConstraint];

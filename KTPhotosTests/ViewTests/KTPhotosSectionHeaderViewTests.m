@@ -22,16 +22,14 @@
 @property UILabel *titleLabel;
 @property UILabel *subtitleLabel;
 @property UIVisualEffectView *blurView;
-@property UIView *rightAccessoryView;
-@property UITapGestureRecognizer *tapGestureRecognizer;
+@property UIButton *rightAccessoryButton;
 
 - (void)kt_configureSectionHeaderView;
 - (void)kt_configureConstraintsForBlurView;
 - (void)kt_configureConstraintsForTitleLabel;
 - (void)kt_configureConstraintsForSubtitleLabel;
-- (void)kt_configureConstraintsForRightAccessoryView;
-- (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
-
+- (void)kt_configureConstraintsForRightAccessoryButton;
+- (void)kt_didTapRightAccessoryButton:(id)sender;
 @end
 
 @interface KTPhotosSectionHeaderViewTests : XCTestCase
@@ -60,7 +58,7 @@
 - (void)testPhotosSectionHeaderViewInit
 {
     KTPhotosSectionHeaderView *headerView = [[KTPhotosSectionHeaderView alloc] init];
-    expect(headerView.rightAccessoryView).toNot.beNil();
+    expect(headerView.rightAccessoryButton).toNot.beNil();
     expect(headerView).toNot.beNil();
     expect([KTPhotosSectionHeaderView headerReuseIdentifier]).to.equal(NSStringFromClass([KTPhotosSectionHeaderView class]));
 }
@@ -82,7 +80,7 @@
     expect(headerView.titleLabel).toNot.beNil();
     expect(headerView.subtitleLabel).toNot.beNil();
     expect(headerView.blurView).toNot.beNil();
-    expect(headerView.rightAccessoryView).toNot.beNil();
+    expect(headerView.rightAccessoryButton).toNot.beNil();
 }
 
 - (void)testPhotosSectionHeaderViewDefaultAppearance
@@ -106,7 +104,7 @@
     expect(headerView.backgroundColor).to.equal(headerView.headerBackgroundColor);
     
     expect(headerView.rightAccessoryBackgroundColor).to.equal([UIColor grayColor]);
-    expect(headerView.rightAccessoryView.backgroundColor).to.equal(headerView.rightAccessoryView.backgroundColor);
+    expect(headerView.rightAccessoryButton.backgroundColor).to.equal(headerView.rightAccessoryButton.backgroundColor);
 }
 
 - (void)testPhotosSectionHeaderViewCustomAppearance
@@ -144,7 +142,7 @@
     expect(headerView.backgroundColor).to.equal(headerBackgroundColor);
     
     expect(headerView.rightAccessoryBackgroundColor).to.equal(rightAccessoryBackgroundColor);
-    expect(headerView.rightAccessoryView.backgroundColor).to.equal(rightAccessoryBackgroundColor);
+    expect(headerView.rightAccessoryButton.backgroundColor).to.equal(rightAccessoryBackgroundColor);
 }
 
 #pragma mark - Internal

@@ -54,7 +54,7 @@
     expect(collectionView.sectionHeaderClass).to.equal([KTPhotosSectionHeaderView class]);
     expect(collectionView.sectionHeaderIdentifier).to.equal([KTPhotosSectionHeaderView headerReuseIdentifier]);
     expect(collectionView).to.conformTo(@protocol(KTphotosSectionHeaderDelegate));
-    expect(collectionView).to.respondTo(@selector(sectionHeaderDidTapRightAccessoryView:));
+    expect(collectionView).to.respondTo(@selector(sectionHeaderDidTapRightAccessoryButton:));
 }
 
 - (void)testPhotosCollectionViewDisplay

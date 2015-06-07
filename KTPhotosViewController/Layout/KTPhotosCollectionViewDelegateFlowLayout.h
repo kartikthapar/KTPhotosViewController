@@ -26,11 +26,11 @@
 - (BOOL)collectionView:(KTPhotosCollectionView *)collectionView shouldStickHeaderToTopInSection:(NSUInteger)section;
 
 /**
- * @abstract Tells the delegate that the right accessory view in the header has been tapped.
+ * @abstract Tells the delegate that the right accessory button in the header has been tapped.
  * @param collectionView The collection view instance in which the header exists.
- * @param rightAccessoryView The right accessory view in the header.
- * @param sectionHeaderView The header view in which the accessory view exists.
+ * @param rightAccessoryButton The right accessory button in the header.
+ * @param sectionHeaderView The header view in which the accessory button exists.
  */
-- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryView:(UIView *)rightAccessoryView inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
+- (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView;
 
 @end

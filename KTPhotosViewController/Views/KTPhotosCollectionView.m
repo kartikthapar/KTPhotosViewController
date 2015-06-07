@@ -90,10 +90,10 @@
 
 #pragma mark - KTPhotosSectionHeaderDelegate
 
-- (void)sectionHeaderDidTapRightAccessoryView:(KTPhotosSectionHeaderView *)sectionHeaderView
+- (void)sectionHeaderDidTapRightAccessoryButton:(KTPhotosSectionHeaderView *)sectionHeaderView
 {
-    // notify the delegate that the right accessory view in the header of this collection view was tapped
-    [self.delegate collectionView:self didTapRightAccessoryView:sectionHeaderView.rightAccessoryView inSectionHeader:sectionHeaderView];
+    // notify the delegate that the right accessory button in the header of this collection view was tapped
+    [self.delegate collectionView:self didTapRightAccessoryButton:sectionHeaderView.rightAccessoryButton inSectionHeader:sectionHeaderView];
 }
 
 @end

@@ -17,10 +17,10 @@
 @protocol KTphotosSectionHeaderDelegate <NSObject>
 
 /**
- * @abstract Tells the delegate that the right accessory view was tapped.
- * @param sectionHeaderView The section header in which the right accessory view exists.
+ * @abstract Tells the delegate that the right accessory button was tapped.
+ * @param sectionHeaderView The section header in which the right accessory button exists.
  */
-- (void)sectionHeaderDidTapRightAccessoryView:(KTPhotosSectionHeaderView *)sectionHeaderView;
+- (void)sectionHeaderDidTapRightAccessoryButton:(KTPhotosSectionHeaderView *)sectionHeaderView;
 
 @end
 
@@ -32,9 +32,9 @@
 + (NSString *)headerReuseIdentifier;
 
 /**
- * @abstract Returns the right accessory view for the header view.
+ * @abstract Returns the right accessory button for the header view.
  */
-@property (nonatomic, strong, readonly) UIView *rightAccessoryView;
+@property (nonatomic, strong, readonly) UIButton *rightAccessoryButton;
 
 @property (nonatomic, assign) id<KTphotosSectionHeaderDelegate> delegate;
 
@@ -66,7 +66,7 @@
 @property (nonatomic) UIColor *headerBackgroundColor UI_APPEARANCE_SELECTOR;
 
 /**
- * @abstract The background color for the right accessory view.
+ * @abstract The background color for the right accessory button.
  * @discussion The default value is `[UIColor grayColor]`.
  */
 @property (nonatomic) UIColor *rightAccessoryBackgroundColor UI_APPEARANCE_SELECTOR;
