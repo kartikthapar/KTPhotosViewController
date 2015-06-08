@@ -11,6 +11,7 @@
 #import "KTPhotosCollectionViewFlowLayout.h"
 #import "KTPhotosThumbnailPresenting.h"
 #import "KTPhotosSectionHeaderPresenting.h"
+#import "KTPhotosImageCacheProxy.h"
 
 #import "KTPhotosCollectionViewCell.h"
 #import "KTPhotosSectionHeaderView.h"
@@ -20,6 +21,7 @@
 @interface KTPhotosGridViewController ()
 
 @property (nonatomic, strong, readwrite) KTPhotosCollectionView *collectionView;
+@property (nonatomic, strong, readwrite) KTPhotosImageCacheProxy *imageCacheProxy;
 
 - (void)kt_configurePhotosViewController;
 
@@ -62,6 +64,9 @@
     
     // Scrolling
     self.collectionView.alwaysBounceVertical = YES;
+    
+    // Cache
+    self.imageCacheProxy = [KTPhotosImageCacheProxy sharedProxy];
 }
 
 #pragma mark UICollectionViewDataSource

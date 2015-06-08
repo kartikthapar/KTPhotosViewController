@@ -11,6 +11,7 @@
 #import "KTPhotosCollectionViewDataSource.h"
 #import "KTPhotosCollectionViewDelegateFlowLayout.h"
 
+@class KTPhotosImageCacheProxy;
 @class KTPhotosCollectionView;
 
 @interface KTPhotosGridViewController : UIViewController <KTPhotosCollectionViewDataSource,
@@ -27,5 +28,10 @@
  * @abstract Returns the collection view instance managed by the view controller.
  */
 @property (nonatomic, strong, readonly) KTPhotosCollectionView *collectionView;
+
+/**
+ * @abstract Returns the image cache proxy managed by the view controller; responsible for handling cache agents.
+ */
+@property (nonatomic, strong, readonly) KTPhotosImageCacheProxy *imageCacheProxy;
 
 @end
