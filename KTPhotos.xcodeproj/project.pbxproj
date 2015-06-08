@@ -13,6 +13,8 @@
 		C60DC3C31B2029F700D05886 /* SamplePhotosSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C60DC3C21B2029F700D05886 /* SamplePhotosSectionHeaderView.m */; };
 		C62C6B0D1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */; };
 		C62D812C1B253C7100311FBC /* UIColor+KTPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = C62D812B1B253C7100311FBC /* UIColor+KTPhotos.m */; };
+		C62D81301B25455700311FBC /* KTPhotosImageCacheAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = C62D812F1B25455700311FBC /* KTPhotosImageCacheAgent.m */; };
+		C62D81331B25475F00311FBC /* KTPhotosImageCacheProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C62D81321B25475F00311FBC /* KTPhotosImageCacheProxy.m */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
@@ -60,6 +62,11 @@
 		C62C6B0C1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		C62D812A1B253C7100311FBC /* UIColor+KTPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KTPhotos.h"; sourceTree = "<group>"; };
 		C62D812B1B253C7100311FBC /* UIColor+KTPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KTPhotos.m"; sourceTree = "<group>"; };
+		C62D812D1B2542D300311FBC /* KTPhotosImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosImageCache.h; sourceTree = "<group>"; };
+		C62D812E1B25455700311FBC /* KTPhotosImageCacheAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosImageCacheAgent.h; sourceTree = "<group>"; };
+		C62D812F1B25455700311FBC /* KTPhotosImageCacheAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosImageCacheAgent.m; sourceTree = "<group>"; };
+		C62D81311B25475F00311FBC /* KTPhotosImageCacheProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosImageCacheProxy.h; sourceTree = "<group>"; };
+		C62D81321B25475F00311FBC /* KTPhotosImageCacheProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosImageCacheProxy.m; sourceTree = "<group>"; };
 		C6383AA71B21EFC30063CEDD /* KTPhotosCollectionViewDelegateFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewDelegateFlowLayout.h; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -209,6 +216,11 @@
 				C68264431B21915D0030C004 /* KTPhotosSectionHeaderPresenting.h */,
 				C69E9A0D1B1FEBCF00D52455 /* KTThumbnailItem.h */,
 				C69E9A0E1B1FEBCF00D52455 /* KTThumbnailItem.m */,
+				C62D812D1B2542D300311FBC /* KTPhotosImageCache.h */,
+				C62D812E1B25455700311FBC /* KTPhotosImageCacheAgent.h */,
+				C62D812F1B25455700311FBC /* KTPhotosImageCacheAgent.m */,
+				C62D81311B25475F00311FBC /* KTPhotosImageCacheProxy.h */,
+				C62D81321B25475F00311FBC /* KTPhotosImageCacheProxy.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -459,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60DC3BE1B201C2400D05886 /* KTPhotosSectionHeaderView.m in Sources */,
+				C62D81331B25475F00311FBC /* KTPhotosImageCacheProxy.m in Sources */,
 				C66D5A141B1C9CF8002C94F5 /* main.m in Sources */,
 				C69E9A1A1B1FEBCF00D52455 /* KTPhotosThumbnailImageView.m in Sources */,
 				C62D812C1B253C7100311FBC /* UIColor+KTPhotos.m in Sources */,
@@ -466,6 +479,7 @@
 				C69E9A191B1FEBCF00D52455 /* KTPhotosCollectionViewCell.m in Sources */,
 				C69E9A161B1FEBCF00D52455 /* KTPhotosGridViewController.m in Sources */,
 				C60DC3C31B2029F700D05886 /* SamplePhotosSectionHeaderView.m in Sources */,
+				C62D81301B25455700311FBC /* KTPhotosImageCacheAgent.m in Sources */,
 				C62C6B0D1B21E13B003A3F18 /* KTPhotosCollectionViewFlowLayout.m in Sources */,
 				C6D1ECFB1B1FADDF008C81F6 /* SamplePhotosCollectionViewCell.m in Sources */,
 				C69E9A171B1FEBCF00D52455 /* KTThumbnailItem.m in Sources */,
