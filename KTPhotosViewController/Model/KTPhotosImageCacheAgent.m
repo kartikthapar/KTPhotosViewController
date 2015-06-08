@@ -10,26 +10,66 @@
 
 #import <Haneke/Haneke.h>
 
+#define kDefaultImageCacheFormatName @"kDefaultImageCacheFormatName"
+
+@interface KTPhotosImageCacheAgent ()
+
+- (HNKCache *)kt_cache;
+- (void)kt_configureCache;
+
+@end
+
 @implementation KTPhotosImageCacheAgent
+
+#pragma mark - init
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        [self kt_configureCache];
+    }
+    return self;
+}
+
+#pragma mark - Cache Operations
 
 - (void)fetchImageForKey:(NSString *)key success:(void (^)(UIImage *image))successBlock failure:(void (^)(NSError *error))failureBlock;
 {
-#warning incomplete implementation
+    HNKCache *cache = [self kt_cache];
+    [cache fetchImageForKey:key formatName:kDefaultImageCacheFormatName success:successBlock failure:failureBlock];
 }
 
 - (void)setImage:(UIImage *)image forKey:(NSString *)key
 {
-#warning incomplete implementation
+    HNKCache *cache = [self kt_cache];
+    [cache setImage:image forKey:key formatName:kDefaultImageCacheFormatName];
 }
 
 - (void)removeImageForKey:(NSString *)key
 {
-#warning incomplete implementation
+    HNKCache *cache = [self kt_cache];
+    [cache removeImagesForKey:key];
 }
 
 - (void)removeAllImages
 {
-#warning incomplete implementation
+    HNKCache *cache = [self kt_cache];
+    [cache removeAllImages];
+}
+
+#pragma mark - Internal
+
+- (HNKCache *)kt_cache
+{
+    HNKCache *sharedCache = [HNKCache sharedCache];
+    return sharedCache;
+}
+
+- (void)kt_configureCache
+{
+    HNKCacheFormat *format = [[HNKCacheFormat alloc] initWithName:kDefaultImageCacheFormatName];
+    [[self kt_cache] registerFormat:format];
 }
 
 @end
