@@ -7,23 +7,90 @@
 //
 
 #import "KTPhotosImageCacheProxy.h"
+#import "KTPhotosImageCacheAgent.h"
+
+@interface KTPhotosImageCacheProxy ()
+
+@property (nonatomic, strong) KTPhotosImageCacheAgent *defaultCacheAgent;
+@property (nonatomic, strong) id<KTPhotosImageCache> cacheAgent;
+
+- (void)kt_resetCache;
+- (KTPhotosImageCacheAgent *)kt_defaultAgent;
+
+@end
 
 @implementation KTPhotosImageCacheProxy
 
-+ (void)registerImageCacheAgent:(Class)agentType
+#pragma mark - init
+
++ (instancetype)sharedProxy
 {
-#warning incomplete implementation
+    static KTPhotosImageCacheProxy *sharedInstance = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
 }
 
-+ (void)unregisterImageCacheAgent
+- (instancetype)init
 {
-#warning incomplete implementation
+    if (self = [super init])
+    {
+        // create the default cache agent
+        self.defaultCacheAgent = [self kt_defaultAgent];
+        self.cacheAgent = self.defaultCacheAgent;
+    }
+    return self;
 }
 
-+ (Class)defaultImageCacheAgent
+#pragma mark - Cache Agent
+
+- (id<KTPhotosImageCache>)imageCacheAgent
 {
-#warning incomplete implementation
-    return nil;
+    return self.cacheAgent;
+}
+
+- (id<KTPhotosImageCache>)defaultImageCacheAgent
+{
+    return self.defaultCacheAgent;
+}
+
+- (void)registerImageCacheAgent:(id<KTPhotosImageCache>)agent
+{
+    [self unregisterImageCacheAgent];
+    self.cacheAgent = agent;
+}
+
+- (void)unregisterImageCacheAgent
+{
+    [self kt_resetCache];
+}
+
+#pragma mark - Internal
+
+- (void)kt_resetCache
+{
+    // remove all images for the cache agent
+    [self.cacheAgent removeAllImages];
+    
+    // if the default cache agent was the cache agent
+    if (self.cacheAgent == self.defaultCacheAgent || [self.cacheAgent class] == [KTPhotosImageCacheAgent class])
+    {
+        self.cacheAgent = nil;
+        self.defaultCacheAgent = nil;
+    }
+    
+    // in any case, get a new default cache agent
+    KTPhotosImageCacheAgent *newAgent = [self kt_defaultAgent];
+    self.defaultCacheAgent = newAgent;
+    self.cacheAgent = self.defaultCacheAgent;
+}
+
+- (KTPhotosImageCacheAgent *)kt_defaultAgent
+{
+    KTPhotosImageCacheAgent *defaultCacheAgent = [[KTPhotosImageCacheAgent alloc] init];
+    return defaultCacheAgent;
 }
 
 @end
