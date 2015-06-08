@@ -80,13 +80,15 @@
     [self.leftAccessoryButton addTarget:self action:@selector(kt_didTapLeftAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
     self.leftAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.leftAccessoryButton.backgroundColor = self.leftAccessoryBackgroundColor;
+    self.leftAccessoryButton.layer.masksToBounds = YES;
     [self addSubview:self.leftAccessoryButton];
     
     self.rightAccessoryButton = [[UIButton alloc] init];
     self.rightAccessoryButton.hidden = YES;
     [self.rightAccessoryButton addTarget:self action:@selector(kt_didTapRightAccessoryButton:) forControlEvents:UIControlEventTouchUpInside];
     self.rightAccessoryButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.rightAccessoryButton.backgroundColor = _rightAccessoryBackgroundColor;
+    self.rightAccessoryButton.backgroundColor = self.rightAccessoryBackgroundColor;
+    self.rightAccessoryButton.layer.masksToBounds = YES;
     [self addSubview:self.rightAccessoryButton];
     
     [self kt_configureConstraintsForBlurView];
