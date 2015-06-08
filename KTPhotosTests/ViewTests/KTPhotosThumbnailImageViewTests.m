@@ -18,8 +18,10 @@
 @interface KTPhotosThumbnailImageView ()
 
 - (void)kt_configureThumbnailImageView;
-- (void)kt_loadImageFromPath:(NSString *)path;
-- (void)kt_loadImageFromURL:(NSURL *)url;
+
+- (void)kt_loadImage:(UIImage *)image cacheId:(NSString *)cacheId;
+- (void)kt_loadImageFromPath:(NSString *)path cacheId:(NSString *)cacheId;
+- (void)kt_loadImageFromURL:(NSURL *)url cacheId:(NSString *)cacheId;
 
 @end
 
@@ -85,24 +87,6 @@
 }
 
 #pragma mark - KTPhotosThumbnailImageView photoItem
-
-- (void)testPhotosThumbnailImageViewWithPhotoItem
-{
-    id mockPhotoItem = OCMClassMock([KTThumbnailItem class]);
-    KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] init];
-    id mockPhotoImageView = OCMPartialMock(photoImageView);
-    
-    // test for imagePath
-    OCMStub([mockPhotoItem imagePath]).andReturn(self.imagePath);
-    photoImageView.photoItem = mockPhotoItem;
-    OCMVerify([mockPhotoImageView kt_loadImageFromPath:self.imagePath]);
-
-    // test for imageURL
-    mockPhotoItem = OCMClassMock([KTThumbnailItem class]);
-    OCMStub([mockPhotoItem imageURL]).andReturn(self.imageURL);
-    photoImageView.photoItem = mockPhotoItem;
-    OCMVerify([mockPhotoImageView kt_loadImageFromURL:self.imageURL]);
-}
 
 - (void)testPhotosThumbnailImageViewLoadedWithImage
 {

@@ -13,6 +13,7 @@
 #import "KTPhotosSectionHeaderPresenting.h"
 #import "KTPhotosImageCacheProxy.h"
 
+#import "KTPhotosImageCache.h"
 #import "KTPhotosCollectionViewCell.h"
 #import "KTPhotosSectionHeaderView.h"
 
@@ -67,6 +68,8 @@
     
     // Cache
     self.imageCacheProxy = [KTPhotosImageCacheProxy sharedProxy];
+    
+//    [[self.imageCacheProxy imageCacheAgent] setImage:[UIImage imageNamed:@"image_sample_1"] forKey:@"cacheId"];
 }
 
 #pragma mark UICollectionViewDataSource
@@ -97,6 +100,7 @@
     id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView photoDataItemAtIndexPath:indexPath];
     NSParameterAssert(photoItem);
     
+    NSLog(@"item at: %d", (int)indexPath.row);
     [cell updateWithPhotoItem:photoItem];
     
     return cell;

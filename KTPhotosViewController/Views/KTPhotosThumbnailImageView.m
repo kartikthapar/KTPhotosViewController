@@ -8,14 +8,17 @@
 
 #import "KTPhotosThumbnailImageView.h"
 
+#import "KTPhotosImageCache.h"
+#import "KTPhotosImageCacheProxy.h"
 #import "KTPhotoData.h"
 
 @interface KTPhotosThumbnailImageView ()
 
 - (void)kt_configureThumbnailImageView;
 
-- (void)kt_loadImageFromPath:(NSString *)path;
-- (void)kt_loadImageFromURL:(NSURL *)url;
+- (void)kt_loadImage:(UIImage *)image cacheId:(NSString *)cacheId;
+- (void)kt_loadImageFromPath:(NSString *)path cacheId:(NSString *)cacheId;
+- (void)kt_loadImageFromURL:(NSURL *)url cacheId:(NSString *)cacheId;
 
 @end
 
@@ -58,18 +61,26 @@
 - (void)setPhotoItem:(id<KTPhotoData>)photoItem
 {
     _photoItem = photoItem;
-    if ([photoItem image])
-    {
-        self.image = [photoItem image];
-    }
-    else if ([photoItem imagePath])
-    {
-        [self kt_loadImageFromPath:[photoItem imagePath]];
-    }
-    else if ([photoItem imageURL])
-    {
-        [self kt_loadImageFromURL:[photoItem imageURL]];
-    }
+    
+    NSString *cacheId = [photoItem cacheId];
+    id<KTPhotosImageCache> agent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
+    
+    [agent fetchImageForKey:cacheId success:^(UIImage *image){
+        self.image = image;
+    }failure:^(NSError *error){
+        if ([photoItem image])
+        {
+            [self kt_loadImage:[photoItem image] cacheId:cacheId];
+        }
+        else if ([photoItem imagePath])
+        {
+            [self kt_loadImageFromPath:[photoItem imagePath] cacheId:cacheId];
+        }
+        else if ([photoItem imageURL])
+        {
+            [self kt_loadImageFromURL:[photoItem imageURL] cacheId:cacheId];
+        }
+    }];
 }
 
 #pragma mark - UIAppearance
@@ -88,16 +99,27 @@
 
 #pragma mark - Internal
 
-- (void)kt_loadImageFromPath:(NSString *)path
+- (void)kt_loadImage:(UIImage *)image cacheId:(NSString *)cacheId
 {
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
+    [imageCacheAgent setImage:image forKey:cacheId];
     self.image = image;
 }
 
-- (void)kt_loadImageFromURL:(NSURL *)url
+- (void)kt_loadImageFromPath:(NSString *)path cacheId:(NSString *)cacheId
+{
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
+    [imageCacheAgent setImage:image forKey:cacheId];
+    self.image = image;
+}
+
+- (void)kt_loadImageFromURL:(NSURL *)url cacheId:(NSString *)cacheId
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
+        [imageCacheAgent setImage:image forKey:cacheId];
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([self.photoItem imageURL] && [[self.photoItem imageURL] isEqual:url])
             {
