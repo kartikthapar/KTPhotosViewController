@@ -60,9 +60,6 @@
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = YES;
     
-    // Appearance
-    self.view.backgroundColor = [UIColor whiteColor];
-    
     // Scrolling
     self.collectionView.alwaysBounceVertical = YES;
 }

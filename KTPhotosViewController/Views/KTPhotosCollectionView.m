@@ -12,6 +12,8 @@
 
 #import <objc/runtime.h>
 
+#import "UIColor+KTPhotos.h"
+
 @interface KTPhotosCollectionViewCell ()
 
 - (void)kt_configureCollectionView;
@@ -35,7 +37,7 @@
 
 - (void)kt_configureCollectionView
 {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor offshadeColor];
     self.bounces = YES;
     self.alwaysBounceVertical = YES;
     
