@@ -8,6 +8,8 @@
 
 #import "KTPhotosImageCacheAgent.h"
 
+#import <Haneke/Haneke.h>
+
 @implementation KTPhotosImageCacheAgent
 
 - (void)fetchImageForKey:(NSString *)key success:(void (^)(UIImage *image))successBlock failure:(void (^)(NSError *error))failureBlock;

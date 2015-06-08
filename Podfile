@@ -2,7 +2,7 @@
 # platform :ios, '6.0'
 
 target 'KTPhotos' do
-
+    pod 'Haneke'
 end
 
 target 'KTPhotosTests' do
