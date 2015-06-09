@@ -16,6 +16,7 @@
 		C62D812C1B253C7100311FBC /* UIColor+KTPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = C62D812B1B253C7100311FBC /* UIColor+KTPhotos.m */; };
 		C62D81301B25455700311FBC /* KTPhotosImageCacheAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = C62D812F1B25455700311FBC /* KTPhotosImageCacheAgent.m */; };
 		C62D81331B25475F00311FBC /* KTPhotosImageCacheProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C62D81321B25475F00311FBC /* KTPhotosImageCacheProxy.m */; };
+		C64FCFA01B2751BF005CB05C /* Thumbnails.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C64FCF9F1B2751BF005CB05C /* Thumbnails.bundle */; };
 		C66D5A111B1C9CF8002C94F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */; };
 		C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */; };
 		C66D5A141B1C9CF8002C94F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C66D5A101B1C9CF8002C94F5 /* main.m */; };
@@ -75,6 +76,7 @@
 		C62D81311B25475F00311FBC /* KTPhotosImageCacheProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosImageCacheProxy.h; sourceTree = "<group>"; };
 		C62D81321B25475F00311FBC /* KTPhotosImageCacheProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotosImageCacheProxy.m; sourceTree = "<group>"; };
 		C6383AA71B21EFC30063CEDD /* KTPhotosCollectionViewDelegateFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotosCollectionViewDelegateFlowLayout.h; sourceTree = "<group>"; };
+		C64FCF9F1B2751BF005CB05C /* Thumbnails.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Thumbnails.bundle; sourceTree = "<group>"; };
 		C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C66D5A0E1B1C9CF8002C94F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		C66D5A0B1B1C9CF8002C94F5 /* KTPhotosDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C64FCF9F1B2751BF005CB05C /* Thumbnails.bundle */,
 				C6A02F7D1B274F7200B06A1E /* Photos.bundle */,
 				C66D5A0C1B1C9CF8002C94F5 /* AppDelegate.h */,
 				C66D5A0D1B1C9CF8002C94F5 /* AppDelegate.m */,
@@ -437,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C64FCFA01B2751BF005CB05C /* Thumbnails.bundle in Resources */,
 				C6A02F7E1B274F7200B06A1E /* Photos.bundle in Resources */,
 				C66D5A121B1C9CF8002C94F5 /* Images.xcassets in Resources */,
 				C69186631B1F887400850C8C /* image_sample_1.jpeg in Resources */,
