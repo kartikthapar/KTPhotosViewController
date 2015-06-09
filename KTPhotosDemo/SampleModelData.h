@@ -12,7 +12,7 @@
 
 @interface SampleModelData : NSObject
 
-@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong, readonly) NSMutableArray *photos;
 
 - (NSInteger)numberOfSections;
 
