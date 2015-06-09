@@ -74,7 +74,7 @@
     NSInteger totalThumbnails = 40;
     for (NSInteger index = 1; index <= totalThumbnails; index++)
     {
-        NSString *imageName = [NSString stringWithFormat:@"1200-%ld_t", index];
+        NSString *imageName = [NSString stringWithFormat:@"1200-%ld_t", (long)index];
         NSString *imagePath = [thumbnailsBundle pathForResource:imageName ofType:@"jpeg"];
         KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
         [self.thumbnails addObject:photoItem];
@@ -87,7 +87,7 @@
     NSInteger totalPhotos = 40;
     for (NSInteger index = 1; index <= totalPhotos; index++)
     {
-        NSString *imageName = [NSString stringWithFormat:@"1200-%ld", index];
+        NSString *imageName = [NSString stringWithFormat:@"1200-%ld", (long)index];
         NSString *imagePath = [photosBundle pathForResource:imageName ofType:@"jpeg"];
         KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
         [self.photos addObject:photoItem];

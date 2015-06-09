@@ -139,7 +139,7 @@
             // it is possiblethat the data source does not implement some of the data source methods
             
             // get title, this might still not be a valid string
-            NSString *title = [collectionView.dataSource collectionView:collectionView titleTextForHeaderAtIndexPath:indexPath];
+            NSString *title = [collectionView.dataSource collectionView:collectionView titleTextForHeaderInSection:indexPath.section];
             if (title)
             {
                 if ([headerView respondsToSelector:@selector(updateWithTitle:)])
@@ -176,7 +176,7 @@
     return nil;
 }
 
-- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderInSection:(NSInteger)section
 {
     // return nil so that the header view does not update
     return nil;

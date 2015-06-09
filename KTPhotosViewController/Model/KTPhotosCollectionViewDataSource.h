@@ -35,10 +35,10 @@
  * @abstract The title text for the section header displayed in the collection view.
  * @discussion The default value returned is nil.
  * @param collectionView The collection view instance requesting the information.
- * @param indexPath The index path that specifies the location of the item.
+ * @param section The integer section value for which the collection view has requested information.
  * @return An `NSString` with the title for the header.
  */
-- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderInSection:(NSInteger)section;
 
 /**
  * @abstract The size for the section header displayed in the collection view.

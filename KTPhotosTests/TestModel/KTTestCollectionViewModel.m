@@ -105,7 +105,7 @@
     return item;
 }
 
-- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderInSection:(NSInteger)section
 {
     return @"Title";
 }
