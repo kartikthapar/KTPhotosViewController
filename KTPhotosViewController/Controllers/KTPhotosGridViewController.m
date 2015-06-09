@@ -100,7 +100,6 @@
     id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView photoDataItemAtIndexPath:indexPath];
     NSParameterAssert(photoItem);
     
-    NSLog(@"item at: %d", (int)indexPath.row);
     [cell updateWithPhotoItem:photoItem];
     
     return cell;
