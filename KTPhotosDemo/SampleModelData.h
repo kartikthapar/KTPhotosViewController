@@ -16,4 +16,6 @@
 
 - (NSInteger)numberOfSections;
 
+- (NSInteger)numberOfItemsInSection:(NSInteger)section;
+
 @end

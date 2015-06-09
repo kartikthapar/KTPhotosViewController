@@ -13,9 +13,12 @@
 #import "KTPhotosSectionHeaderPresenting.h"
 #import "KTPhotosImageCacheProxy.h"
 
+#import "KTPhotoData.h"
 #import "KTPhotosImageCache.h"
 #import "KTPhotosCollectionViewCell.h"
 #import "KTPhotosSectionHeaderView.h"
+
+#import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 
 #define kCellSizeDefault 93
 
@@ -25,6 +28,8 @@
 @property (nonatomic, strong, readwrite) KTPhotosImageCacheProxy *imageCacheProxy;
 
 - (void)kt_configurePhotosViewController;
+- (void)kt_loadPhotoBrowserForCollectionView:(KTPhotosCollectionView *)collectionView withSelectedIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)kt_getPhotoIndexForIndexPath:(NSIndexPath *)indexPath inCollectionView:(KTPhotosCollectionView *)collectionView;
 
 @end
 
@@ -200,8 +205,7 @@
 
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath atPosition:(CGPoint)location
 {
-    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
-    return;
+    [self kt_loadPhotoBrowserForCollectionView:collectionView withSelectedIndexPath:indexPath];
 }
 
 - (BOOL)collectionView:(KTPhotosCollectionView *)collectionView shouldStickHeaderToTopInSection:(NSUInteger)section
@@ -232,6 +236,76 @@
 {
     NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
     return;
+}
+
+#pragma mark - Internal
+
+- (void)kt_loadPhotoBrowserForCollectionView:(KTPhotosCollectionView *)collectionView withSelectedIndexPath:(NSIndexPath *)indexPath
+{
+    // get all the photo data to display in the photo browser
+    NSArray *allPhotoData = [self photoDataForCollectionView:collectionView];
+    
+    // create a list of IDMPhoto objects
+    NSMutableArray *photos = [NSMutableArray array];
+    for (NSInteger index = 0; index < allPhotoData.count; index++)
+    {
+        id<KTPhotoData> photoData = allPhotoData[index];
+        IDMPhoto *photo;
+        if ([photoData image])
+        {
+            photo = [IDMPhoto photoWithImage:[photoData image]];
+        }
+        else if ([photoData imagePath])
+        {
+            photo = [IDMPhoto photoWithFilePath:[photoData imagePath]];
+        }
+        else if ([photoData imageURL])
+        {
+            photo = [IDMPhoto photoWithURL:[photoData imageURL]];
+        }
+        
+        [photos addObject:photo];
+    }
+    
+    // create photo browser with all the photos
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
+    
+    // set the initial page index for the photo browser based on the tapped cell (see-indexPath)
+    NSInteger index = [self kt_getPhotoIndexForIndexPath:indexPath inCollectionView:collectionView];
+    [browser setInitialPageIndex:index];
+    
+    // configure browser
+    browser.displayCounterLabel = YES;
+    browser.displayActionButton = NO;
+    
+    // show
+    [self presentViewController:browser animated:YES completion:nil];
+}
+
+- (NSInteger)kt_getPhotoIndexForIndexPath:(NSIndexPath *)indexPath inCollectionView:(KTPhotosCollectionView *)collectionView
+{
+    // set the initial value of the photo index to be 0
+    NSInteger photoIndex = 0;
+    
+    NSInteger tapSection = indexPath.section;
+    if (tapSection == 0)
+    {
+        // if section == 0, just return the row
+        return indexPath.row;
+    }
+    else
+    {
+        // go to all the sections before the current section
+        for (NSInteger section = 0; section < tapSection; section++)
+        {
+            photoIndex += [collectionView numberOfItemsInSection:section];
+        }
+        
+        // once done throw all the sections, add the current item index
+        photoIndex += indexPath.row;
+    }
+    
+    return photoIndex;
 }
 
 @end

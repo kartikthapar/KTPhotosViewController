@@ -53,7 +53,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.sampleModelData.photos.count;
+    return [self.sampleModelData numberOfItemsInSection:section];
 }
 
 #pragma mark - KTPhotosCollectionViewDataSource
@@ -82,7 +82,7 @@
 
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath atPosition:(CGPoint)location
 {
-    
+    [super collectionView:collectionView didTapCellAtIndexPath:indexPath atPosition:location];
 }
 
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapRightAccessoryButton:(UIButton *)rightAccessoryButton inSectionHeader:(KTPhotosSectionHeaderView *)sectionHeaderView inSection:(NSInteger)section
