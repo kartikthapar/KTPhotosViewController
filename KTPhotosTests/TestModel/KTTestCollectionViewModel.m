@@ -99,7 +99,7 @@
     return @[item];
 }
 
-- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView thumbnailDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
     KTPhotoItem *item = [[KTPhotoItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
     return item;

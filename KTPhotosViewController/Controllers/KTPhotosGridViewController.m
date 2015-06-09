@@ -102,7 +102,7 @@
     }
     
     // update cell contents
-    id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView photoDataItemAtIndexPath:indexPath];
+    id <KTPhotoData> photoItem = [collectionView.dataSource collectionView:collectionView thumbnailDataItemAtIndexPath:indexPath];
     NSParameterAssert(photoItem);
     
     [cell updateWithPhotoItem:photoItem];
@@ -164,7 +164,7 @@
 
 #pragma mark - KTPhotosCollectionViewDataSource
 
-- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView thumbnailDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
     return nil;

@@ -14,13 +14,13 @@
 @protocol KTPhotosCollectionViewDataSource <UICollectionViewDataSource>
 
 /**
- * @abstract Asks the data source for the photo data corresponding to the specified index path in the collection view.
+ * @abstract Asks the data source for the thumbnail data corresponding to the specified index path in the collection view.
  * @discussion This method must not return `nil`.
  * @param collectionView The collection view instance requesting the information.
  * @param indexPath The index path that specifies the location of the item.
  * @return An object corresponding ot the `KTPhotoData` protocol.
  */
-- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath;
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView thumbnailDataItemAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
  * @abstract Asks the data source for all the photo that is to be displayed in the collection view.

@@ -58,7 +58,7 @@
 
 #pragma mark - KTPhotosCollectionViewDataSource
 
-- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+- (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView thumbnailDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.sampleModelData thumbnailAtIndexPath:indexPath];
 }
