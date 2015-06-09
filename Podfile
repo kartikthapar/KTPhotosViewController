@@ -2,6 +2,7 @@
 # platform :ios, '6.0'
 
 target 'KTPhotos' do
+    pod 'IDMPhotoBrowser'
     pod 'Haneke'
 end
 
