@@ -1,5 +1,5 @@
 //
-//  KTThumbnailItem.h
+//  KTPhotoItem.h
 //  KTPhotos
 //
 //  Created by Kartik Thapar on 6/2/15.
@@ -11,10 +11,10 @@
 #import "KTPhotoData.h"
 
 /**
- * @abstract The `KTThumbnailItem` is a concrete class for photo objects that represents a thumbnail image.
- * @discussion It implements the `KTPhotoData` protocol containing basic metadata and content data source information for a particular thumbnail image.
+ * @abstract The `KTPhotoItem` is a concrete class for photo objects that represents an image.
+ * @discussion It implements the `KTPhotoData` protocol containing basic metadata and content data source information for a particular image.
  */
-@interface KTThumbnailItem : NSObject <KTPhotoData, NSCoding>
+@interface KTPhotoItem : NSObject <KTPhotoData, NSCoding>
 
 #pragma mark - KTPhotoData
 
@@ -29,14 +29,14 @@
 @property (nonatomic, copy, readwrite) NSString *cacheId;
 
 /**
- * @abstract Returns the image path for the thumbnail image represented by the receiver object.
+ * @abstract Returns the file path for the image represented by the receiver object.
  * @discussion If this value is `nil`, see other image content APIs.
  * @see `image`, `imageURL`.
  */
 @property (nonatomic, copy, readonly) NSString *imagePath;
 
 /**
- * @abstract Returns the original thumbnail image represented by the receiver object.
+ * @abstract Returns the original image represented by the receiver object.
  * @discussion If this value is `nil`, see other image content APIs.
  * @see `imagePath`, `imageURL`.
  */
@@ -54,32 +54,32 @@
 /**
  * @abstract Initializes and returns an object with the specified image path and cacheId.
  * @discussion This is typically used when the image path is available.
- * @param imagePath The image path of the thumbnail. This value must not be `nil`.
+ * @param imagePath The image path of the image. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
-+ (instancetype)thumbnailWithImagePath:(NSString *)imagePath cacheId:(NSString *)cacheId;
++ (instancetype)photoWithFilePath:(NSString *)imagePath cacheId:(NSString *)cacheId;
 
 /**
  * @abstract Initializes and returns an object with the specified image path, date and cacheId.
  * @discussion This is typically used when the image path is available.
- * @param imagePath The image path of the thumbnail. This value must not be `nil`.
+ * @param imagePath The image path of the image. This value must not be `nil`.
  * @param date The date on which the content was created. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
-- (instancetype)initWithImagePath:(NSString *)imagePath  date:(NSDate *)date cacheId:(NSString *)cacheId;
+- (instancetype)initWithFilePath:(NSString *)imagePath  date:(NSDate *)date cacheId:(NSString *)cacheId;
 
 /**
  * @abstract Initializes and returns an object with the specified image and cacheId.
  * @discussion This is typically used when the image is available.
- * @param image The thumbnail image. This value must not be `nil`.
+ * @param image The image. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
-+ (instancetype)thumbnailWithImage:(UIImage *)image cacheId:(NSString *)cacheId;
++ (instancetype)photoWithImage:(UIImage *)image cacheId:(NSString *)cacheId;
 
 /**
  * @abstract Initializes and returns an object with the specified image, date and cacheId.
  * @discussion This is typically used when the image path is available.
- * @param image The thumbnail image. This value must not be `nil`.
+ * @param image The image. This value must not be `nil`.
  * @param date The date on which the content was created. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
@@ -91,7 +91,7 @@
  * @param imageURL The URL for the image. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
-+ (instancetype)thumbnailWithURL:(NSURL *)imageURL cacheId:(NSString *)cacheId;
++ (instancetype)photoWithURL:(NSURL *)imageURL cacheId:(NSString *)cacheId;
 
 /**
  * @abstract Initializes and returns an object with the specified image URL, date and cacheId.
@@ -100,6 +100,6 @@
  * @param date The date on which the content was created. This value must not be `nil`.
  * @param cacheId The unique cache identifier used for caching the image. This value must not be `nil`.
  */
-- (instancetype)initWithImageURL:(NSURL *)imageURL date:(NSDate *)date cacheId:(NSString *)cacheId;
+- (instancetype)initWithURL:(NSURL *)imageURL date:(NSDate *)date cacheId:(NSString *)cacheId;
 
 @end

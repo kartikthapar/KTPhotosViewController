@@ -54,8 +54,8 @@
     {
         NSString *imageName = [NSString stringWithFormat:@"1200-%ld_t", index];
         NSString *imagePath = [thumbnailsBundle pathForResource:imageName ofType:@"jpeg"];
-        KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithImagePath:imagePath cacheId:imageName];
-        [self.thumbnails addObject:thumbnailItem];
+        KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
+        [self.thumbnails addObject:photoItem];
     }
 }
 
@@ -67,8 +67,8 @@
     {
         NSString *imageName = [NSString stringWithFormat:@"1200-%ld", index];
         NSString *imagePath = [photosBundle pathForResource:imageName ofType:@"jpeg"];
-        KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithImagePath:imagePath cacheId:imageName];
-        [self.photos addObject:thumbnailItem];
+        KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
+        [self.photos addObject:photoItem];
     }
 }
 

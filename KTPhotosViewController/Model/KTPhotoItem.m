@@ -1,14 +1,14 @@
 //
-//  KTThumbnailItem.m
+//  KTPhotoItem.m
 //  KTPhotos
 //
 //  Created by Kartik Thapar on 6/2/15.
 //  Copyright (c) 2015 Kartik Thapar. All rights reserved.
 //
 
-#import "KTThumbnailItem.h"
+#import "KTPhotoItem.h"
 
-@implementation KTThumbnailItem
+@implementation KTPhotoItem
 
 #pragma mark - init
 
@@ -18,12 +18,12 @@
     return nil;
 }
 
-+ (instancetype)thumbnailWithImagePath:(NSString *)imagePath cacheId:(NSString *)cacheId
++ (instancetype)photoWithFilePath:(NSString *)imagePath cacheId:(NSString *)cacheId
 {
-    return [[KTThumbnailItem alloc] initWithImagePath:imagePath date:[NSDate date] cacheId:cacheId];
+    return [[KTPhotoItem alloc] initWithFilePath:imagePath date:[NSDate date] cacheId:cacheId];
 }
 
-- (instancetype)initWithImagePath:(NSString *)imagePath  date:(NSDate *)date cacheId:(NSString *)cacheId
+- (instancetype)initWithFilePath:(NSString *)imagePath  date:(NSDate *)date cacheId:(NSString *)cacheId
 {
     NSParameterAssert(imagePath);
     NSParameterAssert(date);
@@ -38,9 +38,9 @@
     return self;
 }
 
-+ (instancetype)thumbnailWithImage:(UIImage *)image cacheId:(NSString *)cacheId
++ (instancetype)photoWithImage:(UIImage *)image cacheId:(NSString *)cacheId
 {
-    return [[KTThumbnailItem alloc] initWithImage:image date:[NSDate date] cacheId:cacheId];
+    return [[KTPhotoItem alloc] initWithImage:image date:[NSDate date] cacheId:cacheId];
 }
 
 - (instancetype)initWithImage:(UIImage *)image date:(NSDate *)date cacheId:(NSString *)cacheId
@@ -58,12 +58,12 @@
     return self;
 }
 
-+ (instancetype)thumbnailWithURL:(NSURL *)imageURL cacheId:(NSString *)cacheId
++ (instancetype)photoWithURL:(NSURL *)imageURL cacheId:(NSString *)cacheId
 {
-    return [[KTThumbnailItem alloc] initWithImageURL:imageURL date:[NSDate date] cacheId:cacheId];
+    return [[KTPhotoItem alloc] initWithURL:imageURL date:[NSDate date] cacheId:cacheId];
 }
 
-- (instancetype)initWithImageURL:(NSURL *)imageURL date:(NSDate *)date cacheId:(NSString *)cacheId
+- (instancetype)initWithURL:(NSURL *)imageURL date:(NSDate *)date cacheId:(NSString *)cacheId
 {
     NSParameterAssert(imageURL);
     NSParameterAssert(date);

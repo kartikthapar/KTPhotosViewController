@@ -19,7 +19,7 @@
 #import "KTPhotoData.h"
 #import "KTPhotosSectionHeaderPresenting.h"
 #import "KTPhotosThumbnailPresenting.h"
-#import "KTThumbnailItem.h"
+#import "KTPhotoItem.h"
 #import "KTPhotosImageCache.h"
 #import "KTPhotosImageCacheAgent.h"
 #import "KTPhotosImageCacheProxy.h"

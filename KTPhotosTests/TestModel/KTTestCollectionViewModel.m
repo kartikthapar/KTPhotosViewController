@@ -95,13 +95,13 @@
 
 - (NSArray *)photoDataForCollectionView:(KTPhotosCollectionView *)collectionView
 {
-    KTThumbnailItem *item = [[KTThumbnailItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
+    KTPhotoItem *item = [[KTPhotoItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
     return @[item];
 }
 
 - (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    KTThumbnailItem *item = [[KTThumbnailItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
+    KTPhotoItem *item = [[KTPhotoItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
     return item;
 }
 

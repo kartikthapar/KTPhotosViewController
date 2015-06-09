@@ -94,8 +94,8 @@
     // Load image view on tester and see if check if the photo is valid
     
     KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithImage:self.image cacheId:self.cacheId];
-    photoImageView.photoItem = thumbnailItem;
+    KTPhotoItem *photoItem = [KTPhotoItem photoWithImage:self.image cacheId:self.cacheId];
+    photoImageView.photoItem = photoItem;
     
     [self presentThumbnailImageView:photoImageView];
     
@@ -109,8 +109,8 @@
     // Load image view on tester and see if check if the photo is valid
 
     KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithImagePath:self.imagePath cacheId:self.cacheId];
-    photoImageView.photoItem = thumbnailItem;
+    KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:self.imagePath cacheId:self.cacheId];
+    photoImageView.photoItem = photoItem;
 
     [self presentThumbnailImageView:photoImageView];
 
@@ -124,8 +124,8 @@
     // Load image view on tester and see if check if the photo is valid
 
     KTPhotosThumbnailImageView *photoImageView = [[KTPhotosThumbnailImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    KTThumbnailItem *thumbnailItem = [KTThumbnailItem thumbnailWithURL:self.imageURL cacheId:self.cacheId];
-    photoImageView.photoItem = thumbnailItem;
+    KTPhotoItem *photoItem = [KTPhotoItem photoWithURL:self.imageURL cacheId:self.cacheId];
+    photoImageView.photoItem = photoItem;
     
     [self presentThumbnailImageView:photoImageView];
     
