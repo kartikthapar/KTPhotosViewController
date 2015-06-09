@@ -14,9 +14,11 @@
 
 @property (nonatomic, strong, readonly) NSMutableArray *thumbnails;
 @property (nonatomic, strong, readonly) NSMutableArray *photos;
+@property (nonatomic, strong, readonly) NSArray *titles;
 
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (KTPhotoItem *)thumbnailAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)titleForHeaderInSection:(NSInteger)section;
 
 @end

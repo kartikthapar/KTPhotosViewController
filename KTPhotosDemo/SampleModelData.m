@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong, readwrite) NSMutableArray *thumbnails;
 @property (nonatomic, strong, readwrite) NSMutableArray *photos;
+@property (nonatomic, strong, readwrite) NSArray *titles;
 
 - (void)loadSampleThumbnails;
 - (void)loadSamplePhotos;
@@ -28,6 +29,7 @@
         self.photos = [NSMutableArray array];
         [self loadSampleThumbnails];
         [self loadSamplePhotos];
+        [self loadSampleTitles];
     }
     return self;
 }
@@ -66,6 +68,11 @@
     return self.thumbnails[index];
 }
 
+- (NSString *)titleForHeaderInSection:(NSInteger)section
+{
+    return self.titles[section];
+}
+
 #pragma mark - Internal
 
 - (void)loadSampleThumbnails
@@ -92,6 +99,11 @@
         KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
         [self.photos addObject:photoItem];
     }
+}
+
+- (void)loadSampleTitles
+{
+    self.titles = [NSArray arrayWithObjects:@"First", @"Second", @"Third", @"Forth", @"Fifth", nil];
 }
 
 @end

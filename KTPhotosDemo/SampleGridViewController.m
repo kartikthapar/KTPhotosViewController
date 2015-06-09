@@ -70,7 +70,7 @@
 
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderInSection:(NSInteger)section
 {
-    return @"Obviously";
+    return [self.sampleModelData titleForHeaderInSection:section];
 }
 
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView sizeForHeaderInSection:(NSInteger)section
