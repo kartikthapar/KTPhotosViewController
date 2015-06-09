@@ -18,4 +18,6 @@
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 
+- (KTPhotoItem *)thumbnailAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

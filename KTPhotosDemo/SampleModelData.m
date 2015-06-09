@@ -36,12 +36,34 @@
 
 - (NSInteger)numberOfSections
 {
-    return 1;
+    return 5;
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section
 {
-    return 40;
+    return 8;
+}
+
+- (KTPhotoItem *)thumbnailAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger index = 0;
+    if (indexPath.section == 0)
+    {
+        index = indexPath.row;
+    }
+    else
+    {
+        // go to all the sections before the current section
+        for (NSInteger section = 0; section < indexPath.section; section++)
+        {
+            index += [self numberOfItemsInSection:section];
+        }
+        
+        // once done throw all the sections, add the current item index
+        index += indexPath.row;
+    }
+    
+    return self.thumbnails[index];
 }
 
 #pragma mark - Internal

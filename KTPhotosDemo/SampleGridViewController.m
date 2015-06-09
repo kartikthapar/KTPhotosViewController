@@ -60,7 +60,7 @@
 
 - (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.sampleModelData.thumbnails objectAtIndex:indexPath.row];
+    return [self.sampleModelData thumbnailAtIndexPath:indexPath];
 }
 
 - (NSArray *)photoDataForCollectionView:(KTPhotosCollectionView *)collectionView
