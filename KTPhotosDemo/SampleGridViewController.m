@@ -63,6 +63,11 @@
     return [self.sampleModelData.photos objectAtIndex:indexPath.row];
 }
 
+- (NSArray *)photoDataForCollectionView:(KTPhotosCollectionView *)collectionView
+{
+    return self.sampleModelData.photos;
+}
+
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"Obviously";

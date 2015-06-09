@@ -22,6 +22,13 @@
  */
 - (id <KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ * @abstract Asks the data source for all the photo that is to be displayed in the collection view.
+ * @discussion This is used to populate the photo browser.
+ * @param collectionView The collection view instance requesting the information.
+ */
+- (NSArray *)photoDataForCollectionView:(KTPhotosCollectionView *)collectionView;
+
 @optional
 
 /**

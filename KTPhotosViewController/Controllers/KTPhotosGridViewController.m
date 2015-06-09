@@ -165,6 +165,12 @@
     return nil;
 }
 
+- (NSArray *)photoDataForCollectionView:(KTPhotosCollectionView *)collectionView
+{
+    NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
+    return nil;
+}
+
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderAtIndexPath:(NSIndexPath *)indexPath
 {
     // return nil so that the header view does not update

@@ -39,7 +39,7 @@
 
 - (NSInteger)numberOfSections
 {
-    return 4;
+    return 1;
 }
 
 @end
