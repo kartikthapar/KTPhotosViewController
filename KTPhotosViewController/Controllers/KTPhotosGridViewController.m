@@ -147,16 +147,6 @@
                     [headerView updateWithTitle:title];
                 }
             }
-            
-            if ([headerView respondsToSelector:@selector(showLeftAccessoryButton)])
-            {
-                [headerView showLeftAccessoryButton];
-            }
-            
-            if ([headerView respondsToSelector:@selector(showRightAccessoryButton)])
-            {
-                [headerView showRightAccessoryButton];
-            }
         }
     }
     return reusableView;

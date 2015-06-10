@@ -78,6 +78,19 @@
     return CGSizeMake(self.view.bounds.size.width, 50.0f);
 }
 
+- (UICollectionReusableView *)collectionView:(KTPhotosCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableView = [super collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
+    UICollectionReusableView<KTPhotosSectionHeaderPresenting> *headerView = (UICollectionReusableView<KTPhotosSectionHeaderPresenting> *)reusableView;
+
+    if ([headerView respondsToSelector:@selector(showLeftAccessoryButton)])
+    {
+        [headerView showLeftAccessoryButton];
+    }
+    
+    return reusableView;
+}
+
 #pragma mark - KTPhotosCollectionViewDelegateFlowLayout
 
 - (void)collectionView:(KTPhotosCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath atPosition:(CGPoint)location
