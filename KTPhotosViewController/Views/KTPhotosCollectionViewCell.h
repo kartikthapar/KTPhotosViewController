@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "KTPhotosThumbnailPresenting.h"
+#import "KTPhotosThumbnailImageView.h"
 
 @class KTPhotosCollectionViewCell;
-@class KTPhotosThumbnailImageView;
 
 #define KTPhotosCollectionViewCellAccessibilityLabel @"KTPhotosCollectionViewCellAccessibilityLabel"
 
@@ -35,8 +35,10 @@
 /**
  * @abstract The `KTPhotosCollectionViewCell` class provides a basic foundation for the representation of photo data item in a collection view.
  * @discussion This is the default `cellClass` for `KTPhotosCollectionView` and can be used as it is. You may subclass this class or provide a completely different implementation of your cell.
+ * 
+ * The `KTPhotosCollectionViewCell` also acts as the delegate for the containing image view that us used to display a thumbnail.
  */
-@interface KTPhotosCollectionViewCell : UICollectionViewCell <KTPhotosThumbnailPresenting>
+@interface KTPhotosCollectionViewCell : UICollectionViewCell <KTPhotosThumbnailPresenting, KTPhotosThumbnailLoading>
 
 /**
  * @abstract Returns the photo image view of the cell that is responsible for displaying the thumbnail image.

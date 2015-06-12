@@ -12,12 +12,28 @@
 #import "KTPhotosImageCacheProxy.h"
 #import "KTPhotoData.h"
 
+#import <AFNetworking/AFNetworking.h>
+
 @interface KTPhotosThumbnailImageView ()
 
 - (void)kt_configureThumbnailImageView;
 
+/**
+ * @abstract Load image from the specified image.
+ * @discussion Only called when cache loading fails.
+ */
 - (void)kt_loadImage:(UIImage *)image cacheId:(NSString *)cacheId;
+
+/**
+ * @abstract Load image from the specified file path.
+ * @discussion Only called when cache loading fails.
+ */
 - (void)kt_loadImageFromPath:(NSString *)path cacheId:(NSString *)cacheId;
+
+/**
+ * @abstract Load image from the specified URL.
+ * @discussion Only called when cache loading fails.
+ */
 - (void)kt_loadImageFromURL:(NSURL *)url cacheId:(NSString *)cacheId;
 
 @end
@@ -96,37 +112,40 @@
 {
     id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
     [imageCacheAgent setImage:image forKey:cacheId];
+    [self.delegate didFinishLoadingImage];
     self.image = image;
 }
 
 - (void)kt_loadImageFromPath:(NSString *)path cacheId:(NSString *)cacheId
 {
+    // do a background load here
+    [self.delegate didStartLoadingImage];
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
     [imageCacheAgent setImage:image forKey:cacheId];
+    [self.delegate didFinishLoadingImage];
     self.image = image;
 }
 
 - (void)kt_loadImageFromURL:(NSURL *)url cacheId:(NSString *)cacheId
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-        id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
+    [self.delegate didStartLoadingImage];
+    id <KTPhotosImageCache> imageCacheAgent = [[KTPhotosImageCacheProxy sharedProxy] imageCacheAgent];
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:0];
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFImageResponseSerializer serializer];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+        UIImage *image = (UIImage *)response;
+        self.image = image;
+        [self.delegate didFinishLoadingImage];
         [imageCacheAgent setImage:image forKey:cacheId];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ([self.photoItem imageURL] && [[self.photoItem imageURL] isEqual:url])
-            {
-                [UIView animateWithDuration:0.2 animations:^{
-                    self.alpha = 0.0;
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.5 animations:^{
-                        self.image = image;
-                        self.alpha = 1.0;
-                    }];
-                }];
-            }
-        });
-    });
+    } failure:nil];
+    [op setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead){
+        CGFloat progress = ((CGFloat)totalBytesRead)/((CGFloat)totalBytesExpectedToRead);
+        [self.delegate didLoadImageWithProgress:progress];
+    }];
+    [op start];
 }
 
 @end

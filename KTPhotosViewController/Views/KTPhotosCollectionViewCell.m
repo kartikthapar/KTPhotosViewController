@@ -9,14 +9,18 @@
 #import "KTPhotosCollectionViewCell.h"
 #import "KTPhotosThumbnailImageView.h"
 
+#import <DACircularProgress/DACircularProgressView.h>
+
 @interface KTPhotosCollectionViewCell ()
 
 @property (nonatomic, strong, readwrite) KTPhotosThumbnailImageView *photoImageView;
-
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) DACircularProgressView *progressView;
 
 - (void)kt_configureCollectionViewCell;
 - (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
+- (void)kt_configureLayoutConstraintsForPhotoImageview;
+- (void)kt_configureLayoutConstraintsForProgressView;
 
 @end
 
@@ -53,9 +57,39 @@
     
     // photoImageView
     self.photoImageView = [[KTPhotosThumbnailImageView alloc] init];
+    self.photoImageView.delegate = self;
     self.photoImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.photoImageView];
     [self kt_configureLayoutConstraintsForPhotoImageview];
+    
+    // progress view
+    self.progressView = [[DACircularProgressView alloc] init];
+    self.progressView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.progressView setProgress:0.0f];
+    self.progressView.thicknessRatio = 0.1;
+    self.progressView.roundedCorners = NO;
+    self.progressView.trackTintColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.progressView.progressTintColor = [super tintColor];
+    self.progressView.hidden = YES;
+    [self.contentView addSubview:self.progressView];
+    [self kt_configureLayoutConstraintsForProgressView];
+}
+
+#pragma mark - KTPhotosThumbnailLoading
+
+- (void)didLoadImageWithProgress:(CGFloat)progress
+{
+    [self.progressView setProgress:progress animated:YES];
+}
+
+- (void)didStartLoadingImage
+{
+    self.progressView.hidden = NO;
+}
+
+- (void)didFinishLoadingImage
+{
+    self.progressView.hidden = YES;
 }
 
 #pragma mark - UIAppearance
@@ -74,6 +108,7 @@
     
     self.photoImageView.image = nil;
     self.photoImageView.highlightedImage = nil;
+    self.progressView.progress = 0.0f;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -101,7 +136,6 @@
 - (void)kt_handleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     CGPoint location = [tapGestureRecognizer locationInView:self];
-
     [self.delegate photosCollectionViewCellDidTapCell:self atPosition:location];
 }
 
@@ -114,6 +148,14 @@
     
     // photoImageView.width = contentView.width
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.photoImageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+}
+
+- (void)kt_configureLayoutConstraintsForProgressView
+{
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.progressView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeHeight multiplier:0.3 constant:0]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.progressView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.progressView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.progressView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
 #pragma mark - Info

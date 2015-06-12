@@ -77,15 +77,8 @@
 
 - (void)loadSampleThumbnails
 {
-    NSBundle *thumbnailsBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"Thumbnails" withExtension:@"bundle"]];
-    NSInteger totalThumbnails = 40;
-    for (NSInteger index = 1; index <= totalThumbnails; index++)
-    {
-        NSString *imageName = [NSString stringWithFormat:@"1200-%ld_t", (long)index];
-        NSString *imagePath = [thumbnailsBundle pathForResource:imageName ofType:@"jpeg"];
-        KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
-        [self.thumbnails addObject:photoItem];
-    }
+    [self _loadSampleThumbnailsFromURLs];
+//    [self _loadSampleThumbnailsFromFilePaths];
 }
 
 - (void)loadSamplePhotos
@@ -104,6 +97,32 @@
 - (void)loadSampleTitles
 {
     self.titles = [NSArray arrayWithObjects:@"First", @"Second", @"Third", @"Forth", @"Fifth", nil];
+}
+
+#pragma mark - Internal
+
+- (void)_loadSampleThumbnailsFromFilePaths
+{
+    NSBundle *thumbnailsBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"Thumbnails" withExtension:@"bundle"]];
+    NSInteger totalThumbnails = 40;
+    for (NSInteger index = 1; index <= totalThumbnails; index++)
+    {
+        NSString *imageName = [NSString stringWithFormat:@"1200-%ld_t", (long)index];
+        NSString *imagePath = [thumbnailsBundle pathForResource:imageName ofType:@"jpeg"];
+        KTPhotoItem *photoItem = [KTPhotoItem photoWithFilePath:imagePath cacheId:imageName];
+        [self.thumbnails addObject:photoItem];
+    }
+}
+
+- (void)_loadSampleThumbnailsFromURLs
+{
+    NSInteger totalThumbnails = 40;
+    for (NSInteger index = 1; index <= totalThumbnails; index++)
+    {
+        NSString *cacheId = [NSString stringWithFormat:@"%ld", (long)index];
+        KTPhotoItem *photoItem = [KTPhotoItem photoWithURL:[NSURL URLWithString:@"http://gallery.photo.net/photo/8057273-md.jpg"] cacheId:cacheId];
+        [self.thumbnails addObject:photoItem];
+    }
 }
 
 @end
