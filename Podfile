@@ -6,6 +6,7 @@ inhibit_all_warnings!
 target 'KTPhotos' do
     pod 'IDMPhotoBrowser'
     pod 'Haneke'
+    pod 'DACircularProgress'
 end
 
 target 'KTPhotosTests' do
