@@ -7,6 +7,7 @@ target 'KTPhotos' do
     pod 'IDMPhotoBrowser'
     pod 'Haneke'
     pod 'DACircularProgress'
+    pod 'AFNetworking'
 end
 
 target 'KTPhotosTests' do
