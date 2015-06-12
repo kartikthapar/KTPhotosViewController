@@ -26,13 +26,13 @@
 
 /**
  * @abstract The border color of the image view.
- * @discussion The default value is `[UIColor lightGrayColor]`
+ * @discussion The default value is the default value of UIImageView's border color.
  */
 @property (nonatomic) UIColor *imageViewBorderColor UI_APPEARANCE_SELECTOR;
 
 /**
  * @abstract The border width of the image view.
- * @discussion The default value is 1.0f.
+ * @discussion The default value is the default value of UIImageView's border width.
  */
 @property (nonatomic) CGFloat imageViewBorderWidth UI_APPEARANCE_SELECTOR;
 

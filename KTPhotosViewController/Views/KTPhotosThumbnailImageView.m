@@ -24,13 +24,6 @@
 
 @implementation KTPhotosThumbnailImageView
 
-+ (void)initialize
-{
-    KTPhotosThumbnailImageView *proxy = [self appearance];
-    proxy.imageViewBorderWidth = 1.0f;
-    proxy.imageViewBorderColor = [UIColor lightGrayColor];
-}
-
 - (instancetype)init
 {
     if (self = [super init])
