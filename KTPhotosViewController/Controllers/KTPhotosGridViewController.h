@@ -34,4 +34,19 @@
  */
 @property (nonatomic, strong, readonly) KTPhotosImageCacheProxy *imageCacheProxy;
 
+#pragma mark - Appearance
+
+/**
+ * @abstract The tint color for the progress view for an image displayed in the photo browser.
+ * @discussion The default value is `self.view.tintColor` OR `self.collectionView.tintColor`.
+ */
+@property (nonatomic) UIColor *imageProgressTintColor;
+
+/**
+ * @abstract The tint color for the progress view track for an image displayed in the photo browser.
+ * @discussion The default value is `[UIColor colorWithWhite:0.9 alpha:1]`.
+ */
+@property (nonatomic) UIColor *imageProgressTrackColor;
+
+
 @end

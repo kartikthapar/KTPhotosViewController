@@ -75,6 +75,8 @@
     self.imageCacheProxy = [KTPhotosImageCacheProxy sharedProxy];
     
     // Appearance
+    self.imageProgressTintColor = self.collectionView.tintColor;
+    self.imageProgressTrackColor = [UIColor colorWithWhite:0.9 alpha:1];
     [[KTPhotosCollectionViewCell appearance] setProgressTintColor:self.collectionView.tintColor];
     [[KTPhotosCollectionViewCell appearance] setProgressTrackColor:[UIColor colorWithWhite:0.9 alpha:1]];
 }
@@ -267,6 +269,8 @@
     [browser setInitialPageIndex:index];
     
     // configure browser
+    browser.progressTintColor = self.imageProgressTintColor;
+    browser.trackTintColor = self.imageProgressTrackColor;
     browser.displayCounterLabel = YES;
     browser.displayActionButton = NO;
     
