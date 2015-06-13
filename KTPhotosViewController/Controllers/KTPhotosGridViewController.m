@@ -74,7 +74,9 @@
     // Cache
     self.imageCacheProxy = [KTPhotosImageCacheProxy sharedProxy];
     
-//    [[self.imageCacheProxy imageCacheAgent] setImage:[UIImage imageNamed:@"image_sample_1"] forKey:@"cacheId"];
+    // Appearance
+    [[KTPhotosCollectionViewCell appearance] setProgressTintColor:self.collectionView.tintColor];
+    [[KTPhotosCollectionViewCell appearance] setProgressTrackColor:[UIColor colorWithWhite:0.9 alpha:1]];
 }
 
 #pragma mark UICollectionViewDataSource

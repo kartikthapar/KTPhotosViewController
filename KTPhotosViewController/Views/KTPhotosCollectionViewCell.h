@@ -63,4 +63,16 @@
  */
 @property (nonatomic) UIColor *cellBackgroundColor UI_APPEARANCE_SELECTOR;
 
+/**
+ * @abstract The tint color for the progress view.
+ * @discussion The default value is `[UIColor darkGrayColor]`.
+ */
+@property (nonatomic) UIColor *progressTintColor UI_APPEARANCE_SELECTOR;
+
+/**
+ * @abstract The tint color for progress view track.
+ * @discussion The default value is `[UIColor colorWithWhite:0.9 alpha:1]`;
+ */
+@property (nonatomic) UIColor *progressTrackColor UI_APPEARANCE_SELECTOR;
+
 @end

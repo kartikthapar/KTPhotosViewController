@@ -32,6 +32,8 @@
 {
     KTPhotosCollectionViewCell *proxy = [self appearance];
     proxy.cellBackgroundColor = [UIColor whiteColor];
+    proxy.progressTintColor = [UIColor darkGrayColor];
+    proxy.progressTrackColor = [UIColor colorWithWhite:0.9 alpha:1];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -73,6 +75,18 @@
     self.progressView.hidden = YES;
     [self.contentView addSubview:self.progressView];
     [self kt_configureLayoutConstraintsForProgressView];
+}
+
+- (void)setProgressTintColor:(UIColor *)progressTintColor
+{
+    _progressTintColor = progressTintColor;
+    self.progressView.progressTintColor = progressTintColor;
+}
+
+- (void)setProgressTrackColor:(UIColor *)progressTrackColor
+{
+    _progressTrackColor = progressTrackColor;
+    self.progressView.trackTintColor = progressTrackColor;
 }
 
 #pragma mark - KTPhotosThumbnailLoading
