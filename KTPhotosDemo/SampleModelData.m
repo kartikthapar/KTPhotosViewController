@@ -68,6 +68,28 @@
     return self.thumbnails[index];
 }
 
+- (KTPhotoItem *)photoAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger index = 0;
+    if (indexPath.section == 0)
+    {
+        index = indexPath.row;
+    }
+    else
+    {
+        // go to all the sections before the current section
+        for (NSInteger section = 0; section < indexPath.section; section++)
+        {
+            index += [self numberOfItemsInSection:section];
+        }
+        
+        // once done throw all the sections, add the current item index
+        index += indexPath.row;
+    }
+    
+    return self.photos[index];
+}
+
 - (NSString *)titleForHeaderInSection:(NSInteger)section
 {
     return self.titles[section];
@@ -77,8 +99,8 @@
 
 - (void)loadSampleThumbnails
 {
-    [self _loadSampleThumbnailsFromURLs];
-//    [self _loadSampleThumbnailsFromFilePaths];
+//    [self _loadSampleThumbnailsFromURLs];
+    [self _loadSampleThumbnailsFromFilePaths];
 }
 
 - (void)loadSamplePhotos

@@ -19,6 +19,7 @@
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (KTPhotoItem *)thumbnailAtIndexPath:(NSIndexPath *)indexPath;
+- (KTPhotoItem *)photoAtIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)titleForHeaderInSection:(NSInteger)section;
 
 @end

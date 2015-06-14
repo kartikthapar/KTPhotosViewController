@@ -105,6 +105,12 @@
     return item;
 }
 
+- (id<KTPhotoData>)collectionView:(KTPhotosCollectionView *)collectionView photoDataItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    KTPhotoItem *item = [[KTPhotoItem alloc] initWithImage:[UIImage new] date:[NSDate date] cacheId:@"cacheId"];
+    return item;
+}
+
 - (NSString *)collectionView:(KTPhotosCollectionView *)collectionView titleTextForHeaderInSection:(NSInteger)section
 {
     return @"Title";
