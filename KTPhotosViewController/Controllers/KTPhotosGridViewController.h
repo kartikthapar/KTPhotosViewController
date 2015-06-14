@@ -48,5 +48,11 @@
  */
 @property (nonatomic) UIColor *imageProgressTrackColor;
 
+/**
+ * @abstract The exact number of photos in a single row. In a grid reference, this refers to the number of columns.
+ * @discussion The default is value is 4. Changing the value after the view has already been displayed results in undefined behavior.
+ * // TODO: throw exception.
+ */
+@property (nonatomic) NSInteger numberOfPhotosPerRow;
 
 @end

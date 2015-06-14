@@ -20,7 +20,7 @@
 
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 
-#define kCellSizeDefault 93
+#define kDefaultNumberOfPhotosPerRow 4
 
 @interface KTPhotosGridViewController ()
 
@@ -67,6 +67,7 @@
     self.collectionView.dataSource = self;
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = YES;
+    self.numberOfPhotosPerRow = kDefaultNumberOfPhotosPerRow;
     
     // Scrolling
     self.collectionView.alwaysBounceVertical = YES;
@@ -186,7 +187,10 @@
 
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(kCellSizeDefault, kCellSizeDefault);
+    CGFloat width = self.collectionView.bounds.size.width;
+    // |()-[1]-()-[1]-()-[1]-()|
+    CGFloat cellWidth = (width-(self.numberOfPhotosPerRow-1))/self.numberOfPhotosPerRow;
+    return CGSizeMake(cellWidth, cellWidth);
 }
 
 - (CGSize)collectionView:(KTPhotosCollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
