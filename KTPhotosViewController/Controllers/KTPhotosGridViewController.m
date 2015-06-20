@@ -27,6 +27,7 @@
 @property (nonatomic, strong, readwrite) KTPhotosCollectionView *collectionView;
 @property (nonatomic, strong, readwrite) KTPhotosImageCacheProxy *imageCacheProxy;
 
+- (void)kt_configureDefaultTransitionAnimationForPhotoBrowser;
 - (void)kt_configurePhotosViewController;
 - (void)kt_loadPhotoBrowserForCollectionView:(KTPhotosCollectionView *)collectionView withSelectedIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)kt_getPhotoIndexForIndexPath:(NSIndexPath *)indexPath inCollectionView:(KTPhotosCollectionView *)collectionView;
@@ -40,6 +41,7 @@
     [super viewDidLoad];
     
     // setup controller
+    [self kt_configureDefaultTransitionAnimationForPhotoBrowser];
     [self kt_configurePhotosViewController];
 }
 
@@ -285,7 +287,8 @@
     browser.displayActionButton = NO;
     
     // show
-    [self presentViewController:browser animated:YES completion:nil];
+    [self.view.window.layer addAnimation:self.photoBrowserAnimation forKey:kCATransition];
+    [self presentViewController:browser animated:NO completion:nil];
 }
 
 - (NSInteger)kt_getPhotoIndexForIndexPath:(NSIndexPath *)indexPath inCollectionView:(KTPhotosCollectionView *)collectionView
@@ -312,6 +315,15 @@
     }
     
     return photoIndex;
+}
+
+- (void)kt_configureDefaultTransitionAnimationForPhotoBrowser
+{
+    CATransition* transition = [CATransition animation];
+    transition.duration = .3;
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromBottom;
+    self.photoBrowserAnimation = transition;
 }
 
 @end

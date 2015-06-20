@@ -55,4 +55,10 @@
  */
 @property (nonatomic) NSInteger numberOfPhotosPerRow;
 
+/**
+ * @abstract The photo browser animation for displaying the single image view.
+ * @discussion The default animation is a fade-in animation over 3 seconds.
+ */
+@property (nonatomic, strong) CATransition *photoBrowserAnimation;
+
 @end
