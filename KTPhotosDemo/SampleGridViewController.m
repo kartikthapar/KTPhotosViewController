@@ -22,6 +22,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+//    // appearance
+//    self.collectionView.backgroundColor = [UIColor whiteColor];
     
 //    // demonstrate use of custom cell class for collection view
 //    self.collectionView.cellClass = [SamplePhotosCollectionViewCell class];

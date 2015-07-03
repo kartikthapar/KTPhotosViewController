@@ -45,6 +45,7 @@
     proxy.headerBackgroundColor = [UIColor clearColor];
     proxy.rightAccessoryBackgroundColor = [UIColor grayColor];
     proxy.leftAccessoryBackgroundColor = [UIColor grayColor];
+    proxy.blurEffectStyle = UIBlurEffectStyleExtraLight;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -63,12 +64,6 @@
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kt_handleTapGesture:)];
     [self addGestureRecognizer:self.tapGestureRecognizer];
     
-    UIBlurEffect * effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    self.blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
-    self.blurView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.blurView];
-    [self sendSubviewToBack:self.blurView];
-
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.font = self.titleLabelFont;
@@ -91,7 +86,6 @@
     self.rightAccessoryButton.layer.masksToBounds = YES;
     [self addSubview:self.rightAccessoryButton];
     
-    [self kt_configureConstraintsForBlurView];
     [self kt_configureConstraintsForTitleLabel];
     [self kt_configureConstraintsForRightAccessoryButton];
     [self kt_configureConstraintsForLeftAccessoryButton];
@@ -147,6 +141,29 @@
 {
     _leftAccessoryBackgroundColor = leftAccessoryBackgroundColor;
     self.leftAccessoryButton.backgroundColor = leftAccessoryBackgroundColor;
+}
+
+- (void)setBlurEffectStyle:(UIBlurEffectStyle)blurEffectStyle
+{
+    _blurEffectStyle = blurEffectStyle;
+    
+    // remove the view from the heirarchy
+    [self.blurView removeFromSuperview];
+    self.blurView = nil;
+    
+    // create a new and add it
+    UIBlurEffect * effect = [UIBlurEffect effectWithStyle:blurEffectStyle];
+    self.blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    self.blurView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    if (![_blurView isDescendantOfView:self])
+    {
+        [self addSubview:_blurView];
+        [self sendSubviewToBack:_blurView];
+    }
+    
+    [self kt_configureConstraintsForBlurView];
+    [self setNeedsUpdateConstraints];
 }
 
 #pragma mark - Actions

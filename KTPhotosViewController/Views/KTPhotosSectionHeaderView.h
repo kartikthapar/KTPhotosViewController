@@ -101,4 +101,10 @@
  */
 @property (nonatomic) UIColor *leftAccessoryBackgroundColor UI_APPEARANCE_SELECTOR;
 
+/**
+ * @abstract The blur effect style for the header view.
+ * @discussion The default value is `UIBlurEffectStyleExtraLight`.
+ */
+@property (nonatomic) UIBlurEffectStyle blurEffectStyle UI_APPEARANCE_SELECTOR;
+
 @end
